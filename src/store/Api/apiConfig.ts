@@ -5,7 +5,7 @@ const BASEURL="https://first-demo-cloud-music.vercel.app"
 
 const axiosInstance=axios.create({
     baseURL:BASEURL,
-    timeout:3000
+    
 })
 
 axiosInstance.interceptors.response.use(

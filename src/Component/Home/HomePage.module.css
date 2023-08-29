@@ -1,0 +1,10 @@
+.topSearch{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:20rem 30rem ;
+    background-color: #E0DDF2;
+}
+.bar,.Micro{
+    font-size: 40rem;
+}
