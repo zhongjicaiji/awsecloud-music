@@ -3,18 +3,21 @@
     background-color: rgb(243, 238, 238);
     color: #757575;
     outline: none;
-    width: 450rem;
-    height: 60rem;
     border-radius: 30rem;
    padding: 0 20rem;
     line-height: 60rem;
     font-size: 26rem;
+    overflow: hidden;
 }
 .input{
     border: none;
     background-color: rgb(243, 238, 238);
-    
+    width: 400rem;
+    height: 60rem;
     outline: none;
 
  
+}
+.input::placeholder{
+    font-size: 26rem;
 }

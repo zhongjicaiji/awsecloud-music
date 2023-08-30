@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars ,faMicrophone } from '@fortawesome/free-solid-svg-icons'
 import classes from "./HomePage.module.css"
 import Banner from './Banner/Banner'
+import SongSheet from './SongSheet/SongSheets'
 function HomePage() {
   return (
     <div >
@@ -12,9 +13,15 @@ function HomePage() {
         <SearchBar/>
         <FontAwesomeIcon className={classes.Micro} icon={faMicrophone} />
       </div>
+      <div>
       <div className={classes.banner}>
       <Banner/>
       </div>
+      <div>
+        <SongSheet url="/personalized?limit=10"/>
+      </div>
+      </div>
+     
     
     </div>
   )

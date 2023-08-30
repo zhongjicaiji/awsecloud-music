@@ -1,0 +1,42 @@
+.wrap{
+    width: 260rem;
+    flex-shrink: 0;
+    margin-right: 40rem;
+    padding-bottom: 30rem;
+}
+.cartMain{
+   position: relative;
+    overflow: hidden;
+    border-radius: 20rem;
+    color: #fff;
+}
+.img{
+    width: 260rem;
+     height:  260rem;
+   object-fit: contain;
+}
+.des{
+    white-space: pre-wrap;
+    font-size: 26rem;
+    margin-top: 16rem;
+    
+}
+.player{
+    
+    z-index:888 ;
+    position: absolute;
+    font-size: 46rem;
+    right: 20rem;
+    bottom: 20rem;
+}
+.histroyCount span{
+    margin-left: 5rem;
+}
+.histroyCount{
+    font-size: 20rem;
+    z-index: 888;
+    position: absolute;
+    top: 10rem;
+    right: 10rem;
+    font-weight: bold;
+}

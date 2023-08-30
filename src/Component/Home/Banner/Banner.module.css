@@ -1,0 +1,51 @@
+.banner{
+  
+    position: relative;
+    overflow: hidden;
+    width: 710rem;
+    height: 310rem;
+    border-radius: 30rem;
+    margin: 20rem;  
+}
+
+.transition{
+  
+}
+.imgWrap{
+    display: flex;
+    transition: all 0.5s;
+   
+}
+.img{
+  width: 100%;
+  height: 310rem; 
+
+}
+.pointer{
+    display: flex;
+    position: absolute;
+    bottom: 20rem;
+    right: 20rem;
+    z-index: 999;
+}
+.pointer b{
+    
+     margin: 10rem;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 2rem 2rem rgba(163, 160, 160, 0.3);
+    transition: width 0.5s;
+
+}
+.currentImg{
+    left: 0;
+
+    
+}
+.pointer .active{
+    width: 40rem;
+    border-radius: 5rem;
+}
