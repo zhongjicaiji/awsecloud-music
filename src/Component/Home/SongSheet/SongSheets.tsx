@@ -6,6 +6,7 @@ import { sheetT } from '../../../interface/propsInterface'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import Sheet from './SheetCart/Sheet'
+import Loading from '../../UI/Loading/Loading'
 
 
 
@@ -29,8 +30,9 @@ function SongSheet(props:sheetT) {
         <h1 className={classes.title}>好歌推荐</h1>
         <FontAwesomeIcon className={classes.angleRight} icon={faAngleRight} />
         </div>
-        <div className={classes.sheetWrap}>
+        <div className= {`${classes.sheetWrap} ${loading?classes.sheetLoading:''}`}>
           {!loading&&songSheetData.map(item=> <Sheet  key={item.id}  sheetDatas={{...item}} />)}
+          {loading&&<Loading/>}
         </div>
 
 

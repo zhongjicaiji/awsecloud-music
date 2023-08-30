@@ -1,0 +1,57 @@
+.wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.line{
+    display: flex;
+
+}
+.line span{
+    width: 50rem;
+    height: 8rem;
+    background-color:#DE2F14 ;
+ 
+    border-radius: 4rem;
+    transform-origin: 50% 50%;
+    
+}   
+.line span:nth-of-type(2n){
+    transform: rotateZ(-30deg);
+    animation: rise infinite  2s;
+}
+.line span:nth-of-type(2n+1){
+    transform: rotateZ(30deg);
+    animation: fall infinite  2s;
+}
+.logo{
+    margin: 0;
+    font-weight: bold;
+    font-size: 40rem;
+   color: #DE2F14;
+    animation: fade infinite 2s;
+
+}
+
+@keyframes fall {
+ 
+    50%{
+        transform: rotateZ(-30deg);
+    }
+ 
+}
+@keyframes rise {
+  
+    50%{
+        transform: rotateZ(30deg);
+    }
+
+}
+@keyframes fade {
+    50%{
+        opacity: 0.5;
+    }
+    100%{
+        opacity: 1;
+    }
+}
