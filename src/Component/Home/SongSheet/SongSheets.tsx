@@ -34,8 +34,6 @@ function SongSheet(props:sheetT) {
           {!loading&&songSheetData.map(item=> <Sheet  key={item.id}  sheetDatas={{...item}} />)}
           {loading&&<Loading/>}
         </div>
-
-
     </div>
   )
 }
