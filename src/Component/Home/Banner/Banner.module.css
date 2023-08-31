@@ -5,19 +5,16 @@
     width: 710rem;
     height: 310rem;
     border-radius: 30rem;
-    margin: 20rem;  
+  margin: 20rem 20rem 0;
 }
 
-.transition{
-  
-}
 .imgWrap{
     display: flex;
     transition: all 0.5s;
    
 }
 .img{
-  width: 100%;
+  width: 710rem;
   height: 310rem; 
 
 }
@@ -26,7 +23,7 @@
     position: absolute;
     bottom: 20rem;
     right: 20rem;
-    z-index: 999;
+    z-index: 10;
 }
 .pointer b{
     
@@ -41,9 +38,7 @@
 
 }
 .currentImg{
-    left: 0;
-
-    
+    left: 0;    
 }
 .pointer .active{
     width: 40rem;

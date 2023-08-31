@@ -1,0 +1,44 @@
+
+.wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 20rem;
+    margin-bottom: 15rem;
+}
+.info{
+    display: flex;
+    align-items: center;  
+}
+.songInfo{
+    margin-left: 30rem;
+}
+.songName{
+    font-size: 30rem;
+    font-weight:bold;
+}
+.arName{
+    font-size: 14rem;
+    color: #7c7676;
+}
+.no1,.no2,.no3{
+    font-size: 36rem;
+    font-weight: bolder;  
+}
+
+.no1{
+   
+    color: gold;
+}
+.no2{
+ 
+    color: silver;
+}
+.no3{
+  
+    color: rgb(116, 52, 7);
+} 
+.desc{
+   font-size: 14rem;
+   color: red;
+}  

@@ -1,0 +1,5 @@
+.rankingWrap{
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 20rem;
+}

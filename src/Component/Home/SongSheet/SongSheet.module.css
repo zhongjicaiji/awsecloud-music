@@ -1,29 +1,22 @@
 .wrap{
-    margin: 20rem;
+ 
     display: flex;
    flex-shrink: 0;
-   overflow: hidden;
-   flex-direction: column;
-   overflow-x: auto;
-   
+
+   flex-direction: column;  
 }
-.header{
- display: flex;
- align-items: center; 
- 
-}
-.title{
-    font-size: 36rem;
-    margin-right: 18rem;
-}
-.angleRight{
-     font-size: 36rem;
-     transform: translateY(2rem);
+::-webkit-scrollbar{
+  display: none;
 }
 .sheetWrap{
-  height: 400rem;
+ 
+  height: 340rem;
     display: flex;
-    overflow-x: auto;
+  
+    overflow-x:scroll;
+    padding-left: 20rem;
+
+    
     
 }
 .sheetLoading{

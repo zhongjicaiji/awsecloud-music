@@ -1,0 +1,27 @@
+.header{
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    margin: 0 20rem;
+   }
+   .headerLeft{
+        display: flex;
+        align-items: center; 
+   }
+   .title{
+       font-size: 32rem;
+       margin-right: 18rem;
+   }
+   .angleRight{
+        font-size: 32rem;
+        transform: translateY(2rem);
+   }
+   .setting{
+    font-size: 32rem;
+    color: #ccc
+   }
+   .desc{
+    font-weight: 500;
+    font-size: 20rem;
+  color: #ccc;
+   }

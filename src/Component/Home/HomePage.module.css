@@ -4,7 +4,14 @@
     align-items: center;
     padding:20rem 30rem ;
     background-color: #E0DDF2;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
 }
 .bar,.Micro{
     font-size: 40rem;
+}
+.homeBody{
+   padding-top: 100rem;
+  
 }

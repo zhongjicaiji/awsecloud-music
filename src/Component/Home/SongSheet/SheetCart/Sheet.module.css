@@ -1,8 +1,8 @@
 .wrap{
-    width: 260rem;
+    width: 240rem;
     flex-shrink: 0;
-    margin-right: 40rem;
-    padding-bottom: 30rem;
+    margin-right: 20rem;
+   
 }
 .cartMain{
    position: relative;
@@ -11,21 +11,29 @@
     color: #fff;
 }
 .img{
-    width: 260rem;
-     height:  260rem;
+    vertical-align: bottom;
+ 
+    width: 240rem;
+     height:  240rem;
    object-fit: contain;
 }
 .des{
-    white-space: pre-wrap;
+    margin: 5rem 0 0 ;
+    overflow: hidden;
     font-size: 26rem;
+    font-weight: 600;
+    color: #5c4c4c;
     margin-top: 16rem;
-    
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
 }
 .player{
     
-    z-index:888 ;
+    z-index:10 ;
     position: absolute;
-    font-size: 46rem;
+    font-size: 40rem;
     right: 20rem;
     bottom: 20rem;
 }
@@ -33,6 +41,7 @@
     margin-left: 5rem;
 }
 .histroyCount{
+    color: #fff;
     font-size: 20rem;
     z-index: 888;
     position: absolute;

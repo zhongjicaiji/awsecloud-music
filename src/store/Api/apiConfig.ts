@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const BASEURL="https://first-demo-cloud-music.vercel.app"
+const BASEURL="https://service-an89ks1a-1320556576.gz.apigw.tencentcs.com/release"
 
 const axiosInstance=axios.create({
     baseURL:BASEURL,

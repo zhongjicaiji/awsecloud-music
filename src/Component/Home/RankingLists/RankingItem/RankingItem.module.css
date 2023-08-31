@@ -1,0 +1,10 @@
+.wrap{
+    flex-shrink: 0;
+    width: 710rem;
+ 
+   margin: 10rem 20rem 0;
+   
+    box-shadow: 0 0  3px 1px rgba(61, 45, 45, 0.1);
+    border-radius: 30rem;
+    padding:0 20rem 10rem;
+}
