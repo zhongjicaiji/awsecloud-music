@@ -63,6 +63,11 @@ export interface sheetDetailT{
   tags:string[],
   trackCount:number,
   trackIds:trackIdT[],
-  tracks:song[]
+  tracks:song[],
+  coverImgUrl:string,
+  creator:any,
+  commentCount:number,
+  shareCount:number,
+  subscribedCount:number
 
 }

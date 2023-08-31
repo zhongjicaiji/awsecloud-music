@@ -25,7 +25,7 @@ function SongSheet(props:sheetT) {
   return (
     <div className={classes.wrap} >
       <Title title='好歌推荐' type='parentsWrap' />
-        <div className= {`${classes.sheetWrap} ${loading?classes.sheetLoading:''}`}>
+        <div className= {`${classes.sheetWrap} `}>
           {loading&&songSheetData.map(item=> <Sheet  key={item.id}  sheetDatas={{...item}} />)}
        
         </div>

@@ -14,12 +14,6 @@
     display: flex;
   
     overflow-x:scroll;
-    padding-left: 20rem;
+    padding-left: 20rem;   
+}
 
-    
-    
-}
-.sheetLoading{
-    justify-content: center;
-    align-items: center;
-}

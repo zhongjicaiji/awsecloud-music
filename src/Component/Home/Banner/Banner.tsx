@@ -1,4 +1,4 @@
-import React, { useEffect, useState, memo, useRef, useCallback } from "react";
+import React, { useEffect, useState, memo, useRef, Suspense} from "react";
 import classes from "./Banner.module.css";
 
 import useAxios from "../../Hooks/useAxios";
@@ -60,7 +60,8 @@ function Banner() {
   }, [index]);
 
   return (
-    <div className={classes.banner}>
+    <Suspense>
+ <div className={classes.banner}>
       <div ref={imgWrap} className={classes.imgWrap}>
         {loading &&
           banners.map((item, index) => (
@@ -85,6 +86,8 @@ function Banner() {
           ))}
       </div>
     </div>
+    </Suspense>
+   
   );
 }
 

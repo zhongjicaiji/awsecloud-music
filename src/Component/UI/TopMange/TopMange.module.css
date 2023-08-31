@@ -1,0 +1,21 @@
+.top{
+    position: fixed;
+    top: 0;
+   width: 750rem;
+    padding: 20rem  30rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    font-size: 34rem;
+}
+.icon{
+    font-size: 40rem;
+    
+}
+.title{
+    margin-left: 50rem;
+}
+.search{
+    margin-right: 50rem;
+}

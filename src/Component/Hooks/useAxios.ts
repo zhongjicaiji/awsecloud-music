@@ -9,7 +9,6 @@ export default function  useAxios(){
     const axiosRequire=useCallback(async (url:string)=>{
         axiosInstance.get(url).then(res=>{
             if(res){
-                console.log(res)
                 setData(res.data)
                 setLoading(true)
             } 

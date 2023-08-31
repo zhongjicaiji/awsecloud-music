@@ -1,0 +1,121 @@
+.wrap{
+ 
+ 
+    background-color: #916451;
+}
+.headerBody{
+    display: flex;
+    justify-content: space-between;
+   
+}
+.header{
+  
+    color: #fff;
+    font-size: 30rem;
+    padding: 140rem 30rem 20rem;
+   
+}
+.title{
+    width: 400rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 30rem;
+    margin: 0;
+}
+
+.imgWrap{
+  
+    border-radius: 20rem;
+    width: 200rem;
+    height: 200rem;
+    overflow: hidden;
+}
+.coverImg{
+    width: 200rem;
+    height: 200rem;
+}
+.avatarImgWrap{
+ 
+    width: 40rem;
+    height: 40rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.avatar{
+    vertical-align: middle;
+    width: 40rem;
+    height: 40rem;
+   
+}
+.creator{
+    font-size: 20rem;
+    color: #CAAA96;
+    display: flex;
+    align-items: center;
+    margin-top: 20rem;
+   
+}
+.creator>*{
+    margin-right: 20rem;
+}
+.interest{
+    
+    padding: 5rem 12rem;
+    background-color: rgba(146, 131, 131, 0.3);
+    border-radius: 30rem;
+}
+
+.tag{
+    font-size: 20rem;
+    padding: 5rem 16rem;
+    background-color: rgba(202, 189, 189, 0.4);
+    border-radius: 10rem;
+    margin-right: 20rem;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.more{
+   align-self:self-start;
+    padding: 4rem 10rem;
+    background-color: rgba(202, 189, 189, 0.4);
+    border-radius: 50%
+   
+}
+.desc{
+    width: 400rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 6rem;
+}
+.descWrap{
+    font-size: 20rem;
+  
+    color: #CAAA96;
+    display: flex;
+    align-items: center;
+}
+.sheetData{
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+.sheetData div{
+    width: 220rem;
+    padding:  20rem 0;
+  
+    border-radius: 40rem;
+}
+.subscribed{
+   background-image: linear-gradient(to left,#DE4D25,#DE1C09);
+}
+.comment,.share{
+    background-color: rgba(202, 189, 189, 0.4);
+}
+.icon{
+    margin-right: 10rem;
+}
