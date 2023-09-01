@@ -18,7 +18,7 @@ function TopMange(props:propsT) {
 
   const back=useNavigate()
 
-  console.log(props.positioning)
+
 
   const backHandler=()=>{
     back(props.positioning,{replace:true})

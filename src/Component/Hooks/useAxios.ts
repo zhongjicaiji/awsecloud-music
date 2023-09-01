@@ -5,18 +5,18 @@ import axiosInstance from "../../store/Api/apiConfig"
 export default function  useAxios(){
     const [data,setData]=useState<any>()
     const [loading,setLoading]=useState<boolean>(false)
-    const [isSucess,setIsSucess]=useState<boolean>(false)
+    const [isSuccess,setIsSuccess]=useState<boolean>(false)
    
     const axiosRequire=useCallback(async (url:string)=>{
         axiosInstance.get(url).then(res=>{
             if(res){
                 setData(res.data)
-                setIsSucess(true)
+                setIsSuccess(true)
             
             } 
         }).catch(reject=>{
             console.log(reject)
-            setIsSucess(false)
+            setIsSuccess(false)
         })
         .finally(()=>{
             setLoading(true)
@@ -24,7 +24,7 @@ export default function  useAxios(){
     },[])
         return{
             data,
-            isSucess,
+            isSuccess,
             loading,
             axiosRequire
         }

@@ -1,12 +1,10 @@
-import React,{ Suspense} from 'react'
+import React from 'react'
 import classes from './SongWrap.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown, faCirclePlay, faListCheck } from '@fortawesome/free-solid-svg-icons'
 import { playSongsT } from '../../interface/responseInter'
 import SongCart from './SongCart/SongCart'
-import Loading from '../UI/Loading/Loading'
 
-// const SongCart=React.lazy(()=>import('./SongCart/SongCart') )
 
 function SongWrap(props:playSongsT) {
  

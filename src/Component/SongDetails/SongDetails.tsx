@@ -23,27 +23,23 @@ interface paramT {
 
 function SongDetails() {
   const [songDetails, setSongDetail] = useState<sheetDetailT>();
-  const { data, loading,isSucess, axiosRequire } = useAxios();
+  const { data, loading,isSuccess, axiosRequire } = useAxios();
   const param: paramT = useParams();
   const local = useLocation();
- 
 
-
-
-  
   useEffect(() => {
     axiosRequire(`/playlist/detail?id=${param.id}`);
   }, []);
   useEffect(() => {
-    isSucess && setSongDetail(data.playlist);
+    isSuccess && setSongDetail(data.playlist);
      
-  }, [isSucess]);
+  }, [isSuccess]);
 
 
   return (
     <Fragment>
  <div  className={classes.wrap}>
-          <TopMange  positioning={local.state} />
+          <TopMange  positioning={local.state.backPath} />
           <div className={classes.header}>
             <div className={classes.headerBody}>
               <div className={classes.imgWrap}>

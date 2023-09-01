@@ -1,3 +1,139 @@
+.wrap{
+    background-color: #523122;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+   color: rgba(255, 255, 255, 0.6);
+   padding: 30rem;
+ 
+ 
+  
+}
 .header{
+   width: 100%;
+    
     font-size: 40rem;
+    font-weight: 200;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+}
+.dishDrop{
+    width: 600rem;
+    height: 600rem;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+.dish{
+    width: 550rem;
+    height: 550rem;
+    border-radius: 50%;
+    background-image: linear-gradient(to right, #080808 ,#373737, #080808);
+    border: 5rem solid #000;
+
+
+}
+.Context{
+    width: 100%;
+}
+.control{
+    width: 100%;
+    font-size: 80rem;
+  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.play,.pause{
+    width: 100rem;
+    height: 100rem;
+}
+.pre,.next{
+    font-size: 70rem;
+}
+.loop,.list{
+    font-size: 50rem;
+    font-weight: 200;
+    color: rgba(255, 255, 255, 0.3);
+}
+.songContext{
+   
+    font-size: 30rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.info{
+    flex-grow: 2;
+}
+.songName{
+   max-width: 300rem;
+}
+.songName,.artistName{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.artist{
+    display: flex;
+    font-size: 20rem;
+    color:rgba(255, 255, 255, 0.4) ;
+}
+.artistName{
+   max-width: 200rem;
+  
+}
+.interest{
+    margin-left: 10rem;
+    padding: 0 8rem;
+    background-color: rgba(255, 255, 255, .3);
+    border-radius: 20rem;
+}
+.like,.comment{
+    position: relative;
+    font-size: 50rem;
+    flex-grow: 1;
+    text-align: center;
+}
+.count{
+    position: absolute;
+    font-size: 12rem;
+    background-color: #523122;
+    left: 80rem;
+    border-radius: 20rem;
+    padding-left: 5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.rangeWrap{
+    margin: 20rem 0;
+
+}
+.range{
+    width: 100%;
+    height: 2rem;
+    background-color: rgba(255, 255, 255, .3);
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10rem;
+    
+}
+.schedule{
+    position: absolute;
+    width: 8rem;
+    height: 8rem;
+    background-color: #fff;
+     border-radius: 50%;
+}
+.timeWrap{
+    display: flex;
+    justify-content: space-between;
 }
