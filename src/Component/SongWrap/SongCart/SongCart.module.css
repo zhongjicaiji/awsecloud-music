@@ -1,0 +1,66 @@
+.wrap{
+    color: #A8A4A5;
+    display:  flex;
+    font-size: 24rem;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.index{
+   font-size: 30rem;
+   font-weight: 600;
+    padding: 40rem;
+
+}
+.info{
+    display: flex;
+    align-items: center;
+    
+}
+.setting{
+    margin: 40rem;
+    font-size: 40rem;
+}
+.songName{
+    width: 500rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 10rem;
+    color: #545051;
+}
+.descWrap{
+    font-size: 20rem;
+
+    display: flex;
+    white-space: nowrap;
+    align-items: center;
+}
+.desc{
+    width: 300rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.vip,.quality{
+    transform: scale(.8);
+    font-size: 14rem;
+    padding:0rem 6rem;
+    border-radius: 8rem;
+   
+    font-weight: 600;
+   
+}
+.quality{
+  
+     border: 1px solid;
+    color:rgb(201, 186, 55) ;
+    
+  
+}
+.vip{
+   
+  color: #f00;
+  border: 1px solid ;
+}

@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, Suspense, Fragment } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import useAxios from "../Hooks/useAxios";
 import { sheetDetailT } from "../../interface/responseInter";
@@ -8,12 +8,14 @@ import {
   faAngleRight,
   faChevronDown,
   faCommentDots,
+  faPlay,
   faPlus,
   faShare,
   faSquarePlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Loading from "../UI/Loading/Loading";
+import SongWrap from "../SongWrap/SongWrap";
 
 interface paramT {
   id?: string;
@@ -21,22 +23,27 @@ interface paramT {
 
 function SongDetails() {
   const [songDetails, setSongDetail] = useState<sheetDetailT>();
-  const { data, loading, axiosRequire } = useAxios();
+  const { data, loading,isSucess, axiosRequire } = useAxios();
   const param: paramT = useParams();
   const local = useLocation();
+ 
 
+
+
+  
   useEffect(() => {
     axiosRequire(`/playlist/detail?id=${param.id}`);
   }, []);
   useEffect(() => {
-    loading && setSongDetail(data.playlist);
-  }, [loading]);
+    isSucess && setSongDetail(data.playlist);
+     
+  }, [isSucess]);
+
 
   return (
-    <>
-    <Suspense fallback={<Loading/>}>
-    <div className={classes.wrap}>
-          <TopMange />
+    <Fragment>
+ <div  className={classes.wrap}>
+          <TopMange  positioning={local.state} />
           <div className={classes.header}>
             <div className={classes.headerBody}>
               <div className={classes.imgWrap}>
@@ -45,6 +52,11 @@ function SongDetails() {
                   src={songDetails?.coverImgUrl}
                   alt={songDetails?.name}
                 />
+                <div className={classes.playCount}>
+                <FontAwesomeIcon icon={faPlay} />
+                <span>{songDetails?.playCount}</span>
+                </div>
+                 
               </div>
               <div className={classes.info}>
                 <p className={classes.title}>{songDetails?.name}</p>
@@ -93,10 +105,17 @@ function SongDetails() {
              </div>
             </div>
           </div>
+
+          <SongWrap count={songDetails?.trackCount} trackIds={songDetails?.trackIds}/>
         </div>
-    </Suspense>
+     
+
+    </Fragment>
+  
    
-    </>
+ 
+   
+
   );
 }
 

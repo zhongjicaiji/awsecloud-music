@@ -11,6 +11,7 @@ function Sheet({sheetDatas }:{sheetDatas:sheetData}) {
         count=Math.floor(count/1000)/10
 
     }
+
     const navToDetail=useNavigate()
     const clickHandler=()=>{
       navToDetail(`/songDetails/${sheetDatas.id}`,{

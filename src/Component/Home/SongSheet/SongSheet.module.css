@@ -1,19 +1,16 @@
-.wrap{
- 
-    display: flex;
-   flex-shrink: 0;
+.wrap {
 
-   flex-direction: column;  
+  display: flex;
+  flex-shrink: 0;
+
+  flex-direction: column;
 }
-::-webkit-scrollbar{
-  display: none;
-}
-.sheetWrap{
- 
+
+.sheetWrap {
+
   height: 340rem;
-    display: flex;
-  
-    overflow-x:scroll;
-    padding-left: 20rem;   
-}
+  display: flex;
 
+  overflow-x: scroll;
+  padding-left: 20rem;
+}

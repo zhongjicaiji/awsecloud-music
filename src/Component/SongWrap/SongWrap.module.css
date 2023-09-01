@@ -1,0 +1,43 @@
+.wrap{
+    border-radius: 30rem 30rem 0 0;
+    overflow: hidden;
+ 
+}
+.header{
+    background-color: rgba(255, 255, 255, .9);
+
+   display: flex;
+   justify-content: space-between;
+  padding: 30rem 20rem;
+  align-items: center;
+
+
+}
+.playHandler{
+   
+    font-size: 26rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.icon{
+    font-size: 40rem;
+  
+}
+.songCount{
+    color: #959192;  
+
+}
+.headerTitle{
+    font-weight: 600;
+    margin: 0 20rem 0 30rem;
+}
+.songSet{
+    width: 100rem;
+    display: flex;
+    justify-content: space-between;
+  
+}
+.body{
+    background-color: #fff;
+}

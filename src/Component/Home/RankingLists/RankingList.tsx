@@ -9,21 +9,21 @@ import useAxios from '../../Hooks/useAxios'
 function RankingList() {
   const [rankLists,setRankList]=useState<RL[]>([])
 
-  const {data,loading,axiosRequire}=useAxios()
+  const {data,loading,isSucess,axiosRequire}=useAxios()
 
   useEffect(()=>{
       axiosRequire('/toplist/detail')
   },[])
 
   useEffect(()=>{
-    loading&&setRankList(data.list.slice(0,5))
-  },[loading])
+    isSucess&&setRankList(data.list.slice(0,5))
+  },[isSucess])
   
   return (
     <div>
      <Title title='排行榜' type='parentsWrap' />
      <div className={classes.rankingWrap}>
-    {loading&&rankLists.map(item=><RankingItem  key={item.id} {...item} />)}
+    {isSucess&&rankLists.map(item=><RankingItem  key={item.id} {...item} />)}
     
      </div>
     </div>

@@ -8,7 +8,7 @@ import SongSheet from "./SongSheet/SongSheets";
 import RankingList from "./RankingLists/RankingList";
 function HomePage() {
   return (
-    <div>
+    <div className={classes.homeWrap}>
       <div className={classes.topSearch}>
         <FontAwesomeIcon className={classes.bar} icon={faBars} />
         <SearchBar />

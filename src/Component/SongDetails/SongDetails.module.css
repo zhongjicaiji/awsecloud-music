@@ -25,7 +25,7 @@
 }
 
 .imgWrap{
-  
+  position: relative;
     border-radius: 20rem;
     width: 200rem;
     height: 200rem;
@@ -118,4 +118,14 @@
 }
 .icon{
     margin-right: 10rem;
+}
+.playCount{
+   
+   position: absolute;
+   z-index: 20;
+   top: 10rem;
+   right: 10rem;
+   font-size: 13rem;
+   display: flex;
+   align-items: center;
 }

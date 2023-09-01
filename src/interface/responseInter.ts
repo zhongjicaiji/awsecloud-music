@@ -1,4 +1,4 @@
-import { song } from "./propsInterface";
+import { artist, song } from "./propsInterface";
 //歌单详情
 export interface sheetData {
   id: number;
@@ -49,7 +49,7 @@ export interface RL {
 }
 //歌单详情类型
 
-interface trackIdT{
+export interface trackIdT{
   id:number,
   at:number,
   t:number,
@@ -68,6 +68,20 @@ export interface sheetDetailT{
   creator:any,
   commentCount:number,
   shareCount:number,
-  subscribedCount:number
+  subscribedCount:number,
+  playCount:number
+}
+export interface playSongsT{
+  count:number|undefined,
+  trackIds:trackIdT[]|undefined,
+}
 
+//歌曲详情
+export interface SongT{
+    name:string,
+    id:number,
+    fee:0|1|4|8,
+    dt:number,
+    ar:artist[]
+    
 }

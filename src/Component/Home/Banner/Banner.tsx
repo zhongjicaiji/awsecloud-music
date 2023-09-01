@@ -7,13 +7,13 @@ function Banner() {
   const [banners, setBanners] = useState<any[]>([]);
 
   const [index, setIndex] = useState<number>(0);
-  const { data, loading, axiosRequire } = useAxios();
+  const { data, loading,isSucess, axiosRequire } = useAxios();
 
   const imgWrap = useRef<any>();
 
   useEffect(() => {
-    loading && setBanners([...data.banners.slice(0, 4), data.banners[0]]);
-  }, [loading]);
+    isSucess && setBanners([...data.banners.slice(0, 4), data.banners[0]]);
+  }, [isSucess]);
   const rollImgStart: () => any = () => {
     let timer = setInterval(function () {
       setIndex(index + 1);
@@ -63,7 +63,7 @@ function Banner() {
     <Suspense>
  <div className={classes.banner}>
       <div ref={imgWrap} className={classes.imgWrap}>
-        {loading &&
+        {isSucess &&
           banners.map((item, index) => (
             <img
               className={classes.img}
@@ -74,7 +74,7 @@ function Banner() {
           ))}
       </div>
       <div className={classes.pointer}>
-        {loading &&
+        {isSucess &&
           banners.slice(0, 4).map((item, i) => (
             <b
               key={i}

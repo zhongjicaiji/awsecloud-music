@@ -3,6 +3,7 @@ import './App.css';
 import { Route,  Routes } from 'react-router-dom';
 import HomePage from './Component/Home/HomePage';
 import SongDetails from './Component/SongDetails/SongDetails';
+import PlayPage from './Component/PlayPage/PlayPage';
 
 
 function App() {
@@ -12,10 +13,10 @@ function App() {
   <>
 
     <Routes>
-     <Route  path={"/"} element={<HomePage/>}>
-  
-     </Route>
+     <Route  path={"/"} element={<HomePage/>}></Route>
      <Route path={'/songDetails/:id'} element={<SongDetails/>} > </Route>
+     <Route path={'/playPage'} element={<PlayPage/>}></Route>
+     
     </Routes>
 
   
