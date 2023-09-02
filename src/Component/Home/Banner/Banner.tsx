@@ -11,11 +11,13 @@ function Banner() {
 
   const imgWrap = useRef<any>();
 
+
+
   useEffect(() => {
     isSuccess && setBanners([...data.banners.slice(0, 4), data.banners[0]]);
   }, [isSuccess]);
   const rollImgStart: () => any = () => {
-    let timer = setInterval(function () {
+    let timer = setTimeout(function move() {
       setIndex(index + 1);
       if (index === banners.length - 2) {
         imgWrap.current.addEventListener(
@@ -25,6 +27,12 @@ function Banner() {
         );
       }
       imgWrap.current.style.transform = `translateX(${-710 * (index + 1)}rem)`;
+ let timer2=  setTimeout(move,3000)
+        clearTimeout(timer2)
+    
+ 
+    
+
     }, 3000);
     return timer;
   };
@@ -36,6 +44,7 @@ function Banner() {
       setIndex(0);
       imgWrap.current.style.transitionProperty = "transform";
     }, 0);
+
     imgWrap.current.removeEventListener(
       "transitionend",
       transitionEndHandler,
@@ -55,7 +64,7 @@ function Banner() {
   useEffect(() => {
     let timer = rollImgStart();
     return () => {
-      clearInterval(timer);
+      clearTimeout(timer);
     };
   }, [index]);
 

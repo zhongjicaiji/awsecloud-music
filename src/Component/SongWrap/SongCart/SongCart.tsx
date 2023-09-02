@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { SongT, trackIdT } from "../../../interface/responseInter";
+import { SongT, trackIdT,CurrentSong } from "../../../interface/responseInter";
 import useAxios from "../../Hooks/useAxios";
 import classes from "./SongCart.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate,useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { initSongHandler } from "../../../store/reducer/PlaySongSlice";
+
 
 interface SongCartT extends trackIdT {
   index: number;
@@ -15,8 +18,22 @@ function SongCart(props: SongCartT) {
   const [songCartData, setSongCartData] = useState<SongT>();
   const { data, loading, isSuccess, axiosRequire } = useAxios();
   const local=useLocation()
+  const dispatch=useDispatch()
+  const initSong=useSelector((state:any)=>state.playSongSlice)  as CurrentSong
+console.log(songCartData)
+  const initHandler=()=>{
+    dispatch(initSongHandler({
+        id:songCartData?.id,
+        playState:true,
+        name:songCartData?.name,
+        dTime:songCartData?.dt,
+        picUrl:songCartData?.al?.picUrl,
+        fee:songCartData?.fee,
+        artistName:songCartData?.ar![0].name
 
-
+    }))
+  }
+    console.log(songCartData)
 
   const toPlayHandler=()=>{
     toPlay(`/playPage/${songCartData?.id}`,{
@@ -28,7 +45,6 @@ function SongCart(props: SongCartT) {
     })
   }
 
-
   useEffect(() => {
     axiosRequire(`/song/detail?ids=${props.id}`);
   }, []);
@@ -37,7 +53,10 @@ function SongCart(props: SongCartT) {
   }, [isSuccess]);
 
   return (
-    <div onClick={toPlayHandler} className={classes.wrap}>
+    <div onClick={()=>{
+      toPlayHandler()
+      initHandler()
+    }} className={classes.wrap}>
       <div className={classes.info}>
         <span className={classes.index}>{props.index}</span>
         <div className={classes.songMes}>
@@ -48,7 +67,7 @@ function SongCart(props: SongCartT) {
             )}
             <span className={classes.quality}>高品质</span>
             <span className={classes.desc}>
-              {songCartData?.ar[0].name} - {songCartData?.name}
+              {songCartData?.ar![0].name} - {songCartData?.name}
             </span>
           </div>
         </div>

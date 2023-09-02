@@ -37,6 +37,9 @@
     border-radius: 50%;
     background-image: linear-gradient(to right, #080808 ,#373737, #080808);
     border: 5rem solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 
 }
@@ -74,10 +77,13 @@
 .info{
     flex-grow: 2;
 }
-.songName{
+.minSongName{
    max-width: 300rem;
+   font-size: 28rem;
+   margin-bottom: 10rem;
+    
 }
-.songName,.artistName{
+.minSongName,.artistName{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -136,4 +142,27 @@
 .timeWrap{
     display: flex;
     justify-content: space-between;
+}
+.imgWrap{
+    width: 400rem;
+    height: 400rem;
+    border-radius: 50%;
+    overflow: hidden;
+  
+   animation: playSongs 20s linear infinite;
+
+}
+.img{
+    width: 400rem;
+    height: 400rem;
+}
+@keyframes playSongs {
+    0%{
+        transform: rotateZ(0);
+    }
+
+  100%{
+    transform: rotateZ(360deg);
+  }
+   
 }

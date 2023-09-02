@@ -86,7 +86,7 @@
    
 }
 .desc{
-    width: 400rem;
+    max-width: 400rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

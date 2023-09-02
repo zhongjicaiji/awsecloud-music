@@ -18,9 +18,10 @@
    object-fit: contain;
 }
 .des{
+   max-height: 60rem;
     margin: 5rem 0 0 ;
     overflow: hidden;
-    font-size: 26rem;
+    font-size: 22rem;
     font-weight: 600;
     color: #5c4c4c;
     margin-top: 16rem;

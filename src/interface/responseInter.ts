@@ -82,6 +82,18 @@ export interface SongT{
     id:number,
     fee:0|1|4|8,
     dt:number,
-    ar:artist[]
+    ar?:artist[],
+    al?:{
+      picUrl:string
+    }
     
+}
+
+//歌曲播放状态
+
+export interface CurrentSong extends SongT{
+      playState:boolean,
+      picUrl:string,
+      artistName:string,
+      dTime:number
 }

@@ -30,6 +30,11 @@ function SongDetails() {
   const param: paramT = useParams();
   const local = useLocation();
 
+  let playCount:string|number|undefined=songDetails?.playCount
+  if(playCount!==undefined){
+    if(playCount>10000) playCount=Math.ceil(playCount/10000)+'万'
+   else if(playCount>10**8) playCount=Math.ceil(playCount/(10**8))+"亿"
+  }
   useEffect(() => {
     axiosRequire(`/playlist/detail?id=${param.id}`);
   
@@ -55,7 +60,7 @@ function SongDetails() {
                 />
                 <div className={classes.playCount}>
                 <FontAwesomeIcon icon={faPlay} />
-                <span>{songDetails?.playCount}</span>
+                <span>{playCount}</span>
                 </div>
                  
               </div>

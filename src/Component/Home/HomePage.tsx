@@ -7,6 +7,7 @@ import Banner from "./Banner/Banner";
 import SongSheet from "./SongSheet/SongSheets";
 import RankingList from "./RankingLists/RankingList";
 function HomePage() {
+
   return (
     <div className={classes.homeWrap}>
       <div className={classes.topSearch}>
