@@ -12,9 +12,11 @@ export default function  useAxios(){
             if(res){
                 setData(res.data)
                 setIsSuccess(true)
+              
             
             } 
         }).catch(reject=>{
+    
             console.log(reject)
             setIsSuccess(false)
         })

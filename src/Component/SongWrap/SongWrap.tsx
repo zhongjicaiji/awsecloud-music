@@ -1,13 +1,22 @@
-import React from 'react'
+import React,{useState,useRef,useEffect,useCallback} from 'react'
 import classes from './SongWrap.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown, faCirclePlay, faListCheck } from '@fortawesome/free-solid-svg-icons'
 import { playSongsT } from '../../interface/responseInter'
 import SongCart from './SongCart/SongCart'
+import ScrollItem from '../UI/Scollitem/Scollitem'
+
 
 
 function SongWrap(props:playSongsT) {
+
+  
+   
+    
+   
  
+    
+  
   return (
     <div className={classes.wrap}>
       <div className={classes.header}>
@@ -24,10 +33,12 @@ function SongWrap(props:playSongsT) {
 
 
       </div>
-      <div className={classes.body}>
-      {props.trackIds?.map((item,index)=><SongCart key={item.id} index={index+1} {...item}  />)}
+      <div className={classes.body} >
+      {
+       props.trackIds?.map((item,index)=><ScrollItem><SongCart key={item.id} index={index+1} {...item} /> </ScrollItem>)
+      }
     
-    
+      
       </div>
    
     

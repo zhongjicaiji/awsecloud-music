@@ -129,3 +129,10 @@
    display: flex;
    align-items: center;
 }
+.loading{
+    width: 500rem;
+    height: 200rem;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+}

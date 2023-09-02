@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense, Fragment } from "react";
+import { useState, useEffect, Suspense, Fragment, lazy ,useLayoutEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import useAxios from "../Hooks/useAxios";
 import { sheetDetailT } from "../../interface/responseInter";
@@ -17,6 +17,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Loading from "../UI/Loading/Loading";
 import SongWrap from "../SongWrap/SongWrap";
 
+
+
+
 interface paramT {
   id?: string;
 }
@@ -29,16 +32,18 @@ function SongDetails() {
 
   useEffect(() => {
     axiosRequire(`/playlist/detail?id=${param.id}`);
+  
   }, []);
-  useEffect(() => {
+  useLayoutEffect(() => {
     isSuccess && setSongDetail(data.playlist);
-     
+ 
   }, [isSuccess]);
 
 
   return (
     <Fragment>
- <div  className={classes.wrap}>
+   
+   {isSuccess?<div className={classes.wrap}>
           <TopMange  positioning={local.state.backPath} />
           <div className={classes.header}>
             <div className={classes.headerBody}>
@@ -101,9 +106,14 @@ function SongDetails() {
              </div>
             </div>
           </div>
-
-          <SongWrap count={songDetails?.trackCount} trackIds={songDetails?.trackIds}/>
+         
+                <SongWrap count={songDetails?.trackCount} trackIds={songDetails?.trackIds}/>
+          
+        </div>:
+        <div className={classes.loading}>
+              <Loading/>
         </div>
+        } 
      
 
     </Fragment>

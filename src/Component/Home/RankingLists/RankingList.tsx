@@ -6,6 +6,7 @@ import classes from './RankingLIst.module.css'
 
 import useAxios from '../../Hooks/useAxios'
 
+
 function RankingList() {
   const [rankLists,setRankList]=useState<RL[]>([])
   const {data,loading,isSuccess,axiosRequire}=useAxios()
