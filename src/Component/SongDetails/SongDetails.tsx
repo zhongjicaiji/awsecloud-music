@@ -16,6 +16,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Loading from "../UI/Loading/Loading";
 import SongWrap from "../SongWrap/SongWrap";
+import PlayControl from "../PlayPage/playControl/PlayControl";
 
 
 
@@ -25,6 +26,7 @@ interface paramT {
 }
 
 function SongDetails() {
+
   const [songDetails, setSongDetail] = useState<sheetDetailT>();
   const { data, loading,isSuccess, axiosRequire } = useAxios();
   const param: paramT = useParams();
@@ -47,6 +49,8 @@ function SongDetails() {
 
   return (
     <Fragment>
+    
+      
    
    {isSuccess?<div className={classes.wrap}>
           <TopMange  positioning={local.state.backPath} />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,memo} from "react";
 import { SongT, trackIdT,CurrentSong } from "../../../interface/responseInter";
 import useAxios from "../../Hooks/useAxios";
 import classes from "./SongCart.module.css";
@@ -19,8 +19,6 @@ function SongCart(props: SongCartT) {
   const { data, loading, isSuccess, axiosRequire } = useAxios();
   const local=useLocation()
   const dispatch=useDispatch()
-  const initSong=useSelector((state:any)=>state.playSongSlice)  as CurrentSong
-console.log(songCartData)
   const initHandler=()=>{
     dispatch(initSongHandler({
         id:songCartData?.id,
@@ -33,9 +31,17 @@ console.log(songCartData)
 
     }))
   }
-    console.log(songCartData)
+  console.log(1)
+  const clickHandler=()=>{
+ 
+    toPlayHandler()
+    initHandler()
+   
+  }
+
 
   const toPlayHandler=()=>{
+
     toPlay(`/playPage/${songCartData?.id}`,{
       state:{
         backPath:local.pathname,
@@ -53,28 +59,34 @@ console.log(songCartData)
   }, [isSuccess]);
 
   return (
-    <div onClick={()=>{
-      toPlayHandler()
-      initHandler()
-    }} className={classes.wrap}>
-      <div className={classes.info}>
-        <span className={classes.index}>{props.index}</span>
-        <div className={classes.songMes}>
-          <h3 className={classes.songName}>{songCartData?.name}</h3>
-          <div className={classes.descWrap}>
-            {songCartData?.fee === 1 && (
-              <span className={classes.vip}>VIP</span>
-            )}
-            <span className={classes.quality}>高品质</span>
-            <span className={classes.desc}>
-              {songCartData?.ar![0].name} - {songCartData?.name}
-            </span>
-          </div>
-        </div>
-      </div>
-      <FontAwesomeIcon className={classes.setting} icon={faEllipsisVertical} />
-    </div>
+    
+    
+    
+     <div onClick={clickHandler} className={classes.wrap}>
+     <div className={classes.info}>
+       <span className={classes.index}>{props.index}</span>
+       <div className={classes.songMes}>
+         <h3 className={classes.songName}>{songCartData?.name}</h3>
+         <div className={classes.descWrap}>
+           {songCartData?.fee === 1&& (
+             <span className={classes.vip}>VIP</span>
+           )}
+           {songCartData?.fee === 4&& (
+             <span className={classes.vip}>付费</span>
+           )}
+           <span className={classes.quality}>高品质</span>
+           <span className={classes.desc}>
+             {songCartData?.ar![0].name} - {songCartData?.name}
+           </span>
+         </div>
+       </div>
+     </div>
+     <FontAwesomeIcon className={classes.setting} icon={faEllipsisVertical} />
+   </div>
+ 
+ 
+ 
   );
 }
 
-export default SongCart;
+export default memo(SongCart) ;

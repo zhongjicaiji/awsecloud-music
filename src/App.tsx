@@ -4,6 +4,7 @@ import { Route,  Routes } from 'react-router-dom';
 import HomePage from './Component/Home/HomePage';
 import SongDetails from './Component/SongDetails/SongDetails';
 import PlayPage from './Component/PlayPage/PlayPage';
+import PlayControl from './Component/PlayPage/playControl/PlayControl';
 
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
      <Route path={'/playPage/:id'} element={<PlayPage/>}></Route>
      
     </Routes>
+    
+   
 
   
   </>

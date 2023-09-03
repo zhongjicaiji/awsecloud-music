@@ -4,7 +4,12 @@ import classes from "./Sheet.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
 import { useLocation, useNavigate } from 'react-router-dom'
+
+
 function Sheet({sheetDatas }:{sheetDatas:sheetData}) {
+
+  
+
   const local=useLocation()
     let count:number=sheetDatas.playCount
     if(count>10000){
@@ -14,6 +19,7 @@ function Sheet({sheetDatas }:{sheetDatas:sheetData}) {
   
     const navToDetail=useNavigate()
     const clickHandler=()=>{
+   
       navToDetail(`/songDetails/${sheetDatas.id}`,{
         state:{
           backPath:local.pathname

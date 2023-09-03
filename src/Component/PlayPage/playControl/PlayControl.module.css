@@ -1,0 +1,71 @@
+.control {
+    width: 100%;
+    font-size: 80rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.play,
+.pause {
+    width: 100rem;
+    height: 100rem;
+}
+
+.pre,
+.next {
+    font-size: 70rem;
+}
+
+.loop,
+.list {
+    font-size: 50rem;
+    font-weight: 200;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.rangeWrap {
+    margin: 20rem 0;
+
+}
+
+.range {
+    width: 700rem;
+    height: 2rem;
+    background-color: rgba(255, 255, 255, .3);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10rem;
+    overflow: hidden;
+   
+}
+
+
+
+.schedule {
+    width: 700rem;
+    transform: translateX(-700rem);
+    
+    height: 2rem;
+    background-color: #fff;
+  
+  
+
+}
+
+.timeWrap {
+    display: flex;
+    justify-content: space-between;
+}
+/* @keyframes progressBar {
+    0%{
+      transform:translateX(-700rem);
+
+    }
+    100%{
+        transform:translateX(0);
+    }
+} */

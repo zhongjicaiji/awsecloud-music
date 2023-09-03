@@ -97,3 +97,25 @@ export interface CurrentSong extends SongT{
       artistName:string,
       dTime:number
 }
+
+//音乐Url
+export interface SongUrl{
+  id: number;
+  v: number;
+  t: number;
+  at: number;
+  alg: any;
+  uid: number;
+  rcmdReason: string;
+  sc: any;
+  f: any;
+  sr: any;
+}
+
+//歌单列表
+
+export interface SongList{
+  lists:SongUrl[],
+  url:string,
+  id:number
+}

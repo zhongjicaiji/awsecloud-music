@@ -5,13 +5,22 @@ import { faArrowDown, faCirclePlay, faListCheck } from '@fortawesome/free-solid-
 import { playSongsT } from '../../interface/responseInter'
 import SongCart from './SongCart/SongCart'
 import ScrollItem from '../UI/Scollitem/Scollitem'
+import { useDispatch, useSelector } from 'react-redux'
+import { initSong } from '../../store/reducer/SongListSlice'
 
 
 
 function SongWrap(props:playSongsT) {
-
+  const Songlist=useSelector((state:any)=>state.SongListSilce)
+  const dispatch=useDispatch()
   
-   
+  const playAllHandler=(e:any)=>{
+    e.stopPropagation()
+    dispatch(
+    
+      initSong(props.trackIds)
+    )
+  }
     
    
  
@@ -22,7 +31,7 @@ function SongWrap(props:playSongsT) {
       <div className={classes.header}>
         <div className={classes.playHandler}>
         <FontAwesomeIcon className={classes.icon} icon={faCirclePlay} style={{color: "#d62448",}} />
-      <h2 className={classes.headerTitle}>播放全部</h2>
+      <h2 onClick={playAllHandler} className={classes.headerTitle}>播放全部</h2>
       <span className={classes.songCount}>({props.count})</span>
         </div>
         <div className={classes.songSet}>
@@ -33,7 +42,7 @@ function SongWrap(props:playSongsT) {
 
 
       </div>
-      <div className={classes.body} >
+      <div className={classes.body} onClick={playAllHandler} >
       {
        props.trackIds?.map((item,index)=><ScrollItem><SongCart key={item.id} index={index+1} {...item} /> </ScrollItem>)
       }

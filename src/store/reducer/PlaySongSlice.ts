@@ -16,7 +16,7 @@ import { CurrentSong } from "../../interface/responseInter";
                 id: 0,
                 playState:false,
                 name:'',
-               picUrl:'',
+                picUrl:'',
                 dTime:0,
                 fee:0,
                 artistName:''
@@ -37,17 +37,22 @@ import { CurrentSong } from "../../interface/responseInter";
 
                 localStorage.setItem('playingSong',JSON.stringify(state) )
         },
-        pauseHandler(state?){
+        pauseHandler(state){
+        
             state.playState=false
         },
-        playHandler(state?){
+        playHandler(state){
             state.playState=true
         },
+        switchHandler(state,actions){
+                state.id=actions.payload
+        }
+     
         
         
     }
  })
 
 
- export const {initSongHandler, pauseHandler, playHandler }=playSongSlice.actions
+ export const {initSongHandler, pauseHandler, playHandler,switchHandler }=playSongSlice.actions
  export default playSongSlice
