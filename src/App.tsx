@@ -8,7 +8,7 @@ import PlayControl from './Component/PlayPage/playControl/PlayControl';
 
 
 function App() {
-
+ 
   return (
   <>
 
@@ -19,7 +19,10 @@ function App() {
      
     </Routes>
     
-   
+    <div hidden >
+    <PlayControl  />
+    </div>
+ 
 
   
   </>

@@ -4,10 +4,12 @@ import classes from "./Sheet.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { useDispatch} from 'react-redux'
+import { forward } from '../../../../store/router/RouteStack'
 
 
 function Sheet({sheetDatas }:{sheetDatas:sheetData}) {
-
+  const dispatch=useDispatch()
   
 
   const local=useLocation()
@@ -16,10 +18,9 @@ function Sheet({sheetDatas }:{sheetDatas:sheetData}) {
         count=Math.floor(count/1000)/10
 
     }
-  
     const navToDetail=useNavigate()
     const clickHandler=()=>{
-   
+      dispatch(forward(`/songDetails/${sheetDatas.id}`))
       navToDetail(`/songDetails/${sheetDatas.id}`,{
         state:{
           backPath:local.pathname

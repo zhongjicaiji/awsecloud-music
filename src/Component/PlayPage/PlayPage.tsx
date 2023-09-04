@@ -11,21 +11,22 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
 
-import { CurrentSong } from "../../interface/responseInter";
+import { CurrentSong, RouteStackT } from "../../interface/responseInter";
 import PlayControl from "./playControl/PlayControl";
 import { initSongHandler } from "../../store/reducer/PlaySongSlice";
 import axiosInstance from "../../store/Api/apiConfig";
+import { back as RouteBack } from "../../store/router/RouteStack";
 
 function PlayPage() {
-  const currentSong = useSelector(
+  const currentSong: CurrentSong = useSelector(
     (state: any) => state.playSongSlice
-  ) as CurrentSong;
-
+  );
+  const routeStack: RouteStackT = useSelector((state: any) => state.RouteStack);
+   
   const back = useNavigate();
   const dispatch = useDispatch();
 
-  const param = useParams();
-  const local = useLocation();
+
   useEffect(() => {
     axiosInstance
       .get(`/song/detail?ids=${currentSong.id}`)
@@ -35,7 +36,7 @@ function PlayPage() {
           dispatch(
             initSongHandler({
               ...currentSong,
-              playState: true,
+              playState: false,
               name: data.name,
               dTime: data.dt,
               picUrl: data.al.picUrl,
@@ -51,11 +52,12 @@ function PlayPage() {
   }, [currentSong.id]);
 
   const backHandler = () => {
-    back(local.state.backPath, {
-      replace: true,
-      state: {
-        backPath: local.state.currentPage.backPath,
-      },
+    const backPath = routeStack.routeStack.at(-2);
+    console.log(backPath)
+    dispatch(RouteBack());
+    //@ts-ignore
+    back(backPath, {
+      replace: true, 
     });
   };
 

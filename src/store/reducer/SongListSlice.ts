@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const SongListSilce=createSlice({
+const SongListSlice=createSlice({
     name:"SongList",
     initialState:()=>{
         let localList=localStorage.getItem('songList')
@@ -41,5 +41,5 @@ const SongListSilce=createSlice({
 
     }
 })
-export const {initSong,switchSong}=SongListSilce.actions
-export default SongListSilce
+export const {initSong,switchSong}=SongListSlice.actions
+export default SongListSlice

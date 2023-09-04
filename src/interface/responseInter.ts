@@ -119,3 +119,9 @@ export interface SongList{
   url:string,
   id:number
 }
+
+//路由栈
+export interface RouteStackT{
+  routeStack:string[],
+  showPlayControl:boolean
+}

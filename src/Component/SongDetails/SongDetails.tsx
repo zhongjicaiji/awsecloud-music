@@ -16,7 +16,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Loading from "../UI/Loading/Loading";
 import SongWrap from "../SongWrap/SongWrap";
-import PlayControl from "../PlayPage/playControl/PlayControl";
 
 
 
@@ -50,10 +49,8 @@ function SongDetails() {
   return (
     <Fragment>
     
-      
-   
    {isSuccess?<div className={classes.wrap}>
-          <TopMange  positioning={local.state.backPath} />
+          <TopMange   />
           <div className={classes.header}>
             <div className={classes.headerBody}>
               <div className={classes.imgWrap}>

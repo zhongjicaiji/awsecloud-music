@@ -7,6 +7,7 @@ import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate,useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { initSongHandler } from "../../../store/reducer/PlaySongSlice";
+import { forward } from "../../../store/router/RouteStack";
 
 
 interface SongCartT extends trackIdT {
@@ -14,6 +15,7 @@ interface SongCartT extends trackIdT {
 }
 
 function SongCart(props: SongCartT) {
+ 
   const toPlay = useNavigate();
   const [songCartData, setSongCartData] = useState<SongT>();
   const { data, loading, isSuccess, axiosRequire } = useAxios();
@@ -21,6 +23,7 @@ function SongCart(props: SongCartT) {
   const dispatch=useDispatch()
   const initHandler=()=>{
     dispatch(initSongHandler({
+      
         id:songCartData?.id,
         playState:true,
         name:songCartData?.name,
@@ -31,7 +34,7 @@ function SongCart(props: SongCartT) {
 
     }))
   }
-  console.log(1)
+ 
   const clickHandler=()=>{
  
     toPlayHandler()
@@ -41,14 +44,8 @@ function SongCart(props: SongCartT) {
 
 
   const toPlayHandler=()=>{
-
-    toPlay(`/playPage/${songCartData?.id}`,{
-      state:{
-        backPath:local.pathname,
-        currentPage:local.state,
-      },
-      replace:false,  
-    })
+    dispatch(forward(`/playPage/${songCartData?.id}`))
+    toPlay(`/playPage/${songCartData?.id}`,{ replace:false })
   }
 
   useEffect(() => {

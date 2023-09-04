@@ -1,15 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit"
 import playSongSlice from "./reducer/PlaySongSlice"
 import { setupListeners } from "@reduxjs/toolkit/dist/query";  
-import SongListSilce from "./reducer/SongListSlice";  
+import SongListSlice from "./reducer/SongListSlice";  
+import RouteStack from "./router/RouteStack";
 
 
 
 const store=configureStore({
     reducer:{
         playSongSlice:playSongSlice.reducer,
-        SongListSilce:SongListSilce.reducer
-        
+        SongListSlice:SongListSlice.reducer,
+        RouteStack:RouteStack.reducer
     },
     middleware:(getDefaultmiddleware=>
         getDefaultmiddleware().concat(

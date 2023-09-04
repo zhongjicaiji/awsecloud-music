@@ -11,7 +11,7 @@ import { initSong } from '../../store/reducer/SongListSlice'
 
 
 function SongWrap(props:playSongsT) {
-  const Songlist=useSelector((state:any)=>state.SongListSilce)
+  const SongList=useSelector((state:any)=>state.SongListSlice)
   const dispatch=useDispatch()
   
   const playAllHandler=(e:any)=>{
@@ -44,7 +44,7 @@ function SongWrap(props:playSongsT) {
       </div>
       <div className={classes.body} onClick={playAllHandler} >
       {
-       props.trackIds?.map((item,index)=><ScrollItem><SongCart key={item.id} index={index+1} {...item} /> </ScrollItem>)
+       props.trackIds?.map((item,index)=><ScrollItem key={item.id}><SongCart  index={index+1} {...item} /> </ScrollItem>)
       }
     
       

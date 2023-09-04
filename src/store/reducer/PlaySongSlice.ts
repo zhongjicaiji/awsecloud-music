@@ -7,9 +7,10 @@ import { CurrentSong } from "../../interface/responseInter";
  const playSongSlice=createSlice({
     name:'playSong',
     initialState:()=>{
-        if(localStorage.getItem('playingSong')){
-            let state:CurrentSong=JSON.parse(localStorage.getItem('playingSong') as string)
-            return state
+        const state=sessionStorage.getItem('playingSong')
+        if(state){
+            
+            return JSON.parse(state)
                 
         }else{
             return {
@@ -35,17 +36,20 @@ import { CurrentSong } from "../../interface/responseInter";
                 state.artistName=actions.payload.artistName
 
 
-                localStorage.setItem('playingSong',JSON.stringify(state) )
+                sessionStorage.setItem('playingSong',JSON.stringify(state) )
         },
         pauseHandler(state){
         
             state.playState=false
+            sessionStorage.setItem('playingSong',JSON.stringify(state) )
         },
         playHandler(state){
             state.playState=true
+            sessionStorage.setItem('playingSong',JSON.stringify(state) )
         },
         switchHandler(state,actions){
                 state.id=actions.payload
+                sessionStorage.setItem('playingSong',JSON.stringify(state) )
         }
      
         
