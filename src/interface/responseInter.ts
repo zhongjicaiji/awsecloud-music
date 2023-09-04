@@ -85,7 +85,8 @@ export interface SongT{
     ar?:artist[],
     al?:{
       picUrl:string
-    }
+    },
+    currentTime:number
     
 }
 

@@ -22,9 +22,13 @@ const RouteStack = createSlice({
       state.routeStack.pop();
       sessionStorage.setItem("routeStack", JSON.stringify(state));
     },
+    showPlayControl(state,actions){
+      state.showPlayControl=actions.payload
+    }
+
   },
 });
 
-export const { forward, back } = RouteStack.actions;
+export const { forward, back,showPlayControl } = RouteStack.actions;
 
 export default RouteStack;

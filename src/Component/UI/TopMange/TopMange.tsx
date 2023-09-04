@@ -18,7 +18,7 @@ function TopMange() {
   const routeStack:RouteStackT=useSelector((state:any)=>state.RouteStack)
   
   const back=useNavigate()
-console.log(routeStack)
+
 
 
   const backHandler=()=>{

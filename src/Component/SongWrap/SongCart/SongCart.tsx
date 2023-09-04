@@ -15,23 +15,22 @@ interface SongCartT extends trackIdT {
 }
 
 function SongCart(props: SongCartT) {
- 
+ const currentSong=useSelector((state:any)=>state.playSongSlice)
   const toPlay = useNavigate();
   const [songCartData, setSongCartData] = useState<SongT>();
   const { data, loading, isSuccess, axiosRequire } = useAxios();
   const local=useLocation()
   const dispatch=useDispatch()
   const initHandler=()=>{
+    if(songCartData?.id!==currentSong.id)
     dispatch(initSongHandler({
-      
         id:songCartData?.id,
         playState:true,
         name:songCartData?.name,
         dTime:songCartData?.dt,
         picUrl:songCartData?.al?.picUrl,
         fee:songCartData?.fee,
-        artistName:songCartData?.ar![0].name
-
+        artistName:songCartData?.ar![0].name,
     }))
   }
  
@@ -56,9 +55,6 @@ function SongCart(props: SongCartT) {
   }, [isSuccess]);
 
   return (
-    
-    
-    
      <div onClick={clickHandler} className={classes.wrap}>
      <div className={classes.info}>
        <span className={classes.index}>{props.index}</span>

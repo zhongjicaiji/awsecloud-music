@@ -7,7 +7,7 @@ import {
   faHeart,
   faShareNodes,
 } from "@fortawesome/free-solid-svg-icons";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -15,7 +15,8 @@ import { CurrentSong, RouteStackT } from "../../interface/responseInter";
 import PlayControl from "./playControl/PlayControl";
 import { initSongHandler } from "../../store/reducer/PlaySongSlice";
 import axiosInstance from "../../store/Api/apiConfig";
-import { back as RouteBack } from "../../store/router/RouteStack";
+import { back as RouteBack, showPlayControl} from "../../store/router/RouteStack";
+
 
 function PlayPage() {
   const currentSong: CurrentSong = useSelector(
@@ -42,6 +43,7 @@ function PlayPage() {
               picUrl: data.al.picUrl,
               fee: data.fee,
               artistName: data.ar![0].name,
+              currentTime:0
             })
           );
         }
@@ -49,16 +51,21 @@ function PlayPage() {
       .catch((err) => {
         console.log(err);
       });
+      dispatch(showPlayControl(true))
+      
   }, [currentSong.id]);
+  
 
   const backHandler = () => {
     const backPath = routeStack.routeStack.at(-2);
-    console.log(backPath)
+
     dispatch(RouteBack());
     //@ts-ignore
     back(backPath, {
       replace: true, 
     });
+    dispatch(showPlayControl(false))
+    
   };
 
   return (
@@ -72,6 +79,7 @@ function PlayPage() {
         <div className={classes.songName}>{currentSong.name}</div>
         <FontAwesomeIcon icon={faShareNodes} />
       </div>
+      <div className={classes.center}>
       <div className={classes.dishDrop}>
         <div className={classes.dish}>
           <div className={classes.imgWrap}>
@@ -83,6 +91,8 @@ function PlayPage() {
           </div>
         </div>
       </div>
+      </div>
+    
 
       <div className={classes.Context}>
         <div className={classes.songContext}>
@@ -106,6 +116,7 @@ function PlayPage() {
           </div>
         </div>
 
+     
         <PlayControl />
       </div>
     </div>

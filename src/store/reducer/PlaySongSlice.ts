@@ -20,7 +20,8 @@ import { CurrentSong } from "../../interface/responseInter";
                 picUrl:'',
                 dTime:0,
                 fee:0,
-                artistName:''
+                artistName:'',
+                currentTime:0
             
             }
         }
@@ -34,7 +35,7 @@ import { CurrentSong } from "../../interface/responseInter";
                 state.dTime=actions.payload.dTime
                 state.picUrl=actions.payload.picUrl
                 state.artistName=actions.payload.artistName
-
+                state.currentTime=actions.payload.currentTime|| state.currentTime
 
                 sessionStorage.setItem('playingSong',JSON.stringify(state) )
         },
@@ -50,6 +51,10 @@ import { CurrentSong } from "../../interface/responseInter";
         switchHandler(state,actions){
                 state.id=actions.payload
                 sessionStorage.setItem('playingSong',JSON.stringify(state) )
+        },
+        saveRange(state,actions){
+            state.currentTime=actions.payload
+            sessionStorage.setItem('playingSong',JSON.stringify(state) )
         }
      
         
@@ -58,5 +63,5 @@ import { CurrentSong } from "../../interface/responseInter";
  })
 
 
- export const {initSongHandler, pauseHandler, playHandler,switchHandler }=playSongSlice.actions
+ export const {initSongHandler, pauseHandler, playHandler,switchHandler,saveRange }=playSongSlice.actions
  export default playSongSlice

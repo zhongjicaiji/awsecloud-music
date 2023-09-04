@@ -1,11 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  memo,
-  useLayoutEffect,
-} from "react";
+import React, { useCallback, useEffect, useRef, useState, memo ,useLayoutEffect} from "react";
 import classes from "./PlayControl.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,17 +14,15 @@ import {
 import {
   pauseHandler,
   playHandler,
-  initSongHandler,
   switchHandler,
+  saveRange
 } from "../../../store/reducer/PlaySongSlice";
 import { CurrentSong, SongList } from "../../../interface/responseInter";
 import useAxios from "../../Hooks/useAxios";
 import { switchSong } from "../../../store/reducer/SongListSlice";
-import useDebounce from "../../Hooks/useDeboundce";
+import format  from "../../Hooks/formatTime";
 
-
-
-function PlayControl() {
+function PlayControl(props:any) {
   const audioRef = useRef<any>(null);
   const scheduleRef = useRef<any>(null);
   const rangeRef = useRef<any>(null);
@@ -50,34 +41,37 @@ function PlayControl() {
   useEffect(() => {
     axiosRequire(`/song/url?id=${currentSong.id}`);
   }, [currentSong.id]);
+  useLayoutEffect(()=>{
+    return ()=>{
+     if(props.type!=='exit'){
+      audioRef.current&& dispatch(saveRange(audioRef.current.currentTime))
+     }
+    }
+  },[])
 
-  const format = useCallback((time: number) => {
-    const newTime =
-      (Math.floor(time / 1000 / 60) + "").padStart(2, "0") +
-      ":" +
-      ((Math.floor(time / 1000) % 60) + "").padStart(2, "0");
-
-    return newTime;
-  }, []);
+  
 
   const endTime = format(currentSong.dTime);
 
   //开始播放时间
   const listenPlayHandler = (e: any) => {
+
+  if(props.type==='exit')  audioRef.current.currentTime=currentSong.currentTime
     dispatch(
       switchSong({
         url: data.data[0].url,
         id: currentSong.id,
       })
     );
+ 
     dispatch(playHandler());
 
     setCurrTime(format(audioRef.current.currentTime * 1000));
-    //@ts-ignore
+   
   };
   const listenPauseHandler = () => {
-
     dispatch(pauseHandler());
+ 
     if (
       audioRef.current.currentTime * 1000 >= currentSong.dTime ||
       (currentSong.fee !== 0 &&
@@ -86,7 +80,9 @@ function PlayControl() {
     ) {
       nextHandler();
     }
+   
   };
+  //进度条变化
   const rangeHandler = throttle((e: any) => {
     //@ts-ignore
     setCurrTime(format(e.target.currentTime * 1000));
@@ -100,13 +96,13 @@ function PlayControl() {
 
   //切换下一首
   const nextHandler = () => {
+   
     let index = songList.lists.findIndex((item) => item.id === currentSong.id);
     if (index + 1 >= songList.lists.length) {
       index = 0;
     } else {
       index = index + 1;
     }
-
     dispatch(switchHandler(songList.lists[index].id));
   };
   //切换上一首
@@ -117,23 +113,17 @@ function PlayControl() {
     } else {
       index = index - 1;
     }
-
     dispatch(switchHandler(songList.lists[index].id));
   };
-
-
-
-
-  const rangeClickHandler=(e:any)=>{
-    const margin=(document.documentElement.clientWidth-e.target.offsetWidth)/2
-    if(e.clientX-margin>0){
-
-      const rage=(e.clientX-margin)/e.target.offsetWidth
-      const jumpTime=rage*currentSong.dTime/1000
+  const rangeClickHandler = (e: any) => {
+    const margin =
+      (document.documentElement.clientWidth - e.target.offsetWidth) / 2;
+    if (e.clientX - margin > 0) {
+      const rage = (e.clientX - margin) / e.target.offsetWidth;
+      const jumpTime = (rage * currentSong.dTime) / 1000;
       audioRef.current.currentTime = jumpTime;
-      
     }
-  }
+  };
   return (
     <div className={classes.playComponent}>
       <div className={classes.rangeWrap}>
@@ -147,9 +137,13 @@ function PlayControl() {
             src={data.data[0].url}
           ></audio>
         )}
-      
-        <div ref={rangeRef} onClick={rangeClickHandler}  className={classes.range}>
-          <span ref={scheduleRef}  className={classes.schedule}></span>
+
+        <div
+          ref={rangeRef}
+          onClick={rangeClickHandler}
+          className={classes.range}
+        >
+          <span ref={scheduleRef} className={classes.schedule}></span>
         </div>
         <div className={classes.timeWrap}>
           <span className={classes.startTime}>{currTime}</span>

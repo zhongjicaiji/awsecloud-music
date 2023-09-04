@@ -5,10 +5,13 @@ import HomePage from './Component/Home/HomePage';
 import SongDetails from './Component/SongDetails/SongDetails';
 import PlayPage from './Component/PlayPage/PlayPage';
 import PlayControl from './Component/PlayPage/playControl/PlayControl';
+import { RouteStackT } from './interface/responseInter';
+import { useSelector } from 'react-redux';
 
 
 function App() {
- 
+  const showPlayControl:RouteStackT=useSelector((state:any)=>state.RouteStack)
+
   return (
   <>
 
@@ -19,9 +22,13 @@ function App() {
      
     </Routes>
     
-    <div hidden >
-    <PlayControl  />
-    </div>
+    {
+      !showPlayControl.showPlayControl&& <div hidden >
+      
+      <PlayControl  type='exit' />
+      </div>
+   
+    }
  
 
   
