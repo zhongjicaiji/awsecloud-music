@@ -14,8 +14,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { CurrentSong, RouteStackT } from "../../interface/responseInter";
 import PlayControl from "./playControl/PlayControl";
 import { initSongHandler } from "../../store/reducer/PlaySongSlice";
-import axiosInstance from "../../store/Api/apiConfig";
 import { back as RouteBack, showPlayControl} from "../../store/router/RouteStack";
+import { useGetSongDataQuery } from "../../store/Api/songApi";
 
 
 function PlayPage() {
@@ -23,39 +23,30 @@ function PlayPage() {
     (state: any) => state.playSongSlice
   );
   const routeStack: RouteStackT = useSelector((state: any) => state.RouteStack);
-   
+  const {data,isSuccess,refetch}=useGetSongDataQuery(currentSong.id)
+
   const back = useNavigate();
   const dispatch = useDispatch();
-
-
   useEffect(() => {
-    axiosInstance
-      .get(`/song/detail?ids=${currentSong.id}`)
-      .then((res) => {
-        if (res) {
-          const data = res.data.songs[0];
-          dispatch(
-            initSongHandler({
-              ...currentSong,
-              playState: false,
-              name: data.name,
-              dTime: data.dt,
-              picUrl: data.al.picUrl,
-              fee: data.fee,
-              artistName: data.ar![0].name,
-              currentTime:0
-            })
-          );
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-      dispatch(showPlayControl(true))
-      
-  }, [currentSong.id]);
   
-
+    refetch().then(res=>{
+    
+  if(res.data!==undefined)
+      dispatch(
+        initSongHandler({
+          ...currentSong,
+          name:res.data.name,
+          dTime:res.data.dt,
+          picUrl:res.data.al.picUrl,
+          fee:res.data.fee,
+          artistName:res.data.ar![0].name,
+          currentTime:0
+        })
+      );
+    })
+       
+      dispatch(showPlayControl(true))
+  }, [currentSong.id]);
   const backHandler = () => {
     const backPath = routeStack.routeStack.at(-2);
 
@@ -65,9 +56,7 @@ function PlayPage() {
       replace: true, 
     });
     dispatch(showPlayControl(false))
-    
   };
-
   return (
     <div className={classes.wrap}>
       <div className={classes.header}>
@@ -76,7 +65,7 @@ function PlayPage() {
           className={`${classes.icon}`}
           icon={faArrowLeft}
         />
-        <div className={classes.songName}>{currentSong.name}</div>
+        <div className={classes.songName}>{data?.name}</div>
         <FontAwesomeIcon icon={faShareNodes} />
       </div>
       <div className={classes.center}>
@@ -85,22 +74,20 @@ function PlayPage() {
           <div className={classes.imgWrap}>
             <img
               className={classes.img}
-              src={currentSong.picUrl}
+              src={data?.al.picUrl}
               alt="专辑封面"
             />
           </div>
         </div>
       </div>
       </div>
-    
-
       <div className={classes.Context}>
         <div className={classes.songContext}>
           <div className={classes.info}>
-            <div className={classes.minSongName}>{currentSong.name}</div>
+            <div className={classes.minSongName}>{data?.name}</div>
             <div className={classes.artist}>
               <span className={classes.artistName}>
-                {currentSong.artistName}
+                {data?.ar[0].name}
               </span>
               <span className={classes.interest}>关注</span>
             </div>

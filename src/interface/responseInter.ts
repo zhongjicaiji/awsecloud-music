@@ -1,6 +1,6 @@
 import { artist, song } from "./propsInterface";
 //歌单详情
-export interface sheetData {
+export interface sheetDataT {
   id: number;
   type: number;
   name: string;
@@ -82,8 +82,8 @@ export interface SongT{
     id:number,
     fee:0|1|4|8,
     dt:number,
-    ar?:artist[],
-    al?:{
+    ar:artist[],
+    al:{
       picUrl:string
     },
     currentTime:number

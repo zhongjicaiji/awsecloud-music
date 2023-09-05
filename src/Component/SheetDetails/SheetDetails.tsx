@@ -1,8 +1,7 @@
-import { useState, useEffect, Suspense, Fragment, lazy ,useLayoutEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import useAxios from "../Hooks/useAxios";
-import { sheetDetailT } from "../../interface/responseInter";
-import classes from "./SongDetails.module.css";
+import { Fragment } from "react";
+import { useParams } from "react-router-dom";
+
+import classes from './SheetDetails.module.css';
 import TopMange from "../UI/TopMange/TopMange";
 import {
   faAngleRight,
@@ -16,48 +15,39 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Loading from "../UI/Loading/Loading";
 import SongWrap from "../SongWrap/SongWrap";
-
-
-
+import { useGetSheetInfoQuery } from "../../store/Api/songApi";
 
 interface paramT {
   id?: string;
 }
 
-function SongDetails() {
+function SheetDetails() {
 
-  const [songDetails, setSongDetail] = useState<sheetDetailT>();
-  const { data, loading,isSuccess, axiosRequire } = useAxios();
+
+
   const param: paramT = useParams();
-  const local = useLocation();
 
-  let playCount:string|number|undefined=songDetails?.playCount
+  const {data:sheetDetailData,isSuccess:getSheetDetailSuccess}=useGetSheetInfoQuery(Number(param.id))
+
+  let playCount:string|number|undefined=sheetDetailData?.playCount
   if(playCount!==undefined){
     if(playCount>10000) playCount=Math.ceil(playCount/10000)+'万'
    else if(playCount>10**8) playCount=Math.ceil(playCount/(10**8))+"亿"
   }
-  useEffect(() => {
-    axiosRequire(`/playlist/detail?id=${param.id}`);
-  
-  }, []);
-  useLayoutEffect(() => {
-    isSuccess && setSongDetail(data.playlist);
- 
-  }, [isSuccess]);
 
 
   return (
     <Fragment>
     
-   {isSuccess?<div className={classes.wrap}>
+   {getSheetDetailSuccess?<div className={classes.wrap}>
           <TopMange   />
           <div className={classes.header}>
             <div className={classes.headerBody}>
               <div className={classes.imgWrap}>
                 <img
                   className={classes.coverImg}
-                  src={songDetails?.coverImgUrl}
-                  alt={songDetails?.name}
+                  src={sheetDetailData?.coverImgUrl}
+                  alt={sheetDetailData?.name}
                 />
                 <div className={classes.playCount}>
                 <FontAwesomeIcon icon={faPlay} />
@@ -66,17 +56,17 @@ function SongDetails() {
                  
               </div>
               <div className={classes.info}>
-                <p className={classes.title}>{songDetails?.name}</p>
+                <p className={classes.title}>{sheetDetailData?.name}</p>
                 <div className={classes.creator}>
                   <div className={classes.avatarImgWrap}>
                     <img
                       className={classes.avatar}
-                      src={songDetails?.creator.avatarUrl}
+                      src={sheetDetailData?.creator.avatarUrl}
                       alt="头像"
                     />
                   </div>
 
-                  <span>{songDetails?.creator.nickname}</span>
+                  <span>{sheetDetailData?.creator.nickname}</span>
 
                   <div className={classes.interest}>
                     <FontAwesomeIcon icon={faPlus} />
@@ -84,7 +74,7 @@ function SongDetails() {
                   </div>
                 </div>
                 <div>
-                  {songDetails?.tags.slice(0, 3).map((item) => (
+                  {sheetDetailData?.tags.slice(0, 3).map((item) => (
                     <span key={item} className={classes.tag}>{item}</span>
                   ))}
                 </div>
@@ -94,26 +84,26 @@ function SongDetails() {
               </div>
             </div>
             <div className={classes.descWrap}>
-              <p className={classes.desc}>{songDetails?.description}</p>
+              <p className={classes.desc}>{sheetDetailData?.description}</p>
               <FontAwesomeIcon icon={faAngleRight} />
             </div>
             <div className={classes.sheetData}>
              <div className={classes.share}>
              <FontAwesomeIcon className={classes.icon} icon={faShare} />
-                    <span>{songDetails?.shareCount}</span>
+                    <span>{sheetDetailData?.shareCount}</span>
              </div>
              <div className={classes.comment}>
              <FontAwesomeIcon className={classes.icon} icon={faCommentDots} />
-                    <span>{songDetails?.commentCount}</span>
+                    <span>{sheetDetailData?.commentCount}</span>
              </div>
              <div className={classes.subscribed}>
              <FontAwesomeIcon className={classes.icon} icon={faSquarePlus} />
-                    <span>{songDetails?.trackCount}</span>
+                    <span>{sheetDetailData?.trackCount}</span>
              </div>
             </div>
           </div>
          
-                <SongWrap count={songDetails?.trackCount} trackIds={songDetails?.trackIds}/>
+                <SongWrap count={sheetDetailData?.trackCount} trackIds={sheetDetailData?.trackIds}/>
           
         </div>:
         <div className={classes.loading}>
@@ -131,4 +121,4 @@ function SongDetails() {
   );
 }
 
-export default SongDetails;
+export default SheetDetails;

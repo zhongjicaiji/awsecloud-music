@@ -1,14 +1,12 @@
 
-import { sheetData } from '../../../../interface/responseInter'
+import { sheetDataT } from '../../../../interface/responseInter'
 import classes from "./Sheet.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch} from 'react-redux'
 import { forward } from '../../../../store/router/RouteStack'
-
-
-function Sheet({sheetDatas }:{sheetDatas:sheetData}) {
+function Sheet({sheetDatas }:{sheetDatas:sheetDataT}) {
   const dispatch=useDispatch()
   
 

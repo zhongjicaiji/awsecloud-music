@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Route,  Routes } from 'react-router-dom';
 import HomePage from './Component/Home/HomePage';
-import SongDetails from './Component/SongDetails/SongDetails';
+import SheetDetails from './Component/SheetDetails/SheetDetails';
 import PlayPage from './Component/PlayPage/PlayPage';
 import PlayControl from './Component/PlayPage/playControl/PlayControl';
 import { RouteStackT } from './interface/responseInter';
@@ -17,7 +17,7 @@ function App() {
 
     <Routes>
      <Route  path={"/"} element={<HomePage/>}></Route>
-     <Route path={'/songDetails/:id'} element={<SongDetails/>} > </Route>
+     <Route path={'/songDetails/:id'} element={<SheetDetails/>} > </Route>
      <Route path={'/playPage/:id'} element={<PlayPage/>}></Route>
      
     </Routes>

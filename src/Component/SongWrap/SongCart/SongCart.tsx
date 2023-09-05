@@ -1,6 +1,5 @@
 import React, { useEffect, useState ,memo} from "react";
 import { SongT, trackIdT,CurrentSong } from "../../../interface/responseInter";
-import useAxios from "../../Hooks/useAxios";
 import classes from "./SongCart.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
@@ -8,6 +7,8 @@ import { useNavigate,useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { initSongHandler } from "../../../store/reducer/PlaySongSlice";
 import { forward } from "../../../store/router/RouteStack";
+import { useGetSongDataQuery } from "../../../store/Api/songApi";
+
 
 
 interface SongCartT extends trackIdT {
@@ -15,10 +16,12 @@ interface SongCartT extends trackIdT {
 }
 
 function SongCart(props: SongCartT) {
+  //获取歌词数据
+  const {data:songData,isSuccess:getSongDataSuccess}=useGetSongDataQuery(props.id)
  const currentSong=useSelector((state:any)=>state.playSongSlice)
   const toPlay = useNavigate();
   const [songCartData, setSongCartData] = useState<SongT>();
-  const { data, loading, isSuccess, axiosRequire } = useAxios();
+
   const local=useLocation()
   const dispatch=useDispatch()
   const initHandler=()=>{
@@ -48,11 +51,9 @@ function SongCart(props: SongCartT) {
   }
 
   useEffect(() => {
-    axiosRequire(`/song/detail?ids=${props.id}`);
-  }, []);
-  useEffect(() => {
-    loading && setSongCartData(data.songs[0]);
-  }, [isSuccess]);
+
+    getSongDataSuccess&&setSongCartData(songData)
+  }, [getSongDataSuccess]);
 
   return (
      <div onClick={clickHandler} className={classes.wrap}>
