@@ -1,24 +1,17 @@
 import React from "react";
 import "./App.css";
-import PlayControl from "./Component/playControl/PlayControl";
-import { RouteStackT } from "./interface/responseInter";
-import { useSelector } from "react-redux";
+
 import RouterMap from "./Router/Router";
+import AudioPlayer from "./Component/newPlayControl/AudioPlayer";
 
 function App() {
-  const showPlayControl: RouteStackT = useSelector(
-    (state: any) => state.RouteStack
-  );
-
   return (
-    <>
+    <div className="app">
       <RouterMap />
-      {!showPlayControl.showPlayControl && (
-        <div hidden>
-          <PlayControl type="exit" />
-        </div>
-      )}
-    </>
+      <div className="AudioPlayerStyle">
+      <AudioPlayer />
+      </div>
+    </div>
   );
 }
 

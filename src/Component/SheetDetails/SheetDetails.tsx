@@ -106,7 +106,7 @@ function SheetDetails() {
             </div>
           </div>
          
-                <SongWrap count={sheetDetailData?.trackCount} trackIds={sheetDetailData?.trackIds}/>
+              {sheetDetailData&& <SongWrap count={sheetDetailData.trackCount} trackIds={sheetDetailData.trackIds}/>} 
           
         </div>
      

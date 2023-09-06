@@ -73,7 +73,7 @@ export interface sheetDetailT{
 }
 export interface playSongsT{
   count:number|undefined,
-  trackIds:trackIdT[]|undefined,
+  trackIds:trackIdT[],
 }
 
 //歌曲详情
@@ -86,7 +86,8 @@ export interface SongT{
     al:{
       picUrl:string
     },
-    currentTime:number
+    currentTime:number,
+ 
     
 }
 
@@ -116,9 +117,10 @@ export interface SongUrl{
 //歌单列表
 
 export interface SongList{
-  lists:SongUrl[],
-  url:string,
-  id:number
+  lists:SongT[],
+  currentSongUrl:string,
+  currentSongId:number,
+  currentIndex:number
 }
 
 //路由栈

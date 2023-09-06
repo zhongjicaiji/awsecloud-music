@@ -56,7 +56,17 @@ const songApi = baseApi.injectEndpoints({
         transformResponse:(response:{playlist:sheetDetailT}):sheetDetailT=>{
           return response.playlist
         }
+      }),
+      getAllSongInfo:builder.query({
+        query:(ids:number[])=>{
+          
+          return `/song/detail?ids=${ids.join(',')}`
+        },
+        transformResponse:(response:{songs:SongT[]})=>{
+         return  response.songs
+        }
       })
+      
     };
   },
 });
@@ -66,6 +76,7 @@ export const {
   useGetSongSheetQuery,
   useGetRankingListQuery,
   useGetRankingListItemQuery,
-  useGetSheetInfoQuery
+  useGetSheetInfoQuery,
+  useGetAllSongInfoQuery
 } = songApi;
 export default songApi;

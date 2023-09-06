@@ -1,10 +1,10 @@
 .wrap{
     height: 100vh;
+    overflow: hidden;
 }
 .headerBody{
     display: flex;
     justify-content: space-between;
-   
 }
 .header{
     background-color: #916451;

@@ -8,45 +8,39 @@ import {
   faShareNodes,
 } from "@fortawesome/free-solid-svg-icons";
 import {  useNavigate } from "react-router-dom";
-
 import { useSelector, useDispatch } from "react-redux";
-
-import { CurrentSong, RouteStackT } from "../../interface/responseInter";
-import PlayControl from "../playControl/PlayControl";
+import { CurrentSong, RouteStackT, SongT ,SongList} from "../../interface/responseInter";
 import { initSongHandler } from "../../store/reducer/PlaySongSlice";
 import { back as RouteBack, showPlayControl} from "../../store/router/RouteStack";
 import { useGetSongDataQuery } from "../../store/Api/songApi";
+import { changeSong } from "../../store/reducer/SongListSlice";
+
 
 
 function PlayPage() {
-  const currentSong: CurrentSong = useSelector(
-    (state: any) => state.playSongSlice
+  const currentSong: SongList = useSelector(
+    (state: any) => state.SongListSlice
   );
   const routeStack: RouteStackT = useSelector((state: any) => state.RouteStack);
-  const {data,isSuccess,refetch}=useGetSongDataQuery(currentSong.id)
-
+  // const {data,isSuccess,refetch}=useGetSongDataQuery(currentSong.id)
+  const newData=currentSong.lists[currentSong.currentIndex]
   const back = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
-  
-    refetch().then(res=>{
-    
-  if(res.data!==undefined)
+
       dispatch(
         initSongHandler({
-          ...currentSong,
-          name:res.data.name,
-          dTime:res.data.dt,
-          picUrl:res.data.al.picUrl,
-          fee:res.data.fee,
-          artistName:res.data.ar![0].name,
+          ...newData,
+          playState:true,
+          dTime:newData.dt,
+          picUrl:newData.al.picUrl,
+          artistName:newData.ar[0].name,
           currentTime:0
         })
       );
-    })
-       
-      dispatch(showPlayControl(true))
-  }, [currentSong.id]);
+ 
+   
+  }, [currentSong.currentSongId]);
   const backHandler = () => {
     const backPath = routeStack.routeStack.at(-2);
 
@@ -56,7 +50,7 @@ function PlayPage() {
       replace: true, 
       state:"POP"
     });
-    dispatch(showPlayControl(false))
+  
   };
   return (
     <div className={classes.wrap}>
@@ -66,7 +60,7 @@ function PlayPage() {
           className={`${classes.icon}`}
           icon={faArrowLeft}
         />
-        <div className={classes.songName}>{data?.name}</div>
+        <div className={classes.songName}>{newData.name}</div>
         <FontAwesomeIcon icon={faShareNodes} />
       </div>
       <div className={classes.center}>
@@ -75,7 +69,7 @@ function PlayPage() {
           <div className={classes.imgWrap}>
             <img
               className={classes.img}
-              src={data?.al.picUrl}
+              src={newData.al.picUrl}
               alt="专辑封面"
             />
           </div>
@@ -85,10 +79,10 @@ function PlayPage() {
       <div className={classes.Context}>
         <div className={classes.songContext}>
           <div className={classes.info}>
-            <div className={classes.minSongName}>{data?.name}</div>
+            <div className={classes.minSongName}>{newData.name}</div>
             <div className={classes.artist}>
               <span className={classes.artistName}>
-                {data?.ar[0].name}
+                {newData.ar[0].name}
               </span>
               <span className={classes.interest}>关注</span>
             </div>
@@ -103,9 +97,6 @@ function PlayPage() {
             <FontAwesomeIcon icon={faCommentDots} />
           </div>
         </div>
-
-     
-        <PlayControl />
       </div>
     </div>
   );

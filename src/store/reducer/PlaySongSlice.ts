@@ -21,7 +21,8 @@ import { createSlice } from "@reduxjs/toolkit";
                 dTime:0,
                 fee:0,
                 artistName:'',
-                currentTime:0
+                currentTime:0,
+            
             
             }
         }
@@ -39,13 +40,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
                 sessionStorage.setItem('playingSong',JSON.stringify(state) )
         },
-        pauseHandler(state){
+        toggleHandler(state,actions){
         
-            state.playState=false
-            sessionStorage.setItem('playingSong',JSON.stringify(state) )
-        },
-        playHandler(state){
-            state.playState=true
+            state.playState=actions.payload
             sessionStorage.setItem('playingSong',JSON.stringify(state) )
         },
         switchHandler(state,actions){
@@ -55,13 +52,10 @@ import { createSlice } from "@reduxjs/toolkit";
         saveRange(state,actions){
             state.currentTime=actions.payload
             sessionStorage.setItem('playingSong',JSON.stringify(state) )
-        }
-     
-        
-        
+        }   
     }
  })
 
 
- export const {initSongHandler, pauseHandler, playHandler,switchHandler,saveRange }=playSongSlice.actions
+ export const {initSongHandler,toggleHandler,switchHandler,saveRange }=playSongSlice.actions
  export default playSongSlice

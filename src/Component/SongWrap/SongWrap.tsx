@@ -8,18 +8,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { playSongsT } from "../../interface/responseInter";
 import SongCart from "./SongCart/SongCart";
-import ScrollItem from "../UI/Scollitem/Scollitem";
-import { useDispatch, useSelector } from "react-redux";
-import { initSong } from "../../store/reducer/SongListSlice";
+import { useGetAllSongInfoQuery } from "../../store/Api/songApi";
+import Loading from "../UI/Loading/Loading";
 
 function SongWrap(props: playSongsT) {
-  const SongList = useSelector((state: any) => state.SongListSlice);
-  const dispatch = useDispatch();
 
-  const playAllHandler = (e: any) => {
-    e.stopPropagation();
-    dispatch(initSong(props.trackIds));
-  };
+ let ids:number[]=props.trackIds.map(item=>item.id) 
+  const {data,isSuccess}=useGetAllSongInfoQuery(ids)
+
+  
 
   return (
     <div className={classes.wrap}>
@@ -30,7 +27,7 @@ function SongWrap(props: playSongsT) {
             icon={faCirclePlay}
             style={{ color: "#d62448" }}
           />
-          <h2 onClick={playAllHandler} className={classes.headerTitle}>
+          <h2  className={classes.headerTitle}>
             播放全部
           </h2>
           <span className={classes.songCount}>({props.count})</span>
@@ -40,12 +37,8 @@ function SongWrap(props: playSongsT) {
           <FontAwesomeIcon className={classes.icon} icon={faListCheck} />
         </div>
       </div>
-      <div className={classes.body} onClick={playAllHandler}>
-        {props.trackIds?.map((item, index) => (
-          <ScrollItem key={item.id}>
-            <SongCart index={index + 1} {...item} />{" "}
-          </ScrollItem>
-        ))}
+      <div className={classes.body}  >
+      {isSuccess?data.map((item,index, allSongs)=><SongCart key={item.id} list={allSongs} detail={{...item}} index={index+1}></SongCart>):<Loading/>}
       </div>
     </div>
   );

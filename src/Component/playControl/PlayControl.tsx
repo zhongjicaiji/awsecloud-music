@@ -19,8 +19,7 @@ import {
   faRotateLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import {
-  pauseHandler,
-  playHandler,
+ toggleHandler,
   switchHandler,
   saveRange,
 } from "../../store/reducer/PlaySongSlice";
@@ -81,13 +80,13 @@ function PlayControl(props: any) {
         promiseAudio.then(res=>{
           audioRef.current.play()
         },reject=>{
-          dispatch(pauseHandler());
+          dispatch(toggleHandler(false));
          
         }).then((res=>{
          
-          dispatch(playHandler());
+          dispatch(toggleHandler(true));
         }),rej=>{
-          dispatch(pauseHandler());
+          dispatch(toggleHandler(false));
        
         }).catch((err)=>{
           console.log(err)
@@ -108,12 +107,12 @@ function PlayControl(props: any) {
       })
     );
 
-    dispatch(playHandler());
+    dispatch(toggleHandler(true));
 
     setCurrTime(format(audioRef.current.currentTime * 1000));
   };
   const listenPauseHandler = (e: HTMLMediaElementEventMap["timeupdate"]) => {
-    dispatch(pauseHandler());
+    dispatch(toggleHandler(false));
 
     if (
       audioRef.current.currentTime * 1000 >= currentSong.dTime ||
@@ -150,7 +149,7 @@ function PlayControl(props: any) {
         index = index - 1;
       }
     }
-    dispatch(playHandler())
+    dispatch(toggleHandler(true))
     dispatch(switchHandler(songList.lists[index].id));
   },[currentSong.id])
 
@@ -212,7 +211,7 @@ function PlayControl(props: any) {
           <FontAwesomeIcon
             onClick={() => {
               audioRef.current.play();
-              dispatch(playHandler());
+              dispatch(toggleHandler(true));
             }}
             className={classes.play}
             icon={faPlay}
@@ -222,7 +221,7 @@ function PlayControl(props: any) {
           <FontAwesomeIcon
             onClick={() => {
               audioRef.current.pause();
-              dispatch(pauseHandler());
+              dispatch(toggleHandler(false));
             }}
             className={classes.pause}
             icon={faPause}

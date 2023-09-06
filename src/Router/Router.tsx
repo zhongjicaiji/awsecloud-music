@@ -39,6 +39,7 @@ const RoutesConfig=[
         element:<PlayPage />,
       
     }
+ 
 ]
 
 function RouterMap() {

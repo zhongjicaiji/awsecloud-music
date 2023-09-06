@@ -1,15 +1,14 @@
 .wrap{
-    background-color: #523122;
+   background:rgba(0,0,0,.5);
     height: 100vh;
     overflow: hidden;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-   justify-content:space-between;
+   justify-content:flex-start;
    align-items: center;
    color: rgba(255, 255, 255, 0.6);
    padding: 30rem;
-  
 }
 .songName{
     font-size: 36rem
@@ -25,7 +24,11 @@
   
 }
 .center{
- 
+ height: 80vh;
+ display: flex;
+ align-items: center;
+
+
 }
 .dishDrop{
     width: 600rem;
@@ -102,13 +105,12 @@
 .count{
     position: absolute;
     font-size: 18rem;
-    background-color: #523122;
-        right:4rem;
+    background-color:#7F7F7F;
+        right:-5rem;
     border-radius: 20rem;
     padding-left: 5rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
-
 .imgWrap{
     width: 400rem;
     height: 400rem;

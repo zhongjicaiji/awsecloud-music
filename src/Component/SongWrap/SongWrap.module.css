@@ -17,10 +17,6 @@ position: fixed;
   z-index: 1;
  width: 100%;
 
-  
-  
-
-
 }
 .playHandler{
    
@@ -49,5 +45,6 @@ position: fixed;
 }
 .body{
     margin-top: 100rem;
+    margin-bottom: 100rem;
     background-color: #fff;
 }
