@@ -17,15 +17,16 @@ interface SongCartT extends trackIdT {
 
 function SongCart(props: SongCartT) {
   //获取歌词数据
-  const {data:songData,isSuccess:getSongDataSuccess}=useGetSongDataQuery(props.id)
+  const {data:songCartData,isSuccess:getSongDataSuccess}=useGetSongDataQuery(props.id)
  const currentSong=useSelector((state:any)=>state.playSongSlice)
   const toPlay = useNavigate();
-  const [songCartData, setSongCartData] = useState<SongT>();
+
 
   const local=useLocation()
   const dispatch=useDispatch()
   const initHandler=()=>{
-    if(songCartData?.id!==currentSong.id)
+  
+
     dispatch(initSongHandler({
         id:songCartData?.id,
         playState:true,
@@ -46,14 +47,15 @@ function SongCart(props: SongCartT) {
 
 
   const toPlayHandler=()=>{
+    console.log(1)
     dispatch(forward(`/playPage/${songCartData?.id}`))
-    toPlay(`/playPage/${songCartData?.id}`,{ replace:false })
+    toPlay(`/playPage/${songCartData?.id}`,{
+       replace:false,
+       state:"PUSH"
+    })
   }
 
-  useEffect(() => {
-
-    getSongDataSuccess&&setSongCartData(songData)
-  }, [getSongDataSuccess]);
+ 
 
   return (
      <div onClick={clickHandler} className={classes.wrap}>

@@ -12,7 +12,7 @@ import {  useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { CurrentSong, RouteStackT } from "../../interface/responseInter";
-import PlayControl from "./playControl/PlayControl";
+import PlayControl from "../playControl/PlayControl";
 import { initSongHandler } from "../../store/reducer/PlaySongSlice";
 import { back as RouteBack, showPlayControl} from "../../store/router/RouteStack";
 import { useGetSongDataQuery } from "../../store/Api/songApi";
@@ -54,6 +54,7 @@ function PlayPage() {
     //@ts-ignore
     back(backPath, {
       replace: true, 
+      state:"POP"
     });
     dispatch(showPlayControl(false))
   };

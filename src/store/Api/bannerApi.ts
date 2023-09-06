@@ -1,4 +1,5 @@
-import baseApi from "./baseAPI";
+//@ts-ignore
+import baseApi from "./baseApi";
 
 const bannerApi=baseApi.injectEndpoints({
     endpoints:(builder)=>{
@@ -11,6 +12,7 @@ const bannerApi=baseApi.injectEndpoints({
                 transformResponse:(response:{banners:any[]})=> {
                     return response.banners.slice(0,4)
                 },
+                keepUnusedDataFor:60*30
                 
             })
         }

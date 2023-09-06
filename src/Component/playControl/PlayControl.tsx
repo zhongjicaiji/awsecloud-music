@@ -5,14 +5,11 @@ import React, {
   useState,
   memo,
   useLayoutEffect,
-  ReactEventHandler,
-  ReactElement,
-  MouseEventHandler,
 } from "react";
 import classes from "./PlayControl.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import throttle from "../../Hooks/useThrottle";
+import throttle from "../Hooks/useThrottle";
 import {
   faBackwardStep,
   faBarsStaggered,
@@ -26,11 +23,11 @@ import {
   playHandler,
   switchHandler,
   saveRange,
-} from "../../../store/reducer/PlaySongSlice";
-import { CurrentSong, SongList } from "../../../interface/responseInter";
-import { switchSong } from "../../../store/reducer/SongListSlice";
-import format from "../../Hooks/formatTime";
-import { useGetSongUrlQuery } from "../../../store/Api/songApi";
+} from "../../store/reducer/PlaySongSlice";
+import { CurrentSong, SongList } from "../../interface/responseInter";
+import { switchSong } from "../../store/reducer/SongListSlice";
+import format from "../Hooks/formatTime";
+import { useGetSongUrlQuery } from "../../store/Api/songApi";
 interface HTMLMediaElementEventMap {
   timeupdate: React.SyntheticEvent<HTMLMediaElement> & {
     target: HTMLMediaElement & {
@@ -74,27 +71,31 @@ function PlayControl(props: any) {
     };
   }, []);
 
-  //刷新页面时暂停音乐
-  // window.onbeforeunload = function () {
-  //   dispatch(pauseHandler());
-  // };
 
-  useEffect(() => {
+ 
+ 
+  useEffect(()=>{
     if( audioRef.current && currentSong.playState ){
       const promiseAudio:Promise<AudioContext>= audioRef.current.play();
       if(promiseAudio!==undefined){
         promiseAudio.then(res=>{
-         
+          audioRef.current.play()
         },reject=>{
           dispatch(pauseHandler());
-        }).catch(err=>{
+         
+        }).then((res=>{
+         
+          dispatch(playHandler());
+        }),rej=>{
+          dispatch(pauseHandler());
+       
+        }).catch((err)=>{
           console.log(err)
         })
       }
     }
-
-  });
-
+  })
+ 
 
   //开始播放时间
   const listenPlayHandler = (e: any) => {
@@ -135,6 +136,7 @@ function PlayControl(props: any) {
 
   const changeSong=useCallback((type:string)=>{
     let index = songList.lists.findIndex((item) => item.id === currentSong.id);
+   
     if(type==='next'){
       if (index + 1 >= songList.lists.length) {
         index = 0;
@@ -174,15 +176,17 @@ function PlayControl(props: any) {
   return (
     <div className={classes.playComponent}>
       <div className={classes.rangeWrap}>
-        {getUrlSuccess && (
-          <audio
+     {getUrlSuccess&& <audio
             ref={audioRef}
             onTimeUpdate={rangeHandler}
             onPlay={listenPlayHandler}
             onPause={listenPauseHandler}
             src={songUrlData.url}
-          ></audio>
-        )}
+          >
+       
+          </audio>
+      }
+         
 
         <div
           ref={rangeRef}

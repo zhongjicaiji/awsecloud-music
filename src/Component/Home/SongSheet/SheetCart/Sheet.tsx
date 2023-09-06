@@ -20,9 +20,8 @@ function Sheet({sheetDatas }:{sheetDatas:sheetDataT}) {
     const clickHandler=()=>{
       dispatch(forward(`/songDetails/${sheetDatas.id}`))
       navToDetail(`/songDetails/${sheetDatas.id}`,{
-        state:{
-          backPath:local.pathname
-        }
+        replace:false,
+       state:"PUSH"
       })
     }
   return (

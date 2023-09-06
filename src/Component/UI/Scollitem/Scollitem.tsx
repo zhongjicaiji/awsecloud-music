@@ -29,7 +29,7 @@ function ScrollItem(props:any) {
   return (
     <div  ref={cartRef} >
         {loading?
-        <div className={classes.wrap}>Loading..... </div>
+        <div className={classes.wrap}> ...</div>
         : props.children}
     </div>
   )

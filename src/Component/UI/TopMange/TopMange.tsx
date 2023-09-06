@@ -27,7 +27,10 @@ function TopMange() {
  
     dispatch(RouteBack())
     //@ts-ignore
-    back(backPath,{replace:true})
+    back(backPath,{
+      replace:true,
+      state:"POP"
+    })
   }
 
   return (

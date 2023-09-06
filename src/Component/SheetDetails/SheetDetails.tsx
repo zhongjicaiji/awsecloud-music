@@ -1,5 +1,5 @@
-import { Fragment } from "react";
-import { useParams } from "react-router-dom";
+import { Fragment} from "react";
+import {  useParams } from "react-router-dom";
 
 import classes from './SheetDetails.module.css';
 import TopMange from "../UI/TopMange/TopMange";
@@ -16,6 +16,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Loading from "../UI/Loading/Loading";
 import SongWrap from "../SongWrap/SongWrap";
 import { useGetSheetInfoQuery } from "../../store/Api/songApi";
+
+
+
 
 interface paramT {
   id?: string;
@@ -39,7 +42,7 @@ function SheetDetails() {
   return (
     <Fragment>
     
-   {getSheetDetailSuccess?<div className={classes.wrap}>
+   <div className={classes.wrap}>
           <TopMange   />
           <div className={classes.header}>
             <div className={classes.headerBody}>
@@ -105,11 +108,8 @@ function SheetDetails() {
          
                 <SongWrap count={sheetDetailData?.trackCount} trackIds={sheetDetailData?.trackIds}/>
           
-        </div>:
-        <div className={classes.loading}>
-              <Loading/>
         </div>
-        } 
+     
      
 
     </Fragment>

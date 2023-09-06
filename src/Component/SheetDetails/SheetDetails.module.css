@@ -1,7 +1,5 @@
 .wrap{
- 
- 
-    background-color: #916451;
+    height: 100vh;
 }
 .headerBody{
     display: flex;
@@ -9,10 +7,10 @@
    
 }
 .header{
-  
+    background-color: #916451;
     color: #fff;
     font-size: 30rem;
-    padding: 140rem 30rem 20rem;
+    padding: 110rem 30rem 20rem;
    
 }
 .title{
@@ -133,6 +131,9 @@
     width: 500rem;
     height: 200rem;
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     margin: auto;
 }
