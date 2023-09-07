@@ -1,43 +1,23 @@
-import React, { useEffect, useState ,memo} from "react";
-import { SongT, trackIdT,CurrentSong } from "../../../interface/responseInter";
+import React, { memo} from "react";
+import { SongT, } from "../../../interface/responseInter";
 import classes from "./SongCart.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate,useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { initSongHandler,toggleHandler } from "../../../store/reducer/PlaySongSlice";
+import { useNavigate} from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { forward } from "../../../store/router/RouteStack";
-import { useGetSongDataQuery } from "../../../store/Api/songApi";
-import { switchSong ,initSong} from "../../../store/reducer/SongListSlice";
 
-interface SongCartT  extends trackIdT {
-  list:trackIdT[];
-  index: number;
-
-}
+import { initSong} from "../../../store/reducer/SongListSlice";
+import useInitSong from "../../Hooks/initData";
 
 function SongCart({index,detail,list}:{index:number,detail:SongT,list:SongT[]}) {
   //获取歌词数据
-
-  
- const currentSong=useSelector((state:any)=>state.playSongSlice)
   const toPlay = useNavigate();
+  const initNewSong=useInitSong()
 
-
-  const local=useLocation()
   const dispatch=useDispatch()
   const initHandler=()=>{
-   
-      dispatch(initSongHandler({
-        id:detail.id,
-        playState:true,
-        name:detail.name,
-        dTime:detail.dt,
-        picUrl:detail.al.picUrl,
-        fee:detail.fee,
-        artistName:detail.ar[0].name,
-    }))
-  
+    initNewSong(detail)
   dispatch(initSong({
       id:detail.id,
       index:index-1,
@@ -83,11 +63,6 @@ function SongCart({index,detail,list}:{index:number,detail:SongT,list:SongT[]}) 
     </div>
     <FontAwesomeIcon className={classes.setting} icon={faEllipsisVertical} />
   </div>
- 
-   
- 
- 
- 
   );
 }
 

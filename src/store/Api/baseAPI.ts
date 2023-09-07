@@ -6,9 +6,9 @@ const baseApi=createApi({
     }),
     reducerPath:"baseApi",
     endpoints:()=>({}),
-    keepUnusedDataFor:30*60,
+    keepUnusedDataFor:5*60,
     
-    refetchOnMountOrArgChange:30*60,
+    refetchOnMountOrArgChange:60
 
 })
 

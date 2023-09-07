@@ -1,5 +1,5 @@
 import baseApi from "./baseApi";
-import { SongT, sheetDataT, RL,sheetDetailT } from "../../interface/responseInter";
+import { SongT, sheetDataT, RL,sheetDetailT, LyricT } from "../../interface/responseInter";
 import { song } from "../../interface/propsInterface";
 
 
@@ -66,6 +66,7 @@ const songApi = baseApi.injectEndpoints({
          return  response.songs
         }
       })
+   
       
     };
   },
@@ -77,6 +78,6 @@ export const {
   useGetRankingListQuery,
   useGetRankingListItemQuery,
   useGetSheetInfoQuery,
-  useGetAllSongInfoQuery
+  useGetAllSongInfoQuery,
 } = songApi;
 export default songApi;

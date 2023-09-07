@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React,{ memo, useState,useEffect } from "react";
 import classes from "./PlayPage.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,11 +9,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {  useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { CurrentSong, RouteStackT, SongT ,SongList} from "../../interface/responseInter";
-import { initSongHandler } from "../../store/reducer/PlaySongSlice";
-import { back as RouteBack, showPlayControl} from "../../store/router/RouteStack";
-import { useGetSongDataQuery } from "../../store/Api/songApi";
-import { changeSong } from "../../store/reducer/SongListSlice";
+import {  RouteStackT ,SongList,LyricArrT} from "../../interface/responseInter";
+import { back as RouteBack} from "../../store/router/RouteStack";
+
+import { useGetLyricQuery } from "../../store/Api/LyricApi";
 
 
 
@@ -21,26 +20,16 @@ function PlayPage() {
   const currentSong: SongList = useSelector(
     (state: any) => state.SongListSlice
   );
+  const [showLyric,setShowLyric]=useState(false)
+  
   const routeStack: RouteStackT = useSelector((state: any) => state.RouteStack);
-  // const {data,isSuccess,refetch}=useGetSongDataQuery(currentSong.id)
+  
+
   const newData=currentSong.lists[currentSong.currentIndex]
+  const {data:lyricData,isSuccess,refetch}=useGetLyricQuery(newData.id)
+
   const back = useNavigate();
   const dispatch = useDispatch();
-  useEffect(() => {
-
-      dispatch(
-        initSongHandler({
-          ...newData,
-          playState:true,
-          dTime:newData.dt,
-          picUrl:newData.al.picUrl,
-          artistName:newData.ar[0].name,
-          currentTime:0
-        })
-      );
- 
-   
-  }, [currentSong.currentSongId]);
   const backHandler = () => {
     const backPath = routeStack.routeStack.at(-2);
 
@@ -52,6 +41,11 @@ function PlayPage() {
     });
   
   };
+ 
+  const showLyricHandler=()=>{
+    setShowLyric(!showLyric)
+  }
+
   return (
     <div className={classes.wrap}>
       <div className={classes.header}>
@@ -63,18 +57,23 @@ function PlayPage() {
         <div className={classes.songName}>{newData.name}</div>
         <FontAwesomeIcon icon={faShareNodes} />
       </div>
-      <div className={classes.center}>
-      <div className={classes.dishDrop}>
-        <div className={classes.dish}>
-          <div className={classes.imgWrap}>
-            <img
-              className={classes.img}
-              src={newData.al.picUrl}
-              alt="专辑封面"
-            />
+      <div onClick={showLyricHandler} className={`${classes.center}  ${showLyric&&classes.Lyric}`}>
+        {showLyric?
+          <div>
+            {isSuccess?lyricData.lyricStr.map((item:string,index)=><p className={classes.lyricItem} >{item}</p>):'歌词加载中.....'}
+          </div>  : <div className={classes.dishDrop}>
+          <div className={classes.dish}>
+            <div className={classes.imgWrap}>
+              <img
+                className={classes.img}
+                src={newData.al.picUrl}
+                alt="专辑封面"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      }
+     
       </div>
       <div className={classes.Context}>
         <div className={classes.songContext}>
@@ -102,4 +101,4 @@ function PlayPage() {
   );
 }
 
-export default PlayPage;
+export default PlayPage ;

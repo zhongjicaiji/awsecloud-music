@@ -47,4 +47,12 @@ position: fixed;
     margin-top: 100rem;
     margin-bottom: 100rem;
     background-color: #fff;
+  
+}
+.success{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    width: 100%;  
 }

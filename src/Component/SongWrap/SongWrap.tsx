@@ -1,4 +1,3 @@
-
 import classes from "./SongWrap.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,11 +11,8 @@ import { useGetAllSongInfoQuery } from "../../store/Api/songApi";
 import Loading from "../UI/Loading/Loading";
 
 function SongWrap(props: playSongsT) {
-
- let ids:number[]=props.trackIds.map(item=>item.id) 
-  const {data,isSuccess}=useGetAllSongInfoQuery(ids)
-
-  
+  let ids: number[] = props.trackIds.map((item) => item.id);
+  const { data, isSuccess } = useGetAllSongInfoQuery(ids);
 
   return (
     <div className={classes.wrap}>
@@ -27,9 +23,7 @@ function SongWrap(props: playSongsT) {
             icon={faCirclePlay}
             style={{ color: "#d62448" }}
           />
-          <h2  className={classes.headerTitle}>
-            播放全部
-          </h2>
+          <h2 className={classes.headerTitle}>播放全部</h2>
           <span className={classes.songCount}>({props.count})</span>
         </div>
         <div className={classes.songSet}>
@@ -37,8 +31,17 @@ function SongWrap(props: playSongsT) {
           <FontAwesomeIcon className={classes.icon} icon={faListCheck} />
         </div>
       </div>
-      <div className={classes.body}  >
-      {isSuccess?data.map((item,index, allSongs)=><SongCart key={item.id} list={allSongs} detail={{...item}} index={index+1}></SongCart>):<Loading/>}
+      <div className={ isSuccess?classes.body:classes.success}>
+        {isSuccess ? (
+          data.map((item, index, allSongs) => (
+            <SongCart
+              key={item.id}
+              list={allSongs}
+              detail={{ ...item }}
+              index={index + 1}
+            ></SongCart>
+          ))
+        ) : (<Loading />)}
       </div>
     </div>
   );

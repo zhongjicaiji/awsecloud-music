@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice} from "@reduxjs/toolkit";
 
 const SongListSlice=createSlice({
     name:"SongList",
@@ -30,28 +30,17 @@ const SongListSlice=createSlice({
             const list=actions.payload.lists
             console.log(actions.payload)
             state.lists=[...list]
-       
-        //    console.log(actions.payload.index)
             state.currentIndex=actions.payload.index
             state.currentSongId=actions.payload.id
             sessionStorage.setItem('songList',JSON.stringify(state))
             
-        },
-        switchSong(state,actions){
-            state.index=actions.payload.index
-            state.currentSongUrl=actions.payload.url
-            state.currentSongId=actions.payload.id
-            sessionStorage.setItem('songList',JSON.stringify(state))
         },
         changeSong(state,actions){
             state.currentSongId=actions.payload.id;
             state.currentIndex=actions.payload.index
             sessionStorage.setItem('songList',JSON.stringify(state))
         }
-        
-        
-
     }
 })
-export const {initSong,switchSong,changeSong}=SongListSlice.actions
+export const {initSong,changeSong}=SongListSlice.actions
 export default SongListSlice

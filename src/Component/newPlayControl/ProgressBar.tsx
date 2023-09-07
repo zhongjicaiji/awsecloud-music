@@ -34,9 +34,9 @@ function ProgressBar({
         type="range"
         defaultValue={0}
       />
-      <span className={`${classes.time} `}>{format(duration*1000)}</span>
+      <span className={`${classes.time} `}>{format(duration)}</span>
     </div>
   );
 }
 
-export default memo(ProgressBar) ;
+export default  ProgressBar ;

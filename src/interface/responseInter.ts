@@ -128,3 +128,15 @@ export interface RouteStackT{
   routeStack:string[],
   showPlayControl:boolean
 }
+
+
+//歌词
+
+export interface LyricT{
+  lrc:{
+    lyric:string,
+    version:number
+  }
+}
+//歌词数组类型
+export type LyricArrT=[ index:number,lyric:string]

@@ -1,14 +1,12 @@
-import React, { useEffect, useState, useCallback, useRef, memo } from "react";
+import React, { useEffect, useCallback, useRef, memo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBackward,
   faBackwardStep,
-  faBarsStaggered,
   faForward,
   faForwardStep,
   faPause,
   faPlay,
-  faRotateLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import classes from "./style.module.css";
 import { toggleHandler } from "../../store/reducer/PlaySongSlice";
@@ -54,7 +52,7 @@ console.log(1)
       progressBarRef.current.value = currentTime as unknown as string;
       progressBarRef.current.style.setProperty(
         "--range-progress",
-        `${(+progressBarRef.current.value / duration) * 100}%`
+        `${(+progressBarRef.current.value / (duration/1000)) * 100}%`
       );
     }
     playAnimationRef.current = requestAnimationFrame(repeat);
@@ -118,4 +116,4 @@ console.log(1)
   );
 }
 
-export default memo(PlayControls);
+export default memo(PlayControls) ;

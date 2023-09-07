@@ -22,8 +22,6 @@ import { createSlice } from "@reduxjs/toolkit";
                 fee:0,
                 artistName:'',
                 currentTime:0,
-            
-            
             }
         }
     },
