@@ -118,8 +118,11 @@ function SheetDetails() {
              </button>
             </div>
           </div>
+          <div className={classes.body}>
+          {sheetDetailData&& <SongWrap count={sheetDetailData.trackCount} trackIds={sheetDetailData.trackIds}/>} 
+          </div>
          
-              {sheetDetailData&& <SongWrap count={sheetDetailData.trackCount} trackIds={sheetDetailData.trackIds}/>} 
+          
           
         </div>
      

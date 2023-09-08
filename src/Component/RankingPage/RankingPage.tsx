@@ -16,7 +16,7 @@ function RankingPage() {
    
 
     const {data:sheetDetailData,isSuccess:getSheetDetailSuccess}=useGetSheetInfoQuery(Number(param.id))
-    console.log(sheetDetailData)
+ 
     const formatData=useCallback((count:number):string|number=>{
         let playCount:string|number=count
         if(count>10000) playCount=Math.ceil(playCount/10000)+'万'

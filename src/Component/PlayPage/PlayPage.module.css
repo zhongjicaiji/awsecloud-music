@@ -105,10 +105,11 @@
 .interest{
     margin-left: 10rem;
     padding: 0 8rem;
-    background-color: rgba(255, 255, 255, .3);
+    background-color: rgba(255, 255, 255, );
     border-radius: 20rem;
 }
 .like,.comment{
+    color:rgba(255, 255, 255, .3) ;
     width: 150rem;
     position: relative;
     font-size: 50rem;
@@ -118,11 +119,12 @@
 .count{
     position: absolute;
     font-size: 18rem;
-    background-color:rgba(255, 255, 255, .3);
-        right:-5rem;
+    
+   
+    right:-5rem;
     border-radius: 20rem;
     padding-left: 5rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  
 }
 .imgWrap{
     width: 400rem;

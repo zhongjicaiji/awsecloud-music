@@ -1,7 +1,7 @@
 .wrap{
     height: 100vh;
     color: rgba(244, 244, 244, 0.8);
-    overflow: hidden;
+  overflow-y: auto;
 }
 .headerBody{
     display: flex;
@@ -9,9 +9,12 @@
 }
 .header{
     background-color: var(--detail-color);
-    
+    height: 32vh;
     font-size: 30rem;
     padding: 110rem 30rem 20rem;
+    width: 100%;
+    position: fixed;
+    z-index: 777;
    
 }
 .title{
@@ -142,4 +145,7 @@
     right: 0;
     bottom: 0;
     margin: auto;
+}
+.body{
+    margin-top:32vh;
 }

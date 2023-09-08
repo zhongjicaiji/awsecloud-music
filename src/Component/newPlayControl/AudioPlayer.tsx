@@ -4,19 +4,17 @@ import React, {
   useEffect,
   useRef,
   useState,
-  useLayoutEffect,
 } from "react";
 import classes from "./style.module.css";
 import DisplayTrack from "./DisplayTrack";
 import NewPlayControls from "./NewPlayControls";
 import ProgressBar from "./ProgressBar";
 import { useSelector, useDispatch } from "react-redux";
-import { SongList, SongT, CurrentSong } from "../../interface/responseInter";
+import { SongList, CurrentSong } from "../../interface/responseInter";
 import { useGetSongUrlQuery } from "../../store/Api/songApi";
 import {
   switchHandler,
   toggleHandler,
-  initSongHandler,
 } from "../../store/reducer/PlaySongSlice";
 import { changeSong as newSong } from "../../store/reducer/SongListSlice";
 import useInitSong from "../Hooks/initData";
@@ -30,7 +28,6 @@ function AudioPlayer() {
   const currentSong: CurrentSong = useSelector(
     (state: any) => state.playSongSlice
   );
-
   const { data, isSuccess, refetch } = useGetSongUrlQuery(
     songList.currentSongId
   );
@@ -89,7 +86,6 @@ function AudioPlayer() {
           .catch((err) => {
             audioRef.current?.pause();
             setTimeout(() => {
-          
               audioRef.current?.play();
             }, 1000);
           });
@@ -106,7 +102,7 @@ function AudioPlayer() {
           }}
           ref={imgRef}
           src={currentSong.picUrl}
-          alt=""
+      
         />
       </div>
 

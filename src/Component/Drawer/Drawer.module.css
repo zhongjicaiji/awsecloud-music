@@ -1,0 +1,66 @@
+.drawer{
+
+    --bg-color: #f0e3e3;
+    background-color: var(--bg-color);
+    height: 100vh;
+    position: fixed;
+    z-index: 99999999;
+    left: 0;
+    width: 40%;
+    padding: 60rem 0;
+    color: #c9bebe;
+    border-radius: 0 50rem 50rem 0;
+    
+}
+.userInfo{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+.userHead{
+    border-radius: 50%;
+    width: 100rem;
+    height: 100rem;
+    overflow: hidden;
+    text-align: center;
+    margin-bottom: 20rem;
+}
+.img{
+    width: 100rem;
+    height: 100rem;
+    vertical-align: middle;
+}
+.menu{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+   
+    font-size: 20rem;
+    line-height: 70rem;
+}
+.menu > li {
+    cursor: pointer;
+    padding-left: 20rem;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+.menu > li >span{
+    font-size: 20rem;
+    margin-left: 20rem;
+}
+.close{
+    color: white;
+    font-size: 30rem;
+    position: absolute;
+    right: 20rem;
+    top: 20rem;
+}
+.logout{
+    text-align: center;   
+    
+}
+.logoutBtn{
+    color: rgb(226, 200, 200);
+    background-color: rgba(243, 30, 30, 0.8); 
+    border-radius: 40rem;
+    padding: 10rem 30rem;
+}

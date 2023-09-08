@@ -5,7 +5,8 @@
     bottom: 0rem;
    background: var(--playControl-color);
     color: white;
-  border-radius: 30rem 30rem 0 0;
+  border-radius: 30rem ;
+  z-index: 99999;
   
   
     padding: 10rem 30rem;
@@ -22,7 +23,7 @@ button{
     font-size: 30rem;
     background-color:  rgba(0, 0, 0, 0);
     transition: transform 0.3s;
-    
+
     
 }
 button:active{
@@ -50,8 +51,6 @@ input[type="range"]::before{
 }
 
 .controlsWrap{
-  
-  
     display: flex;
     align-content: center;
     justify-content: space-around;

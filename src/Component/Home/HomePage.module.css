@@ -19,5 +19,18 @@
 }
 .homeBody{
    padding-top: 100rem;
+ 
     
+   
+}
+.Drawer{
+    position: relative;
+    transition: transform 0.3s;
+    z-index: 99999;
+}
+.showDrawer{
+    transform: translateX(0);
+}
+.closeDrawer{
+    transform: translateX(-40%);
 }
