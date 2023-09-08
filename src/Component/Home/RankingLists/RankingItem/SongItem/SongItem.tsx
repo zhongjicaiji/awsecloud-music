@@ -3,10 +3,10 @@ import { artist } from "../../../../../interface/propsInterface";
 import classes from "./SongItem.module.css";
 
 interface rankingSong {
-  id: number;
+ 
   no: number;
   name: string;
-  artist: Array<artist>;
+  artistName:string ;
 }
 function SongItem(props: rankingSong) {
    const noRef= useRef<any>(null)
@@ -33,7 +33,7 @@ function SongItem(props: rankingSong) {
         <div ref={noRef}>{props.no}</div>
         <div className={classes.songInfo}>
           <div className={classes.songName}>{props.name}</div>
-          <div className={classes.arName}>{props.artist[0].name}</div>
+          <div className={classes.arName}>{props.artistName}</div>
         </div>
       </div>
       <div className={classes.desc}>热门</div>

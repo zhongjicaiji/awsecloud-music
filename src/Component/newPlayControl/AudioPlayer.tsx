@@ -63,13 +63,15 @@ function AudioPlayer() {
           tmpIndex -= 1;
         }
       }
+      const newData = songList.lists[tmpIndex];
+      if(newData.id===0) return
       dispatch(
         newSong({
           id: songList.lists[tmpIndex].id,
           index: tmpIndex,
         })
       );
-      const newData = songList.lists[tmpIndex];
+  
       initSong(newData);
       dispatch(switchHandler(songList.lists[tmpIndex].id));
       dispatch(toggleHandler(true));

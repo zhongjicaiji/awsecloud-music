@@ -3,7 +3,7 @@ import { createSlice} from "@reduxjs/toolkit";
 const SongListSlice=createSlice({
     name:"SongList",
     initialState:()=>{
-        let localList=sessionStorage.getItem('songList')
+        let localList=localStorage.getItem('songList')
         if(localList){
 
             return JSON.parse(localList)
@@ -21,7 +21,7 @@ const SongListSlice=createSlice({
         }],
         currentSongId:0,
         currentSongUrl:"",
-        currentIndex:0  
+        currentIndex:-1  
       } 
 
     },
@@ -32,13 +32,13 @@ const SongListSlice=createSlice({
             state.lists=[...list]
             state.currentIndex=actions.payload.index
             state.currentSongId=actions.payload.id
-            sessionStorage.setItem('songList',JSON.stringify(state))
+            localStorage.setItem('songList',JSON.stringify(state))
             
         },
         changeSong(state,actions){
             state.currentSongId=actions.payload.id;
             state.currentIndex=actions.payload.index
-            sessionStorage.setItem('songList',JSON.stringify(state))
+            localStorage.setItem('songList',JSON.stringify(state))
         }
     }
 })

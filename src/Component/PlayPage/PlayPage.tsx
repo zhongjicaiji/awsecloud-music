@@ -41,7 +41,9 @@ function PlayPage() {
     //@ts-ignore
     back(backPath, {
       replace: true,
-      state: "POP",
+      state:{
+        method:"POP"
+      },
     });
   };
 

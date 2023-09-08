@@ -1,0 +1,55 @@
+.wrap {
+    height: 100vh;
+    
+    overflow-y: auto;
+
+}
+
+.header {
+    background: #f0f0f0;
+    width: 100%;
+    height: 36vh;
+    background-repeat: no-repeat;
+    background-size: 100% 36vh;
+    position: fixed;
+    z-index: 1;
+
+}
+
+.body {
+    margin-top: 36vh;
+    overflow: hidden;
+    overflow-y: auto;
+
+}
+
+.rankingData {
+    position: absolute;
+    display: flex;
+    background-color: rgba(206, 190, 190, 0.4);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 60rem;
+    justify-content: space-between;
+    bottom: 0;
+    width: 600rem;
+    height: 100rem;
+    border-radius: 100rem 100rem 0 0;
+    overflow: hidden;
+
+}
+
+.share,
+.comment,
+.subscribed {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: #f0f0f0;
+
+}
+.icon{
+    font-size: 40rem;
+}

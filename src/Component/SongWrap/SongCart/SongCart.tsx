@@ -37,7 +37,9 @@ function SongCart({index,detail,list}:{index:number,detail:SongT,list:SongT[]}) 
     dispatch(forward(`/playPage/${detail.id}`))
     toPlay(`/playPage/${detail.id}`,{
        replace:false,
-       state:"PUSH"
+       state:{
+        method:"PUSH"
+       }
     })
   }
   return (

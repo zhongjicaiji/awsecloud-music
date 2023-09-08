@@ -21,7 +21,9 @@ function Sheet({sheetDatas }:{sheetDatas:sheetDataT}) {
       dispatch(forward(`/songDetails/${sheetDatas.id}`))
       navToDetail(`/songDetails/${sheetDatas.id}`,{
         replace:false,
-       state:"PUSH"
+       state:{
+        method:"PUSH"
+      }
       })
     }
   return (

@@ -13,7 +13,6 @@ import {
   faSquarePlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Loading from "../UI/Loading/Loading";
 import SongWrap from "../SongWrap/SongWrap";
 import { useGetSheetInfoQuery } from "../../store/Api/songApi";
 import ColorThief from "../Hooks/colorThief";
@@ -54,7 +53,7 @@ function SheetDetails() {
     <Fragment>
     
    <div className={classes.wrap}>
-          <TopMange   />
+          <TopMange title=""   />
           <div className={classes.header}>
             <div className={classes.headerBody}>
               <div className={classes.imgWrap}>
@@ -85,10 +84,10 @@ function SheetDetails() {
 
                   <span>{sheetDetailData?.creator.nickname}</span>
 
-                  <div className={classes.interest}>
+                  <button className={classes.interest}>
                     <FontAwesomeIcon icon={faPlus} />
                     <span>关注</span>
-                  </div>
+                  </button>
                 </div>
                 <div>
                   {sheetDetailData?.tags.slice(0, 3).map((item) => (
@@ -105,18 +104,18 @@ function SheetDetails() {
               <FontAwesomeIcon icon={faAngleRight} />
             </div>
             <div className={classes.sheetData}>
-             <div className={classes.share}>
+             <button className={classes.share}>
              <FontAwesomeIcon className={classes.icon} icon={faShare} />
                     <span>{sheetDetailData?.shareCount}</span>
-             </div>
-             <div className={classes.comment}>
+             </button>
+             <button className={classes.comment}>
              <FontAwesomeIcon className={classes.icon} icon={faCommentDots} />
                     <span>{sheetDetailData?.commentCount}</span>
-             </div>
-             <div className={classes.subscribed}>
+             </button>
+             <button className={classes.subscribed}>
              <FontAwesomeIcon className={classes.icon} icon={faSquarePlus} />
                     <span>{sheetDetailData?.trackCount}</span>
-             </div>
+             </button>
             </div>
           </div>
          

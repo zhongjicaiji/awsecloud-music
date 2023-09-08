@@ -10,6 +10,7 @@ const useInitSong=()=>{
     const dispatch=useDispatch()
 
     const initData=useCallback((data:SongT)=>{
+     
         dispatch(initSongHandler({
             id:data.id,
             playState:true,

@@ -6,26 +6,43 @@ import Title from "../../../UI/Title/Title";
 import SongItem from "./SongItem/SongItem";
 
 import { useGetRankingListItemQuery } from "../../../../store/Api/songApi";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { forward } from "../../../../store/router/RouteStack";
 
 function RankingItem(props: RL) {
+  const dispatch=useDispatch()
 
-  const {data:songList,isSuccess:getSongListSuccess}=useGetRankingListItemQuery(props.id)
 
+  const songList=props.tracks
+  const nav=useNavigate()
+
+  const toRankingPageHandler=()=>{
+    dispatch(forward(`/RankingPage/${props.id}`))
+    nav(`/RankingPage/${props.id}`,{
+      replace:false,
+      state:{
+        method:"PUSH",
+   
+      }
+    })
+  }
+
+  
 
   return (
-    <div className={classes.wrap}>
+    <div onClick={toRankingPageHandler} className={classes.wrap}>
       <div>
         <Title title={props.name} type="childrenWrap" desc="深夜emo" />
       </div>
       <div>
-        {getSongListSuccess &&
-          songList.map((item, index) => (
+        {
+          songList.slice(0,3).map((item, index) => (
             <SongItem
-              key={item.id}
-              id={item.id}
-              name={item.name}
+              key={item.first}
+              name={item.first}
               no={index + 1}
-              artist={item.ar}
+              artistName={item.second}
             />
           ))}
       </div>

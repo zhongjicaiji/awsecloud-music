@@ -7,7 +7,7 @@ import { createSlice } from "@reduxjs/toolkit";
  const playSongSlice=createSlice({
     name:'playSong',
     initialState:()=>{
-        const state=sessionStorage.getItem('playingSong')
+        const state=localStorage.getItem('playingSong')
         if(state){ 
             return JSON.parse(state)   
         }else{
@@ -34,20 +34,20 @@ import { createSlice } from "@reduxjs/toolkit";
                 state.artistName=actions.payload.artistName
                 state.currentTime=actions.payload.currentTime|| state.currentTime
 
-                sessionStorage.setItem('playingSong',JSON.stringify(state) )
+                localStorage.setItem('playingSong',JSON.stringify(state) )
         },
         toggleHandler(state,actions){
         
             state.playState=actions.payload
-            sessionStorage.setItem('playingSong',JSON.stringify(state) )
+            localStorage.setItem('playingSong',JSON.stringify(state) )
         },
         switchHandler(state,actions){
                 state.id=actions.payload
-                sessionStorage.setItem('playingSong',JSON.stringify(state) )
+                localStorage.setItem('playingSong',JSON.stringify(state) )
         },
         saveRange(state,actions){
             state.currentTime=actions.payload
-            sessionStorage.setItem('playingSong',JSON.stringify(state) )
+            localStorage.setItem('playingSong',JSON.stringify(state) )
         }   
     }
  })

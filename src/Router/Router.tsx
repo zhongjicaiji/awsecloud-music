@@ -10,6 +10,7 @@ import {
 } from "react-transition-group";
 import "./PageSwitchAnimation.css";
 import { uniqueId } from "lodash";
+import RankingPage from "../Component/RankingPage/RankingPage";
 
 interface ANIMATION_MAP_T {
   [KEY: string]: string;
@@ -38,6 +39,11 @@ const RoutesConfig=[
         path:"/playPage/:id",
         element:<PlayPage />,
       
+    },
+    {
+      id:uniqueId(),
+      path:"/RankingPage/:id",
+      element:<RankingPage />,
     }
  
 ]
@@ -45,13 +51,16 @@ const RoutesConfig=[
 function RouterMap() {
   const local = useLocation();
 
-  console.log(local.state);
+ 
   let classNames:string
-  if(local.state === 'PUSH') {
-    classNames = 'forward' ;
-  } else if(local.state === 'POP') {
-    classNames = 'back' ;
-  }
+  if(local.state){
+    if(local.state.method === 'PUSH') {
+      classNames = 'forward' ;
+    } else if(local.state.method === 'POP') {
+      classNames = 'back' ;
+    }
+  }else classNames=''
+
   return (
     <TransitionGroup 
     childFactory={child=>React.cloneElement(child,{classNames})}

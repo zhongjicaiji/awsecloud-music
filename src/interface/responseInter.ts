@@ -46,6 +46,10 @@ export interface RL {
   status: number;
   subscribed: any;
   subscribedCount:number;
+  tracks:Array<{
+    first:string,
+    second:string
+  }>
 }
 //歌单详情类型
 

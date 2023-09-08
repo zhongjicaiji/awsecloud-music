@@ -13,7 +13,8 @@ import { back  as RouteBack } from '../../../store/router/RouteStack';
 
 
 
-function TopMange() {
+
+function TopMange(props:{title:string|undefined}) {
   const dispatch=useDispatch()
   const routeStack:RouteStackT=useSelector((state:any)=>state.RouteStack)
   
@@ -29,7 +30,9 @@ function TopMange() {
     //@ts-ignore
     back(backPath,{
       replace:true,
-      state:"POP"
+      state:{
+        method:"POP"
+      },
     })
   }
 
@@ -37,7 +40,7 @@ function TopMange() {
     <div  className={classes.top}>
           <div className={classes.topLeft}>
             <FontAwesomeIcon onClick={backHandler} className={`${classes.icon}`} icon={faArrowLeft} />
-            <span className={classes.title}>歌单</span>
+            <span className={classes.title}>{props.title?props.title:'歌单'}</span>
           </div>
           <div  className={classes.topRight}>
             <FontAwesomeIcon className={`${classes.icon} ${classes.search}`} icon={faMagnifyingGlass} />

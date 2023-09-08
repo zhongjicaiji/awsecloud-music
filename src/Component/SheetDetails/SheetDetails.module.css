@@ -1,5 +1,6 @@
 .wrap{
     height: 100vh;
+    color: rgba(244, 244, 244, 0.8);
     overflow: hidden;
 }
 .headerBody{
@@ -8,7 +9,7 @@
 }
 .header{
     background-color: var(--detail-color);
-    color: #fff;
+    
     font-size: 30rem;
     padding: 110rem 30rem 20rem;
    
@@ -48,7 +49,7 @@
 }
 .creator{
     font-size: 20rem;
-    color: #CAAA96;
+ 
     display: flex;
     align-items: center;
     margin-top: 20rem;
@@ -59,9 +60,13 @@
 }
 .interest{
     
-    padding: 5rem 12rem;
+    padding: 1rem 12rem;
+    height: 30rem;
     background-color: rgba(146, 131, 131, 0.3);
-    border-radius: 30rem;
+    border-radius: 15rem;
+    font-size: 20rem;
+    line-height: 30rem;
+    
 }
 
 .tag{
@@ -93,7 +98,7 @@
 .descWrap{
     font-size: 20rem;
   
-    color: #CAAA96;
+   
     display: flex;
     align-items: center;
 }
@@ -102,14 +107,15 @@
     display: flex;
     justify-content: space-around;
 }
-.sheetData div{
+
+.subscribed{
+   background-image: linear-gradient(to left,#DE4D25,#DE1C09);
+}
+.comment,.share,.subscribed{
     width: 220rem;
     padding:  20rem 0;
   
     border-radius: 40rem;
-}
-.subscribed{
-   background-image: linear-gradient(to left,#DE4D25,#DE1C09);
 }
 .comment,.share{
     background-color: rgba(202, 189, 189, 0.4);

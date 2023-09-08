@@ -1,5 +1,5 @@
 import baseApi from "./baseApi";
-import { SongT, sheetDataT, RL,sheetDetailT, LyricT } from "../../interface/responseInter";
+import { SongT, sheetDataT, RL,sheetDetailT} from "../../interface/responseInter";
 import { song } from "../../interface/propsInterface";
 
 
@@ -38,12 +38,12 @@ const songApi = baseApi.injectEndpoints({
           return "/toplist/detail";
         },
         transformResponse: (response: { list: RL[] }): RL[] => {
-          return response.list.slice(0, 5);
+          return response.list.slice(0, 4);
         },
       }),
       getRankingListItem:builder.query({
         query:(id:number)=>{
-          return `/playlist/track/all?id=${id}&limit=3`
+          return `/playlist/track/all?id=${id}&limit=100`
         },
         transformResponse:(response:{songs:song[]}):song[]=>{
             return response.songs
