@@ -3,13 +3,18 @@
 
 }
 .AudioPlayerStyle{
+    position: fixed;
+    bottom: 0;
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 html{
     --my-color:#707070;
     --playControl-color:#707070;
     --detail-color:#916451;
+    --bg-color: #f0e3e3;
 
 }

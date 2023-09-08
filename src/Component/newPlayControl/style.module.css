@@ -1,66 +1,64 @@
-
-.audioPlayer{
-    width: 100%;
-    position: fixed;
-    bottom: 0rem;
-   background: var(--playControl-color);
+.audioPlayer {
+    background: var(--playControl-color);
     color: white;
-  border-radius: 30rem ;
-  z-index: 99999;
-  
-  
-    padding: 10rem 30rem;
+    border-radius: 100rem;
+    padding: 10rem 50rem;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    margin: 0 20rem;
+    
 }
 
-button{
+button {
 
     color: white;
     border: 0;
     font-size: 30rem;
-    background-color:  rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
     transition: transform 0.3s;
 
-    
+
 }
-button:active{
+
+button:active {
     transform: scale(1.2);
 }
 
-input[type="range"]{
+input[type="range"] {
     position: relative;
-    --range-progress:0;
+    --range-progress: 0;
     flex: auto;
     margin: 0 20rem;
 }
-input[type="range"]::before{
 
-    background-color:  rgb(28, 114, 194);
+input[type="range"]::before {
+
+    background-color: rgb(28, 114, 194);
     width: var(--range-progress);
-     
-    
+
+
 }
-.progressWrap{
+
+.progressWrap {
     display: flex;
     align-items: center;
     width: 600rem;
-  
+
 }
 
-.controlsWrap{
+.controlsWrap {
     display: flex;
     align-content: center;
     justify-content: space-around;
     height: 66rem;
     overflow: hidden;
-    
+
 }
-.playBtn{
+
+.playBtn {
     width: 80rem;
     height: 80rem;
     font-size: 60rem;
 }
-

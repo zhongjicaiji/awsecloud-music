@@ -5,6 +5,7 @@ import RouterMap from "./Router/Router";
 import AudioPlayer from "./Component/newPlayControl/AudioPlayer";
 import { useDispatch } from "react-redux";
 import { toggleHandler } from "./store/reducer/PlaySongSlice";
+import BottomBar from "./Component/UI/BottomBar/BottomBar";
 
 function App() {
   const dispatch=useDispatch()
@@ -24,7 +25,9 @@ function App() {
       <RouterMap />
       <div className="AudioPlayerStyle">
       <AudioPlayer />
+      <BottomBar/>
       </div>
+    
     </div>
   );
 }

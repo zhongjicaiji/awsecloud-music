@@ -82,10 +82,6 @@ function AudioPlayer() {
     [songList.currentSongId, index, audioRef.current]
   );
   
-  useEffect(()=>{
-console.log(local)
-  },[local])
-
   useEffect(() => {
     if (currentSong.playState && audioRef.current) {
       const promiseAudio = audioRef.current.play();

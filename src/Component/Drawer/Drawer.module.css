@@ -1,6 +1,6 @@
 .drawer{
 
-    --bg-color: #f0e3e3;
+ 
     background-color: var(--bg-color);
     height: 100vh;
    position: absolute;

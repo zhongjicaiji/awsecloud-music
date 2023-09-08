@@ -1,0 +1,19 @@
+.BottomBar{
+  
+    background-color: var(--bg-color);
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    color: #b8abab;
+    height: 80rem;
+}
+.icon{
+    font-size: 36rem;
+  
+ 
+}
+.iconWrap{
+    text-align: center;
+    flex-grow: 1;
+}
