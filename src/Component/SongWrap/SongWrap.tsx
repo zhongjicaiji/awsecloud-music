@@ -9,8 +9,11 @@ import { playSongsT } from "../../interface/responseInter";
 import SongCart from "./SongCart/SongCart";
 import { useGetAllSongInfoQuery } from "../../store/Api/songApi";
 import Loading from "../UI/Loading/Loading";
+interface SongWrapT extends playSongsT{
+   type?:string
+}
 
-function SongWrap(props: playSongsT) {
+function SongWrap(props: SongWrapT) {
   let ids: number[] = props.trackIds.map((item) => item.id);
   const { data, isSuccess } = useGetAllSongInfoQuery(ids);
 
@@ -31,7 +34,7 @@ function SongWrap(props: playSongsT) {
           <FontAwesomeIcon className={classes.icon} icon={faListCheck} />
         </div>
       </div>
-      <div className={ isSuccess?classes.body:classes.success}>
+      <div className={`${isSuccess?classes.body:classes.success} ${props.type&&classes.hasHeight}`}>
         {isSuccess ? (
           data.map((item, index, allSongs) => (
             <SongCart

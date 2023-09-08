@@ -2,7 +2,7 @@
 
     overflow-y: auto;
     height: 100%;
-   
+
 }
 
 .header {
@@ -10,7 +10,6 @@
     border-radius: 30rem 30rem 0 0;
     background-color: rgba(255, 255, 255);
     color: black;
-    position: fixed;
     display: flex;
     justify-content: space-between;
     padding: 30rem 20rem;
@@ -51,11 +50,14 @@
 }
 
 .body {
-    margin-top: 100rem;
-    margin-bottom: 100rem;
+  
+   padding-bottom: 50rem;
     background-color: #fff;
     overflow-y: auto;
 
+}
+.hasHeight{
+    height: 700rem;
 }
 
 .success {

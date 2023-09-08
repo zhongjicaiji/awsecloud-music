@@ -55,7 +55,7 @@ function RankingPage() {
             </div>
         </div>
         <div className={classes.body}>
-           {getSheetDetailSuccess&&<SongWrap trackIds={sheetDetailData.trackIds} count={sheetDetailData.trackIds.length} />} 
+           {getSheetDetailSuccess&&<SongWrap type='ranking' trackIds={sheetDetailData.trackIds} count={sheetDetailData.trackIds.length} />} 
         </div>
        
       

@@ -54,6 +54,7 @@ function SheetDetails() {
     
    <div className={classes.wrap}>
           <TopMange title=""   />
+          <div className={classes.main}>
           <div className={classes.header}>
             <div className={classes.headerBody}>
               <div className={classes.imgWrap}>
@@ -121,6 +122,8 @@ function SheetDetails() {
           <div className={classes.body}>
           {sheetDetailData&& <SongWrap count={sheetDetailData.trackCount} trackIds={sheetDetailData.trackIds}/>} 
           </div>
+          </div>
+        
          
           
           

@@ -1,6 +1,7 @@
 .wrap{
     height: 100vh;
     color: rgba(244, 244, 244, 0.8);
+     background-color: var(--detail-color);
   overflow-y: auto;
 }
 .headerBody{
@@ -8,13 +9,13 @@
     justify-content: space-between;
 }
 .header{
-    background-color: var(--detail-color);
-    height: 32vh;
+   
+   
     font-size: 30rem;
-    padding: 110rem 30rem 20rem;
+    padding: 0 30rem 20rem;
     width: 100%;
-    position: fixed;
-    z-index: 777;
+   
+   
    
 }
 .title{
@@ -146,6 +147,10 @@
     bottom: 0;
     margin: auto;
 }
-.body{
-    margin-top:32vh;
+.main{
+    height: 90%;
+    margin-top: 100rem;
+    overflow: hidden;
+    overflow-y: auto;
 }
+

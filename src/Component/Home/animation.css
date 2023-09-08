@@ -1,0 +1,27 @@
+.close-enter {
+    transition:transform 0.3s ;
+    
+    transform: translateX(0);
+  
+}
+
+.close-enter-active {
+    transition:transform 0.3s ;
+    transform: translateX(-40%);
+  
+
+}
+
+.close-exit {
+    transition:transform 0.3s ;
+    
+    transform: translateX(0) ;
+   
+}
+
+.close-exit-active {
+  
+    transition:transform 0.3s ;
+    
+    transform: translateX(-40%);
+}

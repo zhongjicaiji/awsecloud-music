@@ -18,7 +18,7 @@
 
 .body {
     margin-top: 36vh;
-    overflow: hidden;
+   
     overflow-y: auto;
 
 }
@@ -48,7 +48,7 @@
     justify-content: space-around;
     align-items: center;
     color: #f0f0f0;
-
+    
 }
 .icon{
     font-size: 40rem;

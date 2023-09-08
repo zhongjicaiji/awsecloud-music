@@ -7,6 +7,9 @@ import Banner from "./Banner/Banner";
 import SongSheet from "./SongSheet/SongSheets";
 import RankingList from "./RankingLists/RankingList";
 import Drawer from "../Drawer/Drawer";
+import Backdrop from "../UI/Backdrop/Backdrop";
+import { CSSTransition } from "react-transition-group";
+
 function HomePage() {
   const [showDrawer,setShowDrawer]=useState<boolean>(false)
   const showDrawerHandler=()=>{
@@ -18,16 +21,21 @@ function HomePage() {
 
 
   return (
-    <div className={classes.homeWrap}>
+  
+        <div className={classes.homeWrap}>
       <div className={`${classes.Drawer} ${showDrawer?classes.showDrawer:classes.closeDrawer}`}>
-      <Drawer close={closeDrawerHandler} />
+      
+       <Drawer close={closeDrawerHandler} />
+     
+
       </div>
+     {showDrawer&& <Backdrop />} 
      
       <div className={classes.topSearch}>
         <FontAwesomeIcon onClick={showDrawerHandler} className={classes.bar} icon={faBars} />
         <SearchBar />
         <FontAwesomeIcon className={classes.Micro} icon={faMicrophone} />
-      </div>
+     </div>
       <div className={classes.homeBody}>
         <div className={classes.banner}>
           <Banner />
@@ -38,6 +46,9 @@ function HomePage() {
         <RankingList />
       </div>
     </div>
+
+
+  
   );
 }
 

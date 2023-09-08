@@ -36,8 +36,8 @@ function PlayControls({
 const currentSong:CurrentSong=useSelector((state:any)=>state.playSongSlice)
  
 
-  const toggleState = () => {
-
+  const toggleState = (e:any) => {
+    e.stopPropagation()
     dispatch(toggleHandler(!currentSong.playState))
     
   };
@@ -74,25 +74,29 @@ const currentSong:CurrentSong=useSelector((state:any)=>state.playSongSlice)
     playAnimationRef.current = requestAnimationFrame(repeat);
   }, [currentSong.playState, audioRef, repeat]);
 
-  const backSkipHandler = () => {
+  const backSkipHandler = (e:any) => {
+    e.stopPropagation()
     if (audioRef.current) {
       audioRef.current.currentTime -= 15;
     }
   };
-  const forwardSkipHandler = () => {
+  const forwardSkipHandler = (e:any) => {
+    e.stopPropagation()
     if (audioRef.current) {
       audioRef.current.currentTime += 15;
     }
   };
-  const preHandler =useDebounce( () => {
+  const preHandler =useDebounce( (e:any) => {
+    e.stopPropagation()
     changeSong("pre");
   },500)
-  const nextHandler =useDebounce(() => {
+  const nextHandler =useDebounce((e:any) => {
+    e.stopPropagation()
     changeSong("next");
   },500) 
 
   return (
-    <div className={classes.controlsWrap}>
+    <div  className={classes.controlsWrap}>
       <button onClick={preHandler} title="上一首">
         <FontAwesomeIcon icon={faBackwardStep} />
       </button>

@@ -11,8 +11,6 @@
 .back-exit-active {
     transition: opacity 500ms,transform 500ms;
    
-  
-  
 }
 
 .forward-enter {

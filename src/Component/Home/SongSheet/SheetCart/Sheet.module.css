@@ -44,7 +44,7 @@
 .histroyCount{
     color: #fff;
     font-size: 20rem;
-    z-index: 888;
+    z-index: 20;
     position: absolute;
     top: 10rem;
     right: 10rem;

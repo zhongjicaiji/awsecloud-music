@@ -19,11 +19,16 @@ import {
 import { changeSong as newSong } from "../../store/reducer/SongListSlice";
 import useInitSong from "../Hooks/initData";
 import useColorThief from "../Hooks/MyColorThief";
+import { useNavigate } from "react-router-dom";
+import { forward } from "../../store/router/RouteStack";
+import { useLocation } from "react-router-dom";
 
 function AudioPlayer() {
+  const local=useLocation()
   const dispatch = useDispatch();
   const initSong = useInitSong();
   const colorThief = useColorThief();
+  const nav=useNavigate()
   const songList: SongList = useSelector((state: any) => state.SongListSlice);
   const currentSong: CurrentSong = useSelector(
     (state: any) => state.playSongSlice
@@ -76,6 +81,10 @@ function AudioPlayer() {
     },
     [songList.currentSongId, index, audioRef.current]
   );
+  
+  useEffect(()=>{
+console.log(local)
+  },[local])
 
   useEffect(() => {
     if (currentSong.playState && audioRef.current) {
@@ -93,8 +102,19 @@ function AudioPlayer() {
     }
   }, [audioRef.current, songList.currentSongId]);
 
+  const toPlayPage=()=>{
+    dispatch(forward(`/playPage/${songList.currentSongId}`))
+    nav(`/playPage/${songList.currentSongId}`,{
+       replace:false,
+       state:{
+        method:"PUSH"
+       }
+    })
+  }
+
+
   return (
-    <div className={classes.audioPlayer}>
+    <div onClick={toPlayPage} className={classes.audioPlayer}>
       <div hidden>
         <img
           onLoad={() => {
