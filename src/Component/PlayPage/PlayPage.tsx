@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { memo, useState, useEffect, useRef, useCallback } from "react";
 import classes from "./PlayPage.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,89 +7,94 @@ import {
   faHeart,
   faShareNodes,
 } from "@fortawesome/free-solid-svg-icons";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import {
+  RouteStackT,
+  SongList,
+  LyricArrT,
+} from "../../interface/responseInter";
+import { back as RouteBack } from "../../store/router/RouteStack";
 
-import { CurrentSong } from "../../interface/responseInter";
-import PlayControl from "./playControl/PlayControl";
-import { initSongHandler } from "../../store/reducer/PlaySongSlice";
-import axiosInstance from "../../store/Api/apiConfig";
+import { useGetLyricQuery } from "../../store/Api/LyricApi";
+
 
 function PlayPage() {
-  const currentSong = useSelector(
-    (state: any) => state.playSongSlice
-  ) as CurrentSong;
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const currentSong: SongList = useSelector(
+    (state: any) => state.SongListSlice
+  );
+  const [showLyric, setShowLyric] = useState(false);
+
+  const routeStack: RouteStackT = useSelector((state: any) => state.RouteStack);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  const newData = currentSong.lists[currentSong.currentIndex];
+  const { data: lyricData, isSuccess, refetch } = useGetLyricQuery(newData.id);
 
   const back = useNavigate();
   const dispatch = useDispatch();
-
-  const param = useParams();
-  const local = useLocation();
-  useEffect(() => {
-    axiosInstance
-      .get(`/song/detail?ids=${currentSong.id}`)
-      .then((res) => {
-        if (res) {
-          const data = res.data.songs[0];
-          dispatch(
-            initSongHandler({
-              ...currentSong,
-              playState: true,
-              name: data.name,
-              dTime: data.dt,
-              picUrl: data.al.picUrl,
-              fee: data.fee,
-              artistName: data.ar![0].name,
-            })
-          );
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [currentSong.id]);
-
   const backHandler = () => {
-    back(local.state.backPath, {
+    const backPath = routeStack.routeStack.at(-2);
+
+    dispatch(RouteBack());
+    //@ts-ignore
+    back(backPath, {
       replace: true,
-      state: {
-        backPath: local.state.currentPage.backPath,
-      },
+      state: "POP",
     });
   };
 
+  const showLyricHandler = () => {
+    setShowLyric(!showLyric);
+  };
+
+
+
   return (
-    <div className={classes.wrap}>
+    <div ref={wrapRef} className={classes.wrap}>
       <div className={classes.header}>
         <FontAwesomeIcon
           onClick={backHandler}
           className={`${classes.icon}`}
           icon={faArrowLeft}
         />
-        <div className={classes.songName}>{currentSong.name}</div>
+        <div className={classes.songName}>{newData.name}</div>
         <FontAwesomeIcon icon={faShareNodes} />
       </div>
-      <div className={classes.dishDrop}>
-        <div className={classes.dish}>
-          <div className={classes.imgWrap}>
-            <img
-              className={classes.img}
-              src={currentSong.picUrl}
-              alt="专辑封面"
-            />
+      <div
+        onClick={showLyricHandler}
+        className={`${classes.center}  ${showLyric && classes.Lyric}`}
+      >
+        {showLyric ? (
+          <div>
+            {isSuccess
+              ? lyricData.lyricStr.map((item: string, index) => (
+                  <p className={classes.lyricItem}>{item}</p>
+                ))
+              : "歌词加载中....."}
           </div>
-        </div>
+        ) : (
+          <div className={classes.dishDrop}>
+            <div className={classes.dish}>
+              <div className={classes.imgWrap}>
+                <img
+                  ref={imgRef}
+                  className={classes.img}
+                  src={newData.al.picUrl}
+                  alt="专辑封面"
+                />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-
       <div className={classes.Context}>
         <div className={classes.songContext}>
           <div className={classes.info}>
-            <div className={classes.minSongName}>{currentSong.name}</div>
+            <div className={classes.minSongName}>{newData.name}</div>
             <div className={classes.artist}>
-              <span className={classes.artistName}>
-                {currentSong.artistName}
-              </span>
+              <span className={classes.artistName}>{newData.ar[0].name}</span>
               <span className={classes.interest}>关注</span>
             </div>
           </div>
@@ -103,8 +108,6 @@ function PlayPage() {
             <FontAwesomeIcon icon={faCommentDots} />
           </div>
         </div>
-
-        <PlayControl />
       </div>
     </div>
   );

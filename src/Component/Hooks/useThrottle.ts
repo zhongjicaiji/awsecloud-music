@@ -1,7 +1,7 @@
 
 
 function throttle(fn:Function, delay:number) {
-    let last = 0;
+    let last = +new Date();
     let timer:any = null;
     return function (...args:any) {
         //@ts-ignore
@@ -21,4 +21,6 @@ function throttle(fn:Function, delay:number) {
         }
     };
 }
+
+
 export default throttle

@@ -1,3 +1,8 @@
+.homeWrap{
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
 .topSearch{
     display: flex;
     justify-content: space-between;
@@ -7,6 +12,7 @@
     position: fixed;
     width: 100%;
     z-index: 999;
+  
 }
 .bar,.Micro{
     font-size: 40rem;

@@ -1,16 +1,21 @@
 .wrap{
-    border-radius: 30rem 30rem 0 0;
-    overflow: hidden;
- 
+   
+   overflow-y: auto;
+    height: 100%;
+
+    
 }
 .header{
-    background-color: rgba(255, 255, 255, .9);
-
+    overflow: hidden;
+    border-radius: 30rem 30rem 0 0;
+    background-color: rgba(255, 255, 255);
+position: fixed;
    display: flex;
    justify-content: space-between;
   padding: 30rem 20rem;
   align-items: center;
-
+  z-index: 1;
+ width: 100%;
 
 }
 .playHandler{
@@ -39,5 +44,15 @@
   
 }
 .body{
+    margin-top: 100rem;
+    margin-bottom: 100rem;
     background-color: #fff;
+  
+}
+.success{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    width: 100%;  
 }

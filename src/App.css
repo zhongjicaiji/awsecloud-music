@@ -1,1 +1,15 @@
+.app {
+   
 
+}
+.AudioPlayerStyle{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+html{
+    --my-color:#707070;
+    --playControl-color:#707070;
+    --detail-color:#916451;
+
+}

@@ -1,28 +1,47 @@
+
 .wrap{
-    background-color: #523122;
+    background:  var(--my-color);
+ 
     height: 100vh;
+    overflow: hidden;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
-   justify-content: space-between;
+   justify-content:flex-start;
    align-items: center;
    color: rgba(255, 255, 255, 0.6);
    padding: 30rem;
- 
- 
-  
 }
 .songName{
     font-size: 36rem
 }
 .header{
    width: 100%;
-    
     font-size: 40rem;
     font-weight: 200;
     display: flex;
     justify-content: space-between;
     align-items: center;
   
+}
+.center{
+ height: 78vh;
+ display: flex;
+ align-items: center;
+ margin: 32rem 0 0;
+}
+.Lyric{
+    display: block;
+    overflow-y: auto;
+    text-align: center;
+ 
+    
+    
+}
+.lyricItem{
+    font-size: 36rem;
+    line-height: 40rem;
+
 }
 .dishDrop{
     width: 600rem;
@@ -32,6 +51,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
    
 }
 .dish{
@@ -97,14 +117,13 @@
 }
 .count{
     position: absolute;
-    font-size: 12rem;
-    background-color: #523122;
-        right:4rem;
+    font-size: 18rem;
+    background-color:rgba(255, 255, 255, .3);
+        right:-5rem;
     border-radius: 20rem;
     padding-left: 5rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
-
 .imgWrap{
     width: 400rem;
     height: 400rem;

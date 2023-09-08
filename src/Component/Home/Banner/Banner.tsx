@@ -1,21 +1,20 @@
 import React, { useEffect, useState, memo, useRef, Suspense} from "react";
 import classes from "./Banner.module.css";
 
-import useAxios from "../../Hooks/useAxios";
+import { useGetBannerQuery } from "../../../store/Api/bannerApi";
 
 function Banner() {
   const [banners, setBanners] = useState<any[]>([]);
 
   const [index, setIndex] = useState<number>(0);
-  const { data, loading,isSuccess, axiosRequire } = useAxios();
+
 
   const imgWrap = useRef<any>();
+  const {data:bannerImg,isSuccess:getBannerSuccess}=useGetBannerQuery(null)
+  useEffect(()=>{
+    getBannerSuccess&&setBanners([...bannerImg, bannerImg[0]]);
+  },[getBannerSuccess])
 
-
-
-  useEffect(() => {
-    isSuccess && setBanners([...data.banners.slice(0, 4), data.banners[0]]);
-  }, [isSuccess]);
   const rollImgStart: () => any = () => {
     let timer = setTimeout(function move() {
       setIndex(index + 1);
@@ -29,10 +28,6 @@ function Banner() {
       imgWrap.current.style.transform = `translateX(${-710 * (index + 1)}rem)`;
  let timer2=  setTimeout(move,3000)
         clearTimeout(timer2)
-    
- 
-    
-
     }, 3000);
     return timer;
   };
@@ -57,9 +52,7 @@ function Banner() {
     imgWrap.current.style.transform = `translateX(${-710 * id}rem)`;
   };
 
-  useEffect(() => {
-    axiosRequire("/banner");
-  }, []);
+
 
   useEffect(() => {
     let timer = rollImgStart();
@@ -72,7 +65,7 @@ function Banner() {
     <Suspense>
  <div className={classes.banner}>
       <div ref={imgWrap} className={classes.imgWrap}>
-        {isSuccess &&
+        {getBannerSuccess &&
           banners.map((item, index) => (
             <img
               className={classes.img}
@@ -83,7 +76,7 @@ function Banner() {
           ))}
       </div>
       <div className={classes.pointer}>
-        {isSuccess &&
+        {getBannerSuccess &&
           banners.slice(0, 4).map((item, i) => (
             <b
               key={i}

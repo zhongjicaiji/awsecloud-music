@@ -7,21 +7,30 @@ import {
   faEllipsisVertical,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
-
-interface propsT{
-  positioning:string,
-
-}
-
-function TopMange(props:propsT) {
+import { useDispatch,useSelector } from 'react-redux';
+import { RouteStackT } from '../../../interface/responseInter';
+import { back  as RouteBack } from '../../../store/router/RouteStack';
 
 
+
+function TopMange() {
+  const dispatch=useDispatch()
+  const routeStack:RouteStackT=useSelector((state:any)=>state.RouteStack)
+  
   const back=useNavigate()
 
 
 
   const backHandler=()=>{
-    back(props.positioning,{replace:true})
+
+    const backPath=routeStack.routeStack.at(-2)
+ 
+    dispatch(RouteBack())
+    //@ts-ignore
+    back(backPath,{
+      replace:true,
+      state:"POP"
+    })
   }
 
   return (

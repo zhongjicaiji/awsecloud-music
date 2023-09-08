@@ -1,6 +1,6 @@
 import { artist, song } from "./propsInterface";
 //歌单详情
-export interface sheetData {
+export interface sheetDataT {
   id: number;
   type: number;
   name: string;
@@ -73,7 +73,7 @@ export interface sheetDetailT{
 }
 export interface playSongsT{
   count:number|undefined,
-  trackIds:trackIdT[]|undefined,
+  trackIds:trackIdT[],
 }
 
 //歌曲详情
@@ -82,10 +82,12 @@ export interface SongT{
     id:number,
     fee:0|1|4|8,
     dt:number,
-    ar?:artist[],
-    al?:{
+    ar:artist[],
+    al:{
       picUrl:string
-    }
+    },
+    currentTime:number,
+ 
     
 }
 
@@ -115,7 +117,26 @@ export interface SongUrl{
 //歌单列表
 
 export interface SongList{
-  lists:SongUrl[],
-  url:string,
-  id:number
+  lists:SongT[],
+  currentSongUrl:string,
+  currentSongId:number,
+  currentIndex:number
 }
+
+//路由栈
+export interface RouteStackT{
+  routeStack:string[],
+  showPlayControl:boolean
+}
+
+
+//歌词
+
+export interface LyricT{
+  lrc:{
+    lyric:string,
+    version:number
+  }
+}
+//歌词数组类型
+export type LyricArrT=[ index:number,lyric:string]

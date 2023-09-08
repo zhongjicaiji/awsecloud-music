@@ -1,58 +1,50 @@
-import React,{useState,useRef,useEffect,useCallback} from 'react'
-import classes from './SongWrap.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowDown, faCirclePlay, faListCheck } from '@fortawesome/free-solid-svg-icons'
-import { playSongsT } from '../../interface/responseInter'
-import SongCart from './SongCart/SongCart'
-import ScrollItem from '../UI/Scollitem/Scollitem'
-import { useDispatch, useSelector } from 'react-redux'
-import { initSong } from '../../store/reducer/SongListSlice'
+import classes from "./SongWrap.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowDown,
+  faCirclePlay,
+  faListCheck,
+} from "@fortawesome/free-solid-svg-icons";
+import { playSongsT } from "../../interface/responseInter";
+import SongCart from "./SongCart/SongCart";
+import { useGetAllSongInfoQuery } from "../../store/Api/songApi";
+import Loading from "../UI/Loading/Loading";
 
+function SongWrap(props: playSongsT) {
+  let ids: number[] = props.trackIds.map((item) => item.id);
+  const { data, isSuccess } = useGetAllSongInfoQuery(ids);
 
-
-function SongWrap(props:playSongsT) {
-  const Songlist=useSelector((state:any)=>state.SongListSilce)
-  const dispatch=useDispatch()
-  
-  const playAllHandler=(e:any)=>{
-    e.stopPropagation()
-    dispatch(
-    
-      initSong(props.trackIds)
-    )
-  }
-    
-   
- 
-    
-  
   return (
     <div className={classes.wrap}>
       <div className={classes.header}>
         <div className={classes.playHandler}>
-        <FontAwesomeIcon className={classes.icon} icon={faCirclePlay} style={{color: "#d62448",}} />
-      <h2 onClick={playAllHandler} className={classes.headerTitle}>播放全部</h2>
-      <span className={classes.songCount}>({props.count})</span>
+          <FontAwesomeIcon
+            className={classes.icon}
+            icon={faCirclePlay}
+            style={{ color: "#d62448" }}
+          />
+          <h2 className={classes.headerTitle}>播放全部</h2>
+          <span className={classes.songCount}>({props.count})</span>
         </div>
         <div className={classes.songSet}>
-        <FontAwesomeIcon className={classes.icon}  icon={faArrowDown} />
-        <FontAwesomeIcon className={classes.icon} icon={faListCheck} />
+          <FontAwesomeIcon className={classes.icon} icon={faArrowDown} />
+          <FontAwesomeIcon className={classes.icon} icon={faListCheck} />
         </div>
-     
-
-
       </div>
-      <div className={classes.body} onClick={playAllHandler} >
-      {
-       props.trackIds?.map((item,index)=><ScrollItem><SongCart key={item.id} index={index+1} {...item} /> </ScrollItem>)
-      }
-    
-      
+      <div className={ isSuccess?classes.body:classes.success}>
+        {isSuccess ? (
+          data.map((item, index, allSongs) => (
+            <SongCart
+              key={item.id}
+              list={allSongs}
+              detail={{ ...item }}
+              index={index + 1}
+            ></SongCart>
+          ))
+        ) : (<Loading />)}
       </div>
-   
-    
     </div>
-  )
+  );
 }
 
-export default SongWrap
+export default SongWrap;

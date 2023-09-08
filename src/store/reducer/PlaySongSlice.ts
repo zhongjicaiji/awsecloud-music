@@ -1,16 +1,15 @@
 
 import { createSlice } from "@reduxjs/toolkit";
-import { CurrentSong } from "../../interface/responseInter";
+
 
  
 
  const playSongSlice=createSlice({
     name:'playSong',
     initialState:()=>{
-        if(localStorage.getItem('playingSong')){
-            let state:CurrentSong=JSON.parse(localStorage.getItem('playingSong') as string)
-            return state
-                
+        const state=sessionStorage.getItem('playingSong')
+        if(state){ 
+            return JSON.parse(state)   
         }else{
             return {
                 id: 0,
@@ -19,8 +18,8 @@ import { CurrentSong } from "../../interface/responseInter";
                 picUrl:'',
                 dTime:0,
                 fee:0,
-                artistName:''
-            
+                artistName:'',
+                currentTime:0,
             }
         }
     },
@@ -33,26 +32,26 @@ import { CurrentSong } from "../../interface/responseInter";
                 state.dTime=actions.payload.dTime
                 state.picUrl=actions.payload.picUrl
                 state.artistName=actions.payload.artistName
+                state.currentTime=actions.payload.currentTime|| state.currentTime
 
-
-                localStorage.setItem('playingSong',JSON.stringify(state) )
+                sessionStorage.setItem('playingSong',JSON.stringify(state) )
         },
-        pauseHandler(state){
+        toggleHandler(state,actions){
         
-            state.playState=false
-        },
-        playHandler(state){
-            state.playState=true
+            state.playState=actions.payload
+            sessionStorage.setItem('playingSong',JSON.stringify(state) )
         },
         switchHandler(state,actions){
                 state.id=actions.payload
-        }
-     
-        
-        
+                sessionStorage.setItem('playingSong',JSON.stringify(state) )
+        },
+        saveRange(state,actions){
+            state.currentTime=actions.payload
+            sessionStorage.setItem('playingSong',JSON.stringify(state) )
+        }   
     }
  })
 
 
- export const {initSongHandler, pauseHandler, playHandler,switchHandler }=playSongSlice.actions
+ export const {initSongHandler,toggleHandler,switchHandler,saveRange }=playSongSlice.actions
  export default playSongSlice
