@@ -1,4 +1,4 @@
-import { Fragment} from "react";
+import { Fragment,useRef} from "react";
 import {  useParams } from "react-router-dom";
 
 import classes from './SheetDetails.module.css';
@@ -16,6 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Loading from "../UI/Loading/Loading";
 import SongWrap from "../SongWrap/SongWrap";
 import { useGetSheetInfoQuery } from "../../store/Api/songApi";
+import ColorThief from "../Hooks/colorThief";
 
 
 
@@ -26,7 +27,8 @@ interface paramT {
 
 function SheetDetails() {
 
-
+  const colorThief=new ColorThief()
+  const imgRef=useRef<HTMLImageElement>(null)
 
   const param: paramT = useParams();
 
@@ -36,6 +38,15 @@ function SheetDetails() {
   if(playCount!==undefined){
     if(playCount>10000) playCount=Math.ceil(playCount/10000)+'万'
    else if(playCount>10**8) playCount=Math.ceil(playCount/(10**8))+"亿"
+  }
+  const onloadHandler=()=>{
+    if(imgRef.current){
+       imgRef.current.crossOrigin= "Anonymous";
+      const color=colorThief.getColor(imgRef.current,5)
+      color&&document.documentElement.style.setProperty('--detail-color',
+      `rgb(${color[0]},${color[1]},${color[2]})`
+      )
+    }
   }
 
 
@@ -48,9 +59,12 @@ function SheetDetails() {
             <div className={classes.headerBody}>
               <div className={classes.imgWrap}>
                 <img
+                  ref={imgRef}
                   className={classes.coverImg}
                   src={sheetDetailData?.coverImgUrl}
                   alt={sheetDetailData?.name}
+                 onLoad={onloadHandler}
+
                 />
                 <div className={classes.playCount}>
                 <FontAwesomeIcon icon={faPlay} />

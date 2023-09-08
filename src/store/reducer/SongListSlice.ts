@@ -28,7 +28,7 @@ const SongListSlice=createSlice({
     reducers:{
         initSong(state,actions){
             const list=actions.payload.lists
-            console.log(actions.payload)
+        
             state.lists=[...list]
             state.currentIndex=actions.payload.index
             state.currentSongId=actions.payload.id

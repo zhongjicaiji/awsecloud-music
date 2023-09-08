@@ -1,4 +1,4 @@
-import React,{ memo, useState,useEffect } from "react";
+import React, { memo, useState, useEffect, useRef, useCallback } from "react";
 import classes from "./PlayPage.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,26 +7,30 @@ import {
   faHeart,
   faShareNodes,
 } from "@fortawesome/free-solid-svg-icons";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {  RouteStackT ,SongList,LyricArrT} from "../../interface/responseInter";
-import { back as RouteBack} from "../../store/router/RouteStack";
+import {
+  RouteStackT,
+  SongList,
+  LyricArrT,
+} from "../../interface/responseInter";
+import { back as RouteBack } from "../../store/router/RouteStack";
 
 import { useGetLyricQuery } from "../../store/Api/LyricApi";
 
 
-
 function PlayPage() {
+  const wrapRef = useRef<HTMLDivElement>(null);
   const currentSong: SongList = useSelector(
     (state: any) => state.SongListSlice
   );
-  const [showLyric,setShowLyric]=useState(false)
-  
-  const routeStack: RouteStackT = useSelector((state: any) => state.RouteStack);
-  
+  const [showLyric, setShowLyric] = useState(false);
 
-  const newData=currentSong.lists[currentSong.currentIndex]
-  const {data:lyricData,isSuccess,refetch}=useGetLyricQuery(newData.id)
+  const routeStack: RouteStackT = useSelector((state: any) => state.RouteStack);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  const newData = currentSong.lists[currentSong.currentIndex];
+  const { data: lyricData, isSuccess, refetch } = useGetLyricQuery(newData.id);
 
   const back = useNavigate();
   const dispatch = useDispatch();
@@ -36,18 +40,19 @@ function PlayPage() {
     dispatch(RouteBack());
     //@ts-ignore
     back(backPath, {
-      replace: true, 
-      state:"POP"
+      replace: true,
+      state: "POP",
     });
-  
   };
- 
-  const showLyricHandler=()=>{
-    setShowLyric(!showLyric)
-  }
+
+  const showLyricHandler = () => {
+    setShowLyric(!showLyric);
+  };
+
+
 
   return (
-    <div className={classes.wrap}>
+    <div ref={wrapRef} className={classes.wrap}>
       <div className={classes.header}>
         <FontAwesomeIcon
           onClick={backHandler}
@@ -57,32 +62,39 @@ function PlayPage() {
         <div className={classes.songName}>{newData.name}</div>
         <FontAwesomeIcon icon={faShareNodes} />
       </div>
-      <div onClick={showLyricHandler} className={`${classes.center}  ${showLyric&&classes.Lyric}`}>
-        {showLyric?
+      <div
+        onClick={showLyricHandler}
+        className={`${classes.center}  ${showLyric && classes.Lyric}`}
+      >
+        {showLyric ? (
           <div>
-            {isSuccess?lyricData.lyricStr.map((item:string,index)=><p className={classes.lyricItem} >{item}</p>):'歌词加载中.....'}
-          </div>  : <div className={classes.dishDrop}>
-          <div className={classes.dish}>
-            <div className={classes.imgWrap}>
-              <img
-                className={classes.img}
-                src={newData.al.picUrl}
-                alt="专辑封面"
-              />
+            {isSuccess
+              ? lyricData.lyricStr.map((item: string, index) => (
+                  <p className={classes.lyricItem}>{item}</p>
+                ))
+              : "歌词加载中....."}
+          </div>
+        ) : (
+          <div className={classes.dishDrop}>
+            <div className={classes.dish}>
+              <div className={classes.imgWrap}>
+                <img
+                  ref={imgRef}
+                  className={classes.img}
+                  src={newData.al.picUrl}
+                  alt="专辑封面"
+                />
+              </div>
             </div>
           </div>
-        </div>
-      }
-     
+        )}
       </div>
       <div className={classes.Context}>
         <div className={classes.songContext}>
           <div className={classes.info}>
             <div className={classes.minSongName}>{newData.name}</div>
             <div className={classes.artist}>
-              <span className={classes.artistName}>
-                {newData.ar[0].name}
-              </span>
+              <span className={classes.artistName}>{newData.ar[0].name}</span>
               <span className={classes.interest}>关注</span>
             </div>
           </div>
@@ -101,4 +113,4 @@ function PlayPage() {
   );
 }
 
-export default PlayPage ;
+export default PlayPage;

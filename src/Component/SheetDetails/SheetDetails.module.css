@@ -7,7 +7,7 @@
     justify-content: space-between;
 }
 .header{
-    background-color: #916451;
+    background-color: var(--detail-color);
     color: #fff;
     font-size: 30rem;
     padding: 110rem 30rem 20rem;

@@ -37,7 +37,7 @@ const currentSong:CurrentSong=useSelector((state:any)=>state.playSongSlice)
  
 
   const toggleState = () => {
-console.log(1)
+
     dispatch(toggleHandler(!currentSong.playState))
     
   };

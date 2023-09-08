@@ -1,5 +1,7 @@
+
 .wrap{
-   background:rgba(0,0,0,.5);
+    background:  var(--my-color);
+ 
     height: 100vh;
     overflow: hidden;
     overflow-y: auto;
@@ -15,7 +17,6 @@
 }
 .header{
    width: 100%;
-  
     font-size: 40rem;
     font-weight: 200;
     display: flex;
@@ -27,21 +28,20 @@
  height: 78vh;
  display: flex;
  align-items: center;
-
- 
+ margin: 32rem 0 0;
 }
 .Lyric{
     display: block;
     overflow-y: auto;
-    white-space: nowrap;
     text-align: center;
-    margin: 32rem 0 0;
-    letter-spacing: 1rem;
+ 
+    
     
 }
 .lyricItem{
     font-size: 36rem;
     line-height: 40rem;
+
 }
 .dishDrop{
     width: 600rem;
@@ -118,7 +118,7 @@
 .count{
     position: absolute;
     font-size: 18rem;
-    background-color:#7F7F7F;
+    background-color:rgba(255, 255, 255, .3);
         right:-5rem;
     border-radius: 20rem;
     padding-left: 5rem;

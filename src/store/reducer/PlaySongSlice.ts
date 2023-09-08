@@ -8,10 +8,8 @@ import { createSlice } from "@reduxjs/toolkit";
     name:'playSong',
     initialState:()=>{
         const state=sessionStorage.getItem('playingSong')
-        if(state){
-            
-            return JSON.parse(state)
-                
+        if(state){ 
+            return JSON.parse(state)   
         }else{
             return {
                 id: 0,
