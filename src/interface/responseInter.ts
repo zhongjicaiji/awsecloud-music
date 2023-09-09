@@ -145,5 +145,6 @@ export interface LyricListT{
   currentTime:number,
   currentIndex:number,
   lyricList:LyricDataT[],
-  currentStyle:{}
+  currentStyle:{},
+  showLyric:boolean
 }

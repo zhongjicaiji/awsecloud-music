@@ -3,9 +3,12 @@ import AudioPlayer from '../newPlayControl/AudioPlayer'
 import BottomBar from '../UI/BottomBar/BottomBar'
 import { useLocation } from 'react-router-dom'
 import classes from './BottomCom.module.css'
+import { CSSTransition } from 'react-transition-group'
+import './Anima.css'
 
 function BottomComponent() {
     const [showBottomBar,setShowBottomBar]=useState(true)
+
     const local=useLocation()
     useEffect(()=>{
         if(local.pathname==='/' ){
@@ -18,7 +21,10 @@ function BottomComponent() {
   return (
     <div className={classes.AudioPlayerStyle}>
     <AudioPlayer />
-        { showBottomBar&&<BottomBar/>}
+  {showBottomBar&& <BottomBar/>}
+
+
+      
     </div>
   )
 }

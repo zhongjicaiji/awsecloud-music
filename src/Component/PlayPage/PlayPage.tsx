@@ -16,7 +16,7 @@ import {
 } from "../../interface/responseInter";
 import { back as RouteBack } from "../../store/router/RouteStack";
 import { useGetLyricQuery } from "../../store/Api/LyricApi";
-import { initLyric } from "../../store/reducer/LyricSlice";
+import { initLyric,setShowLyric } from "../../store/reducer/LyricSlice";
 
 
 
@@ -26,7 +26,7 @@ function PlayPage() {
   const currentSong: SongList = useSelector(
     (state: any) => state.SongListSlice
   );
-  const [showLyric, setShowLyric] = useState(false);
+
 
   const routeStack: RouteStackT = useSelector((state: any) => state.RouteStack);
   const imgRef = useRef<HTMLImageElement>(null);
@@ -54,7 +54,7 @@ function PlayPage() {
 
 
   const showLyricHandler = () => {
-    setShowLyric(!showLyric);
+    dispatch(setShowLyric())
   };
 
   return (
@@ -70,13 +70,13 @@ function PlayPage() {
       </div>
       <div
         onClick={showLyricHandler}
-        className={`${classes.center}  ${showLyric && classes.Lyric}`}
+        className={`${classes.center}  ${LyricStyle.showLyric && classes.Lyric}`}
       >
-        {showLyric ? (
+        {LyricStyle.showLyric ? (
           <div className={classes.lyricWrap} style={LyricStyle.currentStyle}>
             {isSuccess
               ? lyricData.map((item,index) => (
-                  <p style={LyricStyle.currentIndex==index?{color:`#fff`}:{}} key={item.time} className={classes.lyricItem}>{item.lyc}</p>
+                  <p style={LyricStyle.currentIndex==index?{color:`#fff`,transform:'scale(1.15)'}:{}} key={item.time} className={classes.lyricItem}>{item.lyc}</p>
                 ))
               : "歌词加载中....."}
           </div>

@@ -1,0 +1,23 @@
+.hidden-enter {
+ 
+    transform: translateY(0rem);
+  
+  }
+  
+  .hidden-enter-active {
+  
+    transform: translateY(-30rem);
+    transition: transform  500ms;
+  
+  }
+  
+  .hidden-exit {
+ 
+    transform: translateY(-40rem);
+  }
+  
+  .hidden-exit-active {
+
+    transform: translateY(-40rem);
+
+  }

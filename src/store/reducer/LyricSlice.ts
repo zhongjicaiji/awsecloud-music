@@ -7,7 +7,8 @@ const LyricSlice=createSlice({
         currentTime:0,
         currentIndex:0,
         lyricList:[],
-        currentStyle:{}
+        currentStyle:{},
+        showLyric:false
 
     },
     reducers:{
@@ -23,8 +24,13 @@ const LyricSlice=createSlice({
             state.currentStyle={ 
                 transform: 'translateY(0)'
             };
+           
+        },
+          setShowLyric(state){
+            state.showLyric=! state.showLyric
         }
+        
     }
 })
-export const {scrollLyric,initLyric}=LyricSlice.actions
+export const {scrollLyric,initLyric,setShowLyric}=LyricSlice.actions
 export default LyricSlice
