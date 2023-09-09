@@ -25,6 +25,7 @@ import { useLocation } from "react-router-dom";
 
 function AudioPlayer() {
   const local=useLocation()
+  
   const dispatch = useDispatch();
   const initSong = useInitSong();
   const colorThief = useColorThief();
@@ -98,7 +99,8 @@ function AudioPlayer() {
     }
   }, [audioRef.current, songList.currentSongId]);
 
-  const toPlayPage=()=>{
+  const toPlayPage=(e:any)=>{
+    if(/^\/playPage\/\d+$/.test(local.pathname)) return
     dispatch(forward(`/playPage/${songList.currentSongId}`))
     nav(`/playPage/${songList.currentSongId}`,{
        replace:false,
@@ -107,8 +109,6 @@ function AudioPlayer() {
        }
     })
   }
-
-
   return (
     <div onClick={toPlayPage} className={classes.audioPlayer}>
       <div hidden>

@@ -9,54 +9,55 @@
 .back-enter-active,
 .back-exit,
 .back-exit-active {
-    transition: opacity 500ms,transform 500ms;
+ 
+    touch-action: none;
    
 }
 
+/* src/App5/index.css */
+
+/* 路由前进时的入场/离场动画 */
 .forward-enter {
     opacity: 0;
-    
-    transform: translateX(100%) scale(0.8);
+    transform: translateX(100%);
+  }
   
-}
-
-.forward-enter-active {
+  .forward-enter-active {
     opacity: 1;
-    transform: translateX(0) scale(1);
-
-}
-
-.forward-exit {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-   
-}
-
-.forward-exit-active {
-    opacity: 0;
+    transform: translateX(0);
+    transition: transform  500ms,  opacity 500ms;
+  }
   
-    transform: translateX(100%) scale(0.8);
-}
-
-/* 路由后退时的入场/离场动画 */
-.back-enter {
-    opacity: 0;
-    transform: translateX(-100%) scale(0.8);
-}
-
-.back-enter-active {
+  .forward-exit {
     opacity: 1;
-   
-    transform: translateX(0) scale(1);
-}
-
-.back-exit {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-}
-
-.back-exit-active {
-    opacity: 0;
-    transform: translateX(-100%) scale(0.8);
+    transform: translateX(0);
+  }
   
-}
+  .forward-exit-active {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: transform  500ms,  opacity 500ms;
+  }
+  
+  /* 路由后退时的入场/离场动画 */
+  .back-enter {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  
+  .back-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform  500ms,  opacity 500ms;
+  }
+  
+  .back-exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .back-exit-active {
+    opacity: 0;
+    transform: translate(100%);
+    transition: transform  500ms,  opacity 500ms;
+  }

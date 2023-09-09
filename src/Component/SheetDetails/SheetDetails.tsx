@@ -43,7 +43,7 @@ function SheetDetails() {
        imgRef.current.crossOrigin= "Anonymous";
       const color=colorThief.getColor(imgRef.current,5)
       color&&document.documentElement.style.setProperty('--detail-color',
-      `rgb(${color[0]},${color[1]},${color[2]})`
+      `rgba(${color[0]},${color[1]},${color[2]},0.6)`
       )
     }
   }

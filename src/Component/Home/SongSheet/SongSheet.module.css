@@ -8,9 +8,9 @@
 
 .sheetWrap {
 
-  height: 340rem;
+  height: 360rem;
   display: flex;
-
   overflow-x: scroll;
-  padding-left: 20rem;
+ padding: 10rem 0 10rem 20rem;
+  
 }

@@ -75,29 +75,30 @@ const currentSong:CurrentSong=useSelector((state:any)=>state.playSongSlice)
   }, [currentSong.playState, audioRef, repeat]);
 
   const backSkipHandler = (e:any) => {
+    e.nativeEvent.stopImmediatePropagation()
     e.stopPropagation()
     if (audioRef.current) {
       audioRef.current.currentTime -= 15;
     }
   };
   const forwardSkipHandler = (e:any) => {
+    e.nativeEvent.stopImmediatePropagation()
     e.stopPropagation()
     if (audioRef.current) {
       audioRef.current.currentTime += 15;
     }
   };
-  const preHandler =useDebounce( (e:any) => {
-    e.stopPropagation()
+  const preHandler =useDebounce( () => {
     changeSong("pre");
   },500)
   const nextHandler =useDebounce((e:any) => {
-    e.stopPropagation()
+   
     changeSong("next");
   },500) 
 
   return (
     <div  className={classes.controlsWrap}>
-      <button onClick={preHandler} title="上一首">
+      <button onClick={(e:any)=>{ e.stopPropagation() ; preHandler();} } title="上一首">
         <FontAwesomeIcon icon={faBackwardStep} />
       </button>
       <button onClick={backSkipHandler} title="后退">
@@ -113,7 +114,7 @@ const currentSong:CurrentSong=useSelector((state:any)=>state.playSongSlice)
       <button onClick={forwardSkipHandler} title="快进">
         <FontAwesomeIcon icon={faForward} />
       </button>
-      <button onClick={nextHandler} title="下一首">
+      <button onClick={(e)=>{e.stopPropagation(); nextHandler()} } title="下一首">
         <FontAwesomeIcon icon={faForwardStep} />
       </button>
     </div>

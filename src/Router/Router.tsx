@@ -52,14 +52,8 @@ function RouterMap() {
   const local = useLocation();
 
  
-  let classNames:string
-  if(local.state){
-    if(local.state.method === 'PUSH') {
-      classNames = 'forward' ;
-    } else if(local.state.method === 'POP') {
-      classNames = 'back' ;
-    }
-  }else classNames=''
+  let classNames:string=local.state&&ANIMATION_MAP[local.state.method]||''
+ console.log(classNames)
 
   return (
     <TransitionGroup 
@@ -67,7 +61,6 @@ function RouterMap() {
     >
       <CSSTransition
         timeout={500}
-     
         key={local.pathname}
       >
         <Routes>

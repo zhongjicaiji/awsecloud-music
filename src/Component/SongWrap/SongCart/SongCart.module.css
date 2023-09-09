@@ -1,5 +1,5 @@
 .wrap{
-    color: #A8A4A5;
+    color: #252424;
     display:  flex;
     font-size: 24rem;
     justify-content: space-between;
@@ -13,11 +13,13 @@
 
 }
 .info{
+
     display: flex;
     align-items: center;
     
 }
 .setting{
+    color: #e0e0e0b0;
     margin: 40rem;
     font-size: 40rem;
 }

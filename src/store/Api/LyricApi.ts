@@ -6,7 +6,10 @@ interface LyricDataT{
     timeArr:number[],
     lyricStr:string[]
 }
-
+interface T{
+    time:number,
+    lyc:string
+}
 
 
 const LyricApi=baseApi.injectEndpoints({
@@ -16,20 +19,25 @@ const LyricApi=baseApi.injectEndpoints({
                 query:(id:number)=>{
                  return `/lyric?id=${id}`
                 },
-                transformResponse:(res:LyricT):LyricDataT=>{
-                    const timeArr:number[]=[]
-                   const tmpStr=res.lrc.lyric.replaceAll(/\[\d+:\d+.\d+\]/g,function(val){
-                    const time=parseInt(val.slice(1))*60*1000+parseFloat(val.slice(4,))*1000
-                    timeArr.push(time)
-                    return ''
-                   })
-
-                   const lyricStr=tmpStr.split('\n')
-
-                    return {
-                        timeArr,
-                        lyricStr
-                    } 
+                transformResponse:(res:LyricT):T[]=>{
+                    let ans:T[]=[]
+                    let lyric=res.lrc.lyric.split(/[\n]/).forEach(item=>{
+                        
+                        let tmp=item.split(/\[(.+?)\]/)
+                       if(tmp.length>2){
+ 
+                        let tmpTime=parseInt(tmp[1].slice(0))*60+parseFloat(tmp[1].slice(3))
+                   
+                      
+                        ans.push({
+                            time:tmpTime,
+                            lyc:tmp[2]
+                        })
+                       }
+                      
+                    })
+                   ans=ans.filter(item=>item.lyc)
+                    return  ans
 
                 },
   

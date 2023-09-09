@@ -1,14 +1,14 @@
 .wrap {
 
     overflow-y: auto;
-    height: 100%;
+
 
 }
 
 .header {
     overflow: hidden;
     border-radius: 30rem 30rem 0 0;
-    background-color: rgba(255, 255, 255);
+  
     color: black;
     display: flex;
     justify-content: space-between;
@@ -51,13 +51,13 @@
 
 .body {
   
-   padding-bottom: 50rem;
-    background-color: #fff;
+ 
+  padding-bottom: 100rem;
     overflow-y: auto;
 
 }
 .hasHeight{
-    height: 700rem;
+    height: 900rem;
 }
 
 .success {
@@ -66,4 +66,10 @@
     justify-content: center;
     height: 60vh;
     width: 100%;
+}
+.noMore{
+    font-size: 40rem;
+    line-height: 60rem;
+    text-align: center;
+    color: black;
 }

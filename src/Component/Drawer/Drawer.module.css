@@ -8,7 +8,7 @@
     left: 0;
     width: 40%;
     padding: 60rem 0;
-    color: #c9bebe;
+    color: #252424;
     border-radius: 0 50rem 50rem 0;
     
 }
@@ -54,7 +54,7 @@
     height: 30rem;
 }
 .close{
-    color: white;
+    color: #252424;
     font-size: 30rem;
     position: absolute;
     right: 20rem;
@@ -65,7 +65,7 @@
     
 }
 .logoutBtn{
-    color: rgb(226, 200, 200);
+    color: #fff;
     background-color: rgba(243, 30, 30, 0.8); 
     border-radius: 40rem;
     padding: 10rem 30rem;
@@ -88,5 +88,4 @@
     
    width: 500rem;
   
-    
 }

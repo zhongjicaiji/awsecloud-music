@@ -21,19 +21,20 @@ function Drawer({ close }: { close: Function }) {
   const imgRef = useRef<HTMLImageElement>(null);
   const bg = useRef<HTMLDivElement>(null);
   const imgUrl =
-  "https://p1.music.126.net/Xqi_9FN9ikLx7X3ChTR7jw==/109951165623877859.jpg";
-  const getColor = useCallback(() => {
+  "https://p2.music.126.net/SBEm15YRlBj9vnYQhAimrA==/109951162990572542.jpg";
+  // const getColor = useCallback(() => {
   
-    if (imgRef.current && bg.current) {
-      imgRef.current.crossOrigin = "Anonymous";
-      const color: number[] = colorThief.getColor(imgRef.current, 0);
-      color &&
-       document.documentElement.style.setProperty(
-          "--bg-color",
-          `rgb(${color[0]},${color[1]},${color[2]})`
-        );
-    }
-  }, [imgRef.current, bg.current, imgUrl]);
+  //   if (imgRef.current && bg.current) {
+  //     imgRef.current.crossOrigin = "Anonymous";
+  //     const color: number[] = colorThief.getColor(imgRef.current, 1);
+  //     console.log(color)
+  //     color &&
+  //      document.documentElement.style.setProperty(
+  //         "--bg-color",
+  //         `#F5F5F5`
+  //       );
+  //   }
+  // }, [imgRef.current, bg.current, imgUrl]);
 
   return (
     <div ref={bg} className={classes.drawer}>
@@ -56,7 +57,7 @@ function Drawer({ close }: { close: Function }) {
         >
           <img
             ref={imgRef}
-            onLoad={getColor}
+           
             className={classes.img}
             src={imgUrl}
             alt=""

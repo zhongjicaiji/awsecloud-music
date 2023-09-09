@@ -26,7 +26,11 @@ function DisplayTrack({
     <div>
       <audio
         onEnded={() => {
-          changeSong("next");
+         let timer= setTimeout(()=>{
+            changeSong("next");
+            clearTimeout(timer)
+          },500)
+      
         }}
         
         onLoadedMetadata={onLoadedMetaDate}

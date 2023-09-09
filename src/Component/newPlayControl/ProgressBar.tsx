@@ -3,6 +3,7 @@ import React, { memo } from "react";
 import "./reactAudio.css";
 import classes from "./style.module.css";
 import format from "../Hooks/formatTime";
+import useDebounce from "../Hooks/useDebounce";
 
 function ProgressBar({
   progressBarRef,
@@ -19,11 +20,13 @@ function ProgressBar({
 }) {
 
    
-  const progressChangeHandler = () => {
+  const  progressChangeHandler =() => {
+   
     if( audioRef.current){
+      
         audioRef.current.currentTime=Number(progressBarRef.current?.value );
     }
-  };
+  }
 
   return (
     <div className={classes.progressWrap}>

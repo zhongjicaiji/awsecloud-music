@@ -71,8 +71,8 @@ function PlayPage() {
         {showLyric ? (
           <div>
             {isSuccess
-              ? lyricData.lyricStr.map((item: string, index) => (
-                  <p className={classes.lyricItem}>{item}</p>
+              ? lyricData.map((item) => (
+                  <p key={item.time} className={classes.lyricItem}>{item.lyc}</p>
                 ))
               : "歌词加载中....."}
           </div>

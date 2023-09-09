@@ -1,6 +1,6 @@
 .wrap{
     height: 100vh;
-    color: rgba(244, 244, 244, 0.8);
+    color: #252424;
      background-color: var(--detail-color);
   overflow-y: auto;
 }

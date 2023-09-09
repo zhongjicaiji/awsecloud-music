@@ -1,9 +1,15 @@
 .wrap{
-    width: 240rem;
+    width: 260rem;
+    height: 340rem;
+    padding: 10rem;
     flex-shrink: 0;
     margin-right: 20rem;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, .1);
+    border-radius:  20rem;
+ 
    
 }
+
 .cartMain{
    position: relative;
     overflow: hidden;
@@ -12,7 +18,6 @@
 }
 .img{
     vertical-align: bottom;
- 
     width: 240rem;
      height:  240rem;
    object-fit: contain;
