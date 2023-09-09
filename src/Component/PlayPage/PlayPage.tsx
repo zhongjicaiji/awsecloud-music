@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect, useRef, useCallback } from "react";
+import React, {memo, useState, useEffect, useRef } from "react";
 import classes from "./PlayPage.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,14 +12,16 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   RouteStackT,
   SongList,
-  LyricArrT,
+  LyricListT
 } from "../../interface/responseInter";
 import { back as RouteBack } from "../../store/router/RouteStack";
-
 import { useGetLyricQuery } from "../../store/Api/LyricApi";
+import { initLyric } from "../../store/reducer/LyricSlice";
+
 
 
 function PlayPage() {
+  const LyricStyle:LyricListT=useSelector((state:any)=>state.LyricSlice)
   const wrapRef = useRef<HTMLDivElement>(null);
   const currentSong: SongList = useSelector(
     (state: any) => state.SongListSlice
@@ -30,7 +32,7 @@ function PlayPage() {
   const imgRef = useRef<HTMLImageElement>(null);
 
   const newData = currentSong.lists[currentSong.currentIndex];
-  const { data: lyricData, isSuccess, refetch } = useGetLyricQuery(newData.id);
+  const { data: lyricData, isSuccess } = useGetLyricQuery(newData.id);
 
   const back = useNavigate();
   const dispatch = useDispatch();
@@ -46,12 +48,14 @@ function PlayPage() {
       },
     });
   };
+  useEffect(()=>{
+   if(lyricData) dispatch(initLyric(lyricData))
+  },[newData.id,lyricData])
+
 
   const showLyricHandler = () => {
     setShowLyric(!showLyric);
   };
-
-
 
   return (
     <div ref={wrapRef} className={classes.wrap}>
@@ -69,10 +73,10 @@ function PlayPage() {
         className={`${classes.center}  ${showLyric && classes.Lyric}`}
       >
         {showLyric ? (
-          <div>
+          <div className={classes.lyricWrap} style={LyricStyle.currentStyle}>
             {isSuccess
-              ? lyricData.map((item) => (
-                  <p key={item.time} className={classes.lyricItem}>{item.lyc}</p>
+              ? lyricData.map((item,index) => (
+                  <p style={LyricStyle.currentIndex==index?{color:`#fff`}:{}} key={item.time} className={classes.lyricItem}>{item.lyc}</p>
                 ))
               : "歌词加载中....."}
           </div>
@@ -115,4 +119,4 @@ function PlayPage() {
   );
 }
 
-export default PlayPage;
+export default memo(PlayPage)  ;

@@ -135,6 +135,10 @@
    animation: playSongs 20s linear infinite;
 
 }
+.lyricWrap{
+    transition: transform 0.3s;
+    padding-top: 39vh;
+}
 .img{
     width: 400rem;
     height: 400rem;

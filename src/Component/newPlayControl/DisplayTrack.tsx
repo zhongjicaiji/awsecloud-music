@@ -1,4 +1,9 @@
-import React from "react";
+import React,{useCallback} from "react";
+import { useDispatch,useSelector } from "react-redux";
+import { LyricListT } from "../../interface/responseInter";
+import { scrollLyric } from "../../store/reducer/LyricSlice";
+import throttle from "../Hooks/useThrottle";
+
 
 function DisplayTrack({
   currentSongUrl,
@@ -15,12 +20,34 @@ function DisplayTrack({
   changeSong: Function;
   duration:number
 }) {
+
+  const LyricList:LyricListT=useSelector((state:any)=>state.LyricSlice)
+  const dispatch=useDispatch()
   const onLoadedMetaDate = () => {
     if (progressBarRef.current) {
       progressBarRef.current.max = (duration/1000) as unknown as string;
     }
   };
-
+const scrollLyricHandler=()=>{
+  if(audioRef.current){
+    const tmpTime=audioRef.current.currentTime
+    const preIndex=LyricList.currentIndex
+    const list=LyricList.lyricList
+    for(let i=preIndex;i<list.length;i++){
+      if(list[i+1]&&tmpTime>=list[i].time&&tmpTime<list[i+1].time){
+        dispatch(scrollLyric({
+          currentIndex:i,
+          style:{
+            transform: `translateY(${-80*i}rem)`
+          }
+        }))
+        return
+      }
+    }
+  
+  }
+ 
+}
 
   return (
     <div>
@@ -32,7 +59,7 @@ function DisplayTrack({
           },500)
       
         }}
-        
+       onTimeUpdate={()=>{ requestAnimationFrame(scrollLyricHandler)  }}
         onLoadedMetadata={onLoadedMetaDate}
         src={currentSongUrl}
         ref={audioRef}

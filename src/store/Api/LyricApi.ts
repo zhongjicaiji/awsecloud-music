@@ -1,15 +1,15 @@
-import { LyricT,LyricArrT } from "../../interface/responseInter";
+import { LyricDataT} from "../../interface/responseInter";
 import baseApi from "./baseApi";
+//歌词
+
+interface LyricT{
+    lrc:{
+      lyric:string,
+      version:number
+    }
+  }
 
 
-interface LyricDataT{
-    timeArr:number[],
-    lyricStr:string[]
-}
-interface T{
-    time:number,
-    lyc:string
-}
 
 
 const LyricApi=baseApi.injectEndpoints({
@@ -19,16 +19,14 @@ const LyricApi=baseApi.injectEndpoints({
                 query:(id:number)=>{
                  return `/lyric?id=${id}`
                 },
-                transformResponse:(res:LyricT):T[]=>{
-                    let ans:T[]=[]
+                transformResponse:(res:LyricT):LyricDataT[]=>{
+                    let ans:LyricDataT[]=[]
                     let lyric=res.lrc.lyric.split(/[\n]/).forEach(item=>{
                         
                         let tmp=item.split(/\[(.+?)\]/)
                        if(tmp.length>2){
  
                         let tmpTime=parseInt(tmp[1].slice(0))*60+parseFloat(tmp[1].slice(3))
-                   
-                      
                         ans.push({
                             time:tmpTime,
                             lyc:tmp[2]

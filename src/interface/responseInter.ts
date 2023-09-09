@@ -134,13 +134,16 @@ export interface RouteStackT{
 }
 
 
-//歌词
 
-export interface LyricT{
-  lrc:{
-    lyric:string,
-    version:number
-  }
-}
 //歌词数组类型
-export type LyricArrT=[ index:number,lyric:string]
+
+export interface LyricDataT{
+  time:number,
+  lyc:string
+}
+export interface LyricListT{
+  currentTime:number,
+  currentIndex:number,
+  lyricList:LyricDataT[],
+  currentStyle:{}
+}
