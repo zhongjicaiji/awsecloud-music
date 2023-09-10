@@ -9,13 +9,13 @@ import { playSongsT } from "../../interface/responseInter";
 import SongCart from "./SongCart/SongCart";
 import { useGetAllSongInfoQuery } from "../../store/Api/songApi";
 import Loading from "../UI/Loading/Loading";
-interface SongWrapT extends playSongsT{
-   type?:string
+interface SongWrapT extends playSongsT {
+  type?: string;
 }
 
 function SongWrap(props: SongWrapT) {
   let ids: number[] = props.trackIds.map((item) => item.id);
-  const { data, isSuccess } = useGetAllSongInfoQuery(ids);
+  const { data, isSuccess,isError,isLoading} = useGetAllSongInfoQuery(ids);
 
   return (
     <div className={classes.wrap}>
@@ -34,18 +34,25 @@ function SongWrap(props: SongWrapT) {
           <FontAwesomeIcon className={classes.icon} icon={faListCheck} />
         </div>
       </div>
-      <div className={`${isSuccess?classes.body:classes.success} ${props.type&&classes.hasHeight}`}>
+      <div
+        className={`${isSuccess ? classes.body : classes.fail} ${
+          props.type && classes.hasHeight
+        }`}
+      >
         {isSuccess ? (
-          data.map((item, index, allSongs) => (
+          (data.map((item, index, allSongs) => (
             <SongCart
               key={item.id}
               list={allSongs}
               detail={{ ...item }}
               index={index + 1}
             ></SongCart>
-          ))
-        ) : (<Loading />)}
-        <div className={classes.noMore}>已经到底了哦......</div>
+          )))
+       
+        ) : (
+        (isLoading&&<Loading />||<p>加载失败咯,刷新试一试.....</p>)
+        )}
+       {isSuccess&&<div className={classes.noMore}>已经到底了哦......</div>}
       </div>
     </div>
   );

@@ -13,7 +13,12 @@
    padding: 30rem;
 }
 .songName{
-    font-size: 36rem
+    font-size: 36rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 500rem;
+    
 }
 .header{
    width: 100%;
@@ -26,27 +31,35 @@
 }
 .center{
   
- height: 78vh;
+ width: 100%;
+ aspect-ratio: 5/9;
  display: flex;
- align-items: center;
+
+justify-content: center;
+align-items: center;
  margin: 32rem 0 0;
+
 }
 .Lyric{
    
-    display: block;
-    overflow-y: auto;
-    text-align: center; 
+    flex-direction: column;
+    justify-content: start;
+    text-align: center;
+     overflow: auto;
+ 
 }
 .lyricWrap{
   
     transition: transform 0.3s;
     padding-top: 39vh;
+    
 }
 .lyricItem{
-    width: 700rem;
+    width: 540rem;
     font-size: 36rem;
     line-height: 40rem;
     transition: transform 0.3s;
+    white-space: wrap;
     transform-origin: 50% 50%;
 }
 .dishDrop{

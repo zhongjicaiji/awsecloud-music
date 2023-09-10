@@ -1,4 +1,5 @@
 .audioPlayer {
+   width: 100%;
     background: var(--playControl-color);
     color: white;
     border-radius: 100rem;
@@ -9,6 +10,16 @@
     align-items: center;
     margin: 0 20rem;
     
+}
+.showBackground{
+    background-color: #F5F5F5;
+
+   flex-direction: row;
+   justify-content: space-between;
+
+   color: #252424;
+ 
+   
 }
 
 button {
@@ -62,3 +73,28 @@ input[type="range"]::before {
     height: 80rem;
     font-size: 60rem;
 }
+.showPlayBtn{
+ 
+    color: #252424;
+    height: 60rem;
+
+}
+.imgWrap{
+    width: 60rem;
+    height: 60rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.img{
+    width: 60rem;
+    height: 60rem;
+}
+.name{
+  font-size: 28rem;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0;
+  width: 500rem;
+  text-overflow: ellipsis;
+}
+

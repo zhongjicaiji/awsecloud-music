@@ -19,8 +19,8 @@ function HomePage() {
 
 
   return (
-  
-        <div className={classes.homeWrap}>
+ 
+     <div className={classes.homeWrap}>
       <div className={`${classes.Drawer} ${showDrawer?classes.showDrawer:classes.closeDrawer}`}>
       
        <Drawer close={closeDrawerHandler} />
@@ -44,6 +44,8 @@ function HomePage() {
         <RankingList />
       </div>
     </div>
+  
+       
 
 
   

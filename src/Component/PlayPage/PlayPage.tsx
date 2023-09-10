@@ -26,21 +26,19 @@ function PlayPage() {
   const currentSong: SongList = useSelector(
     (state: any) => state.SongListSlice
   );
-
-
   const routeStack: RouteStackT = useSelector((state: any) => state.RouteStack);
   const imgRef = useRef<HTMLImageElement>(null);
-
   const newData = currentSong.lists[currentSong.currentIndex];
   const { data: lyricData, isSuccess } = useGetLyricQuery(newData.id);
-
   const back = useNavigate();
   const dispatch = useDispatch();
+
+  
   const backHandler = () => {
-    const backPath = routeStack.routeStack.at(-2);
+    const backPath = routeStack.routeStack.at(-2) as string
 
     dispatch(RouteBack());
-    //@ts-ignore
+
     back(backPath, {
       replace: true,
       state:{

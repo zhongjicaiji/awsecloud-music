@@ -5,11 +5,12 @@ import SongListSlice from "./reducer/SongListSlice";
 import RouteStack from "./router/RouteStack";
 import baseApi from "./Api/baseApi";
 import LyricSlice from "./reducer/LyricSlice";
-
+import playControlSlice from "./reducer/playControl";
 
 
 const store=configureStore({
     reducer:{
+        playControlSlice:playControlSlice.reducer,
         playSongSlice:playSongSlice.reducer,
         SongListSlice:SongListSlice.reducer,
         LyricSlice:LyricSlice.reducer,

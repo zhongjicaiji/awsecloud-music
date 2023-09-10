@@ -8,18 +8,21 @@ const RouteStack = createSlice({
       return JSON.parse(state);
     }
     return {
-      routeStack: ["/"],
-      showPlayControl:false
+      routeStack: ["/home"],
+      showPlayControl:false,
+      level:1
     };
   },
 
   reducers: {
     forward(state, actions) {
       state.routeStack.push(actions.payload);
+      state.level+=1
       sessionStorage.setItem("routeStack", JSON.stringify(state));
     },
     back(state) {
       state.routeStack.pop();
+      state.level-=1
       sessionStorage.setItem("routeStack", JSON.stringify(state));
     },
     showPlayControl(state,actions){

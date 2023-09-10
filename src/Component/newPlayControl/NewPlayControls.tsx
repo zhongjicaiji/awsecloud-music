@@ -22,6 +22,7 @@ function PlayControls({
   progressBarRef,
   duration,
   changeSong,
+  showStyle
 
  
 }: {
@@ -30,6 +31,7 @@ function PlayControls({
   setTimeProgress: Function;
   duration: number;
   changeSong: Function;
+  showStyle:boolean
 }) {
 
   const dispatch=useDispatch()
@@ -98,23 +100,23 @@ const currentSong:CurrentSong=useSelector((state:any)=>state.playSongSlice)
 
   return (
     <div  className={classes.controlsWrap}>
-      <button onClick={(e:any)=>{ e.stopPropagation() ; preHandler();} } title="上一首">
+      <button hidden={!showStyle} onClick={(e:any)=>{ e.stopPropagation() ; preHandler();} } title="上一首">
         <FontAwesomeIcon icon={faBackwardStep} />
       </button>
-      <button onClick={backSkipHandler} title="后退">
+      <button hidden={!showStyle} onClick={backSkipHandler} title="后退">
         <FontAwesomeIcon icon={faBackward} />
       </button>
-      <button className={classes.playBtn} onClick={toggleState}>
+      <button className={`${classes.playBtn} ${showStyle||classes.showPlayBtn}`} onClick={toggleState}>
         {currentSong.playState ? (
           <FontAwesomeIcon icon={faPause} />
         ) : (
           <FontAwesomeIcon icon={faPlay} />
         )}
       </button>
-      <button onClick={forwardSkipHandler} title="快进">
+      <button hidden={!showStyle} onClick={forwardSkipHandler} title="快进">
         <FontAwesomeIcon icon={faForward} />
       </button>
-      <button onClick={(e)=>{e.stopPropagation(); nextHandler()} } title="下一首">
+      <button hidden={!showStyle} onClick={(e)=>{e.stopPropagation(); nextHandler()} } title="下一首">
         <FontAwesomeIcon icon={faForwardStep} />
       </button>
     </div>

@@ -120,7 +120,8 @@ function SheetDetails() {
             </div>
           </div>
           <div className={classes.body}>
-          {sheetDetailData&& <SongWrap count={sheetDetailData.trackCount} trackIds={sheetDetailData.trackIds}/>} 
+          {getSheetDetailSuccess&& <SongWrap count={sheetDetailData.trackCount} trackIds={sheetDetailData.trackIds}/>} 
+          
           </div>
           </div>
         

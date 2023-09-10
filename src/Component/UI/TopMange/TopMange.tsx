@@ -31,7 +31,8 @@ function TopMange(props:{title:string|undefined}) {
     back(backPath,{
       replace:true,
       state:{
-        method:"POP"
+        method:"POP",
+        level:1
       },
     })
   }

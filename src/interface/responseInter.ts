@@ -130,7 +130,8 @@ export interface SongList{
 //路由栈
 export interface RouteStackT{
   routeStack:string[],
-  showPlayControl:boolean
+  showPlayControl:boolean,
+  level:number
 }
 
 
